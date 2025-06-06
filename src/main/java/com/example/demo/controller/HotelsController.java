@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
 public class HotelsController {
-    /*じょんへすん*/
-    /*ヘスンです。*/
+	/*じょんへすん*/
+	/*ヘスンです。*/
+	/*松本*/
 
 }
