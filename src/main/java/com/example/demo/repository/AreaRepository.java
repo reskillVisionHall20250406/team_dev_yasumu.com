@@ -1,5 +1,9 @@
 package com.example.demo.repository;
 
-public class AreaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.example.demo.entity.Area;
+
+public interface AreaRepository extends JpaRepository<Area, String> {
+    Area findByAreaName();
 }

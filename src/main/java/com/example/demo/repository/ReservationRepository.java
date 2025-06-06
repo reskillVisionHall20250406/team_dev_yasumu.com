@@ -1,5 +1,9 @@
 package com.example.demo.repository;
 
-public class ReservationRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.example.demo.entity.Reservation;
+
+public interface ReservationRepository extends JpaRepository<Reservation, String> {
+    Reservation findByCustomerId(Integer customerId);
 }
