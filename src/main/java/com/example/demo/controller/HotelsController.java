@@ -1,21 +1,9 @@
 package com.example.demo.controller;
 
-<<<<<<< HEAD
-/*public class HotelsController {
-	// ホテル一覧表示
-	@GetMapping("/hotels")
-	public String index(
-			@RequestParam(name = "capacity", required = false) String capacity,
-			@RequestParam(name = "price", defaultValue = "") Integer price,
-			@RequestParam(name = "keyword", required = false) String keyword,
-			@RequestParam(name = "areaId", defaultValue = "0") Integer areaId,
-			@RequestParam(name = "page", defaultValue = "0") Integer page,
-			Model model) {
-=======
 public class HotelsController {
     /*じょんへすん*/
     /*ヘスンです。*/
->>>>>>> branch 'develop' of git@github.com:reskillVisionHall20250406/team_dev_yasumu.com.git
+	/* 松本です */
 
 		int pageSize = 8;
 		Pageable pageable = PageRequest.of(page, pageSize);
