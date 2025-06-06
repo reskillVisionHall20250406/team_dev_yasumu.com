@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 public class Hotels {
-/*松本が変更・更新します*/
+/*松本が変更・更新しますtest*/
 private Interger id;
 private Interger areaId;
 private String name;
