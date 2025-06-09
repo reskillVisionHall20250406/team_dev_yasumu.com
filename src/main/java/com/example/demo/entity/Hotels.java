@@ -1,12 +1,15 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="hotels")
 public class Hotels {
-/*松本が変更・更新しますtest*/
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer Id;
 private Integer areaId;
 private String name;
