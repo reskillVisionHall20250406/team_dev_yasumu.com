@@ -113,7 +113,7 @@ public class AccountController {
 		account.setName(Customers.getName());
 		//        account.setId(Customers.getId());
 
-		return "redirect:/tasks";
+		return "redirect:/hotels";
 	}
 
 	@GetMapping("/mypage")
