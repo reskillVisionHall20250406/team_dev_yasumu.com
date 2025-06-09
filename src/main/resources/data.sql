@@ -5,17 +5,6 @@ INSERT INTO area(name) VALUES('近畿地方');
 INSERT INTO area(name) VALUES('中国地方');
 INSERT INTO area(name) VALUES('四国地方');
 INSERT INTO area(name) VALUES('九州地方');
-
-id SERIAL PRIMARY KEY,
-    name VARCHAR(60),
-    address VARCHAR(150),
-    tel VARCHAR(11),
-    email VARCHAR(256) UNIQUE,
-    password VARCHAR(255),
-    image VARCHAR(255),
-    card_no VARCHAR(255),
-    code VARCHAR(255),
-    expiry
     
 INSERT INTO customers(name,address,tel,email,password,image,card_no,code,expiry)
 VALUES('ジュン・ヘスン','東京都新宿区','jung@gmail.com','himitu','image1.png','012356789012','123','0828');
