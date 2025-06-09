@@ -33,7 +33,7 @@ address VARCHAR(150),
 tel VARCHAR(11),
 email VARCHAR(256) UNIQUE,
 password VARCHAR(MAX),
-imge VARCHAR(MAX)
+image VARCHAR(MAX)
 cardNo INTEGER
 code INTEGER
 expiry VARCHAR(MAX)
