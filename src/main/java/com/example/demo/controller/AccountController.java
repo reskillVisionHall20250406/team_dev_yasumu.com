@@ -40,7 +40,6 @@ public class AccountController {
             @RequestParam(name = "tel", defaultValue = "") Integer tel,
             @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "password", defaultValue = "") String password,
-            @RequestParam(name = "password_confirm", defaultValue = "") String password_confirm,
             @RequestParam(value = "image") String image,
             Model model) {
 
@@ -60,9 +59,6 @@ public class AccountController {
         }
         if (password.isEmpty()) {
             errorList.add("パスワードを入力してください");
-        }
-        if (!password.equals(password_confirm)) {
-            errorList.add("パスワードが一致しません");
         }
         if (!errorList.isEmpty()) {
             model.addAttribute("errors", errorList);
