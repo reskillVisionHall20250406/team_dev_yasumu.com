@@ -13,10 +13,10 @@ public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String area;
+    private String name;
 
     public String getArea() {
-	return area;
+	return name;
 }
 
 }

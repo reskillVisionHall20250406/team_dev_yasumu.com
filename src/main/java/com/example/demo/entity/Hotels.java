@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,11 +13,14 @@ public class Hotels {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
+	@Column(name = "area_id")
 	private Integer areaId;
 	private String name;
 	private String detail;
 	private String address;
 	private String image;
+	private String image2;
+	private String image3;
 	private Integer capacity;
 	private Integer price;
 
