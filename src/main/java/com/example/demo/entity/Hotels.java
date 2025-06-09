@@ -4,6 +4,10 @@ package com.example.demo.entity;
 @Table(name="hotels")
 public class Hotels {
 /*松本が変更・更新しますtest*/
+
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Integer id;
 private Interger areaId;
 private String name;
 private String detail;
