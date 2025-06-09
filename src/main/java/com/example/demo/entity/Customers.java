@@ -15,7 +15,7 @@ public class Customers {
 	private Integer id;
 	private String name;
 	private String address;
-	private Integer tel;
+	private String tel;
 	private String email;
 	private String password;
 	private String image;
@@ -27,7 +27,7 @@ public class Customers {
 	protected Customers() {
 	}
 
-	public Customers(String name, String address, Integer tel, String email, String password, String image,
+	public Customers(String name, String address, String tel, String email, String password, String image,
 			String CardNo, String code, String expiry) {
 		this.name = name;
 		this.address = address;
@@ -39,7 +39,7 @@ public class Customers {
 		this.code = code;
 	}
 
-	public Customers(String name, String address, Integer tel, String email, String password, String image) {
+	public Customers(String name, String address, String tel, String email, String password, String image) {
 		this.name = name;
 		this.address = address;
 		this.email = email;
@@ -80,11 +80,11 @@ public class Customers {
 		this.address = address;
 	}
 
-	public Integer getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(Integer tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
