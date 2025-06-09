@@ -41,6 +41,7 @@ public class ReservationController {
 			@RequestParam("orderedOn") LocalDate orderedOn,Model model) {
 			Reservation reservation = new Reservation(id,account.getId(),orderedOn);
 			reservationRepository.saveAll(reservation);
+			return "completed";
 	}
 }
 }
