@@ -38,11 +38,10 @@ public class ReservationController {
 	public String reservation(
 			@PathVariable("id") Integer id,
 			Model model) {
-
 		Hotels hotels = hotelsRepository.findById(id).get();//クリックされた宿のIDから宿情報を取得
-		Customers customer = customersRepository.findByEmail(account.getEmail());
+		Customers customer = customersRepository.findByEmail("jung@gmail.com");
 		//ログインされているアカウントからクレジットカードの情報を取得
-		List<Integer> card = new ArrayList<>();
+		List<String> card = new ArrayList<>();
 		card.add(customer.getCardNo());
 		card.add(customer.getCode());
 		card.add(customer.getExpiry());
