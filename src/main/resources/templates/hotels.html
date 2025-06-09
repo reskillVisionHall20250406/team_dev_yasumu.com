@@ -1,9 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Hotels</title>
+	<meta charset="UTF-8">
+	<title>kani'shop</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	<!-- Google Fonts 読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+		rel="stylesheet">
 </head>
+
 <body>
-    <h1>ホテル一覧ページ</h1>
+	<header th:replace="header">
+	</header>
+	
+	<h1>ホテル一覧ページ</h1>
+
+	<div class="row">
+		<div class="col" th:each="hotel : ${hotels}">
+			<a th:href="@{/hotelsdetail/{Id}(id=${hotel.id})}">
+				<div class="div4">
+					<img th:src="${hotel.image}" height="140px" alt="ホテル画像">
+					<h3 th:text="${hotel.name}"></h3>
+					<div th:text="${hotel.price} + '円'"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<!-- ページネーションリンク -->
+	<div>
+		<span th:if="${page.hasPrevious()}">
+			<a
+				th:href="@{/hotels(page=${page.number - 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">前へ</a>
+		</span>
+
+		<span th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+			<a th:href="@{/hotels(page=${i}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}"
+				th:text="${i + 1}" th:classappend="${i == page.number} ? 'active'"></a>
+		</span>
+
+		<span th:if="${page.hasNext()}">
+			<a
+				th:href="@{/hotels(page=${page.number + 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">次へ</a>
+		</span>
+	</div>
+
+
 </body>
+
 </html>
