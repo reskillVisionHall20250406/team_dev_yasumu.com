@@ -9,110 +9,123 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "customers")
 public class Customers {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String name;
-	private String address;
-	private Integer tel;
-	private String email;
-	private String password;
-	private String image;
-	private Integer cardNo;
-	private Integer code;
-	private Integer expiry;
 
-	Customers() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String name;
+    private String address;
+    private Integer tel;
+    private String email;
+    private String password;
+    private String image;
+    private Integer cardNo;
+    private Integer code;
+    private Integer expiry;
 
-	}
+    protected Customers() {
+    }
 
-	Customers(Integer id, String name, String address, Integer tel, String email, String password, String image,
-			Integer CardNo, Integer code, Integer expiry) {
-		this.id = id;
-		this.name = name;
-		this.address = address;
-		this.tel = tel;
-		this.email = email;
-		this.password = password;
-		this.image = image;
-		this.cardNo = CardNo;
-		this.code = code;
-	}
+    public Customers(String name, String address, Integer tel, String email, String password, String image,
+            Integer CardNo, Integer code, Integer expiry) {
+        this.name = name;
+        this.address = address;
+        this.tel = tel;
+        this.email = email;
+        this.password = password;
+        this.image = image;
+        this.cardNo = CardNo;
+        this.code = code;
+    }
 
-	public Integer getExpiry() {
-		return expiry;
-	}
+    public Customers(String name, String address, String email, String password, Integer tel, String image) {
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.tel = tel;
+        this.image = image;
 
-	public void setExpiry(Integer expiry) {
-		this.expiry = expiry;
-	}
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public Integer getExpiry() {
+        return expiry;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setExpiry(Integer expiry) {
+        this.expiry = expiry;
+    }
 
-	public void setCardNo(Integer cardNo) {
-		this.cardNo = cardNo;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setCode(Integer code) {
-		this.code = code;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setTel(Integer tel) {
-		this.tel = tel;
-	}
+    public Integer getTel() {
+        return tel;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setTel(Integer tel) {
+        this.tel = tel;
+    }
 
-	public Integer getCardNo() {
-		return cardNo;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public Integer getCode() {
-		return code;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getImage() {
-		return image;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public Integer getTel() {
-		return tel;
-	}
+    public Integer getCardNo() {
+        return cardNo;
+    }
+
+    public void setCardNo(Integer cardNo) {
+        this.cardNo = cardNo;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 
 }

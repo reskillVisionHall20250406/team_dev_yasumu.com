@@ -34,9 +34,11 @@ public class AccountController {
     public String add(
             @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "name", defaultValue = "") String name,
+            @RequestParam(name = "address", defaultValue = "") String address,
             @RequestParam(name = "password", defaultValue = "") String password,
             @RequestParam(name = "password_confirm", defaultValue = "") String password_confirm,
-            @RequestParam(name = "tell", defaultValue = "") Integer tell,
+            @RequestParam(name = "tel", defaultValue = "") Integer tel,
+            @RequestParam(value = "image") String image,
             Model model) {
 
         List<String> errorList = new ArrayList<>();
@@ -50,21 +52,22 @@ public class AccountController {
         if (password.isEmpty()) {
             errorList.add("パスワードを入力してください");
         }
+        if (tel == null) {
+            errorList.add("電話番号を入力してください");
+        }
         if (!password.equals(password_confirm)) {
             errorList.add("パスワードが一致しません");
         }
-
         if (!errorList.isEmpty()) {
             model.addAttribute("errors", errorList);
             return "user"; // ログインページにエラーを表示
         }
 
-        Customers Cusomers = new Customers(email, name, password, tell);
-        CustomersRepository.save(Customers);
+        Customers customers = new Customers(email, address, name, password, tel, image);
+        CustomersRepository.save(customers);
         return "redirect:/login";
     }
 
-    //로그인 화면 
     @GetMapping({ "/", "/login", "/logout" })
     public String index() {
         session.invalidate();
@@ -87,11 +90,11 @@ public class AccountController {
         }
 
         //로그인 성공시 타스크로 이동, 실패시 에러
-        User user = userRepository.findByEmail(email);
+        Customers Customers = CustomersRepository.findByEmail(email);
 
         if (!email.isEmpty() && !password.isEmpty()) {
-            if (user != null && user.getPassword().equals(password)) {
-                session.setAttribute("currentUser", user);
+            if (Customers != null && Customers.getPassword().equals(password)) {
+                session.setAttribute("currentUser", Customers);
             } else {
                 errorList.add("メールアドレスまたはパスワードが正しくありません");
             }
@@ -101,12 +104,10 @@ public class AccountController {
             model.addAttribute("errors", errorList);
             return "login"; // ログインページにエラーを表示
         }
-        //        List<User> users = userRepository.findByEmailAndPassword(email, password);
 
-        //        User u = users.get(0);
-        account.setName(user.getName());
-        account.setId(user.getId());
-        //여기서 이름 받아서 홈페이지에 표시가능하게 날려줌
+        account.setName(Customers.getName());
+        //        account.setId(Customers.getId());
+
         return "redirect:/tasks";
     }
 }
