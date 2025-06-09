@@ -32,28 +32,31 @@ public class AccountController {
 
     @PostMapping("/user/add")
     public String add(
-            @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "name", defaultValue = "") String name,
             @RequestParam(name = "address", defaultValue = "") String address,
+            @RequestParam(name = "tel", defaultValue = "") Integer tel,
+            @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "password", defaultValue = "") String password,
             @RequestParam(name = "password_confirm", defaultValue = "") String password_confirm,
-            @RequestParam(name = "tel", defaultValue = "") Integer tel,
             @RequestParam(value = "image") String image,
             Model model) {
 
         List<String> errorList = new ArrayList<>();
 
-        if (email.isEmpty()) {
-            errorList.add("メールを入力してください");
-        }
         if (name.isEmpty()) {
             errorList.add("お名前を入力してください");
         }
-        if (password.isEmpty()) {
-            errorList.add("パスワードを入力してください");
+        if (address.isEmpty()) {
+            errorList.add("住所を入力してください");
         }
         if (tel == null) {
             errorList.add("電話番号を入力してください");
+        }
+        if (email.isEmpty()) {
+            errorList.add("メールを入力してください");
+        }
+        if (password.isEmpty()) {
+            errorList.add("パスワードを入力してください");
         }
         if (!password.equals(password_confirm)) {
             errorList.add("パスワードが一致しません");
@@ -63,7 +66,7 @@ public class AccountController {
             return "user"; // ログインページにエラーを表示
         }
 
-        Customers customers = new Customers(email, address, name, password, tel, image);
+        Customers customers = new Customers(name, address, tel, email, password, image);
         CustomersRepository.save(customers);
         return "redirect:/login";
     }
@@ -79,7 +82,7 @@ public class AccountController {
             @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "password", defaultValue = "") String password,
             Model model) {
-        //로그인화면 미입력시 에러리스트
+
         List<String> errorList = new ArrayList<>();
 
         if (email.isEmpty()) {
@@ -89,7 +92,6 @@ public class AccountController {
             errorList.add("パスワードを入力してください");
         }
 
-        //로그인 성공시 타스크로 이동, 실패시 에러
         Customers Customers = CustomersRepository.findByEmail(email);
 
         if (!email.isEmpty() && !password.isEmpty()) {
