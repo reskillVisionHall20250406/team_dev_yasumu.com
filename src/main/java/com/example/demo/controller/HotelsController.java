@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 public class HotelsController {
-	// ホテル一覧表示
-	@GetMapping("/hotels")
+    // ホテル一覧表示
+    @GetMapping("/hotels")
 	public String index(
 			@RequestParam(name = "capacity", required = false) String capacity,
 			@RequestParam(name = "price", defaultValue = "") Integer price,
@@ -10,7 +10,7 @@ public class HotelsController {
 			@RequestParam(name = "areaId", defaultValue = "0") Integer areaId,
 			@RequestParam(name = "page", defaultValue = "0") Integer page,
 			Model model) {
-=======
+
 public class HotelsController {
 
 		int pageSize = 8;
