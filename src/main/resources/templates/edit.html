@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>会員情報変更</title>
+</head>
+
+<body>
+	<header>
+		<h1>休.com</h1>
+	</header>
+
+	<ul th:if="${errors}" class="error">
+		<li th:each="error : ${errors}" th:text="${error}"></li>
+	</ul>
+	<h1>会員情報変更</h1>
+	<form action="/mypage/edit" method="post">
+		<input type="text" name="name" placeholder="*名前"><br>
+		<input type="text" name="email" placeholder="*メールアドレス"><br>
+		<input type="text" name="address" placeholder="*住所"><br>
+		<input type="text" name="tel" placeholder="*電話番号"><br>
+		<input type="password" name="password" placeholder="*パスワード（8文字以上）"><br>
+		<input type="text" name="cardNo" placeholder="クレジットカード番号"><br>
+		<input type="text" name="code" placeholder="セキュリティコード"><br>
+		<input type="text" style="width: 80px;" name="expiry" placeholder="月">
+		<a>/</a>
+		<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)"><br>
+		<input type="file" name="image"><br>
+		<a>*は必須項目です</a><br>
+		<button>変更</button>
+	</form>
+</body>
+
+</html>
