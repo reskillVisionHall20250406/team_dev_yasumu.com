@@ -38,14 +38,13 @@ public class Customers {
         this.code = code;
     }
 
-    public Customers(String name, String address, String email, String password, Integer tel, String image) {
+    public Customers(String name, String address, Integer tel, String email, String password, String image) {
         this.name = name;
         this.address = address;
         this.email = email;
         this.password = password;
         this.tel = tel;
         this.image = image;
-
     }
 
     public Integer getExpiry() {
