@@ -6,8 +6,6 @@ INSERT INTO area(name) VALUES('中国地方');
 INSERT INTO area(name) VALUES('四国地方');
 INSERT INTO area(name) VALUES('九州地方');
 
-INSERT INTO customers(name,address,tel,email,password,image,cardNo,code,expiry)
-VALUES('ジュン','東京都新宿区','09012345678','jung@gmail.com','ajitama','jung.png','123456789101112','123','0629');
 INSERT INTO hotels(area_id, name, address, detail, image, image2, image3,capacity, price) VALUES (
     1,
     'ホテルニューショーヘイ',
