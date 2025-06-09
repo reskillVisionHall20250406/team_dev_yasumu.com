@@ -15,29 +15,40 @@
 </head>
 
 <body>
+	<header th:replace="header">
+	</header>
+	
 	<h1>ホテル一覧ページ</h1>
 
 	<div class="row">
 		<div class="col" th:each="hotel : ${hotels}">
-			<a th:href="@{/hoteldetail/{Id}(id=${hotel.id})}">
+			<a th:href="@{/hotelsdetail/{Id}(id=${hotel.id})}">
 				<div class="div4">
-					<img th:src="${hotel.image}" height="140px" alt="">
+					<img th:src="${hotel.image}" height="140px" alt="ホテル画像">
 					<h3 th:text="${hotel.name}"></h3>
 					<div th:text="${hotel.price} + '円'"></div>
 				</div>
 			</a>
-			<div class="div3">
-				<form action="/addGood" method="get">
-					<input type="hidden" name="hotelid" th:value="${hotel.id}">
-					<button>欲しいものリストに追加</button>
-				</form>
-				<form action="/cart/add" method="post">
-					<input type="hidden" name="hotelid" th:value="${hotel.id}">
-					<button>カートに追加</button>
-				</form>
-			</div>
 		</div>
 	</div>
+	<!-- ページネーションリンク -->
+	<div>
+		<span th:if="${page.hasPrevious()}">
+			<a
+				th:href="@{/hotels(page=${page.number - 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">前へ</a>
+		</span>
+
+		<span th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+			<a th:href="@{/hotels(page=${i}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}"
+				th:text="${i + 1}" th:classappend="${i == page.number} ? 'active'"></a>
+		</span>
+
+		<span th:if="${page.hasNext()}">
+			<a
+				th:href="@{/hotels(page=${page.number + 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">次へ</a>
+		</span>
+	</div>
+
 
 </body>
 
