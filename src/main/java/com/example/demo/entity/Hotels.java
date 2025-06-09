@@ -27,12 +27,15 @@ public class Hotels {
 	Hotels() {
 	}
 
-	Hotels(Integer areaId, String name, String detail, String address, String image, Integer capacity, Integer price) {
+	Hotels(Integer areaId, String name, String detail, String address, String image, String image2, String image3,
+			Integer capacity, Integer price) {
 		this.areaId = areaId;
 		this.name = name;
 		this.detail = detail;
 		this.address = address;
 		this.image = image;
+		this.image2 = image2;
+		this.image3 = image3;
 		this.capacity = capacity;
 		this.price = price;
 	}
@@ -71,6 +74,22 @@ public class Hotels {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public String getImage2() {
+		return image2;
+	}
+
+	public void setImage2(String image2) {
+		this.image2 = image2;
+	}
+
+	public String getImage3() {
+		return image3;
+	}
+
+	public void setImage3(String image3) {
+		this.image3 = image3;
 	}
 
 	public Integer getCapacity() {
