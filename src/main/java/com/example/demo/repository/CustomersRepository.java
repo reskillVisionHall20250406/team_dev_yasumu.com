@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.Customers;
 
-public interface CustomersRepository extends JpaRepository<Customers, String> {
+public interface CustomersRepository extends JpaRepository<Customers, Integer> {
     Customers findByEmail(String email);
 
     List<Customers> findByCardNo(Integer cardNo);
