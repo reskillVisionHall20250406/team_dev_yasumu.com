@@ -111,4 +111,54 @@ public class AccountController {
 
         return "redirect:/tasks";
     }
+    @GetMapping("/mypage")
+    public String mypage() {
+    	return "mypage";
+    }
+    @GetMapping("/mypage/edit")
+    public String edit() {
+    	return "edit";
+    }
+    
+    @PostMapping("/mypage/edit")
+    public String infoEdit(
+    		@RequestParam(name = "name",defaultValue="")String name,
+    		@RequestParam(name = "address",defaultValue="")String address,
+    		@RequestParam(name = "tel",defaultValue="")Integer tel,
+    		@RequestParam(name = "email",defaultValue="")String email,
+    		@RequestParam(name = "password",defaultValue="")String password,
+    		@RequestParam(name = "image",defaultValue="")String image,
+    		Model model) {
+    	
+    	 List<String> errorList = new ArrayList<>();
+
+         if (name.isEmpty()) {
+             errorList.add("お名前を入力してください");
+         }
+         if (address.isEmpty()) {
+             errorList.add("住所を入力してください");
+         }
+         if (tel == null) {
+             errorList.add("電話番号を入力してください");
+         }
+         if (email.isEmpty()) {
+             errorList.add("メールを入力してください");
+         }
+         if (password.isEmpty()) {
+             errorList.add("パスワードを入力してください");
+         }
+         if (!errorList.isEmpty()) {
+             model.addAttribute("errors", errorList);
+             return "edit";
+    	
+    }
+         Customers customers = new Customers(name, address, tel, email, password, image);
+         CustomersRepository.save(customers);
+         return "redirect:/mypage";
+   
+}
+    @GetMapping("yado/history")
+    public String history() {
+    	return "history";
+    }
 }
