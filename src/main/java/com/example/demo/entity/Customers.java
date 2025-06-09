@@ -27,6 +27,7 @@ public class Customers {
 	protected Customers() {
 	}
 
+	//test
 	public Customers(String name, String address, String tel, String email, String password, String image,
 			String CardNo, String code, String expiry) {
 		this.name = name;
