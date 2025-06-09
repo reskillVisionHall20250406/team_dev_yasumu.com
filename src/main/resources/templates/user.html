@@ -10,9 +10,9 @@
 		<h1>休.com</h1>
 	</header>
 	
-		<div class="login">
-		<p>新規登録</p>
-		<div class="form1">
+		<div class="login-container">
+		<div class="form-group">
+		<h2>新規登録</h2>
 		
 			</ul>
 		
@@ -25,7 +25,7 @@
 			<input type="text" name="cardNo" placeholder="クレジットカード情報登録" maxlength="16" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
 			<input type="file" name="image" placeholder="アイコンの写真"><br>
 <!--			<input type="password" name="password_confirm" placeholder="パスワード(確認）"><br>-->
-			<button>送信</button>
+			<button class="login_button">送信</button>
 			
 			<ul th:if="${errors}" class="error">
 						    <li th:each="error : ${errors}" th:text="${error}"></li>
