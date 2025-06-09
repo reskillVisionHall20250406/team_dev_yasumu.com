@@ -1,5 +1,13 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name="reservations")
 public class Reservation {
@@ -9,11 +17,13 @@ private Integer id;
 private Integer hotelId;
 private Integer customerId;
 private Localdate date;
+private LocalDate orderedOn;
+private Integer totalPrice;
 
-Order(){
+Reservation(){
 
 }
-Order(Integer customerId,LocalDate orderedOn,Integer totalPrice){
+Reservation(Integer customerId,LocalDate orderedOn,Integer totalPrice){
     this.customerId=customerId;
     this.orderedOn=orderedOn;
     this.totalPrice=totalPrice;
@@ -31,7 +41,7 @@ public void setHotelId(Integer hotelId){
     this.hotelId=hotelId;
 }
 
-public String getCustomerId(){
+public Integer getCustomerId(){
     return customerId;
 }
 
