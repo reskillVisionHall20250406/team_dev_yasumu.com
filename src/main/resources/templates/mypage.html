@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>マイページ画面</title>
+</head>
+<body>
+	<header>
+		<h1>休.com</h1>
+	</header>
+	<h1>マイページ</h1>
+	<a>[[${@account.name}]]さん</a>
+	<form action="/mypage" method="get">
+		<button>プロフィールを編集する</button>
+	</form>
+	<a href="/yado/history">ご予約履歴はこちら</a>
+</body>
+</html>
