@@ -16,17 +16,15 @@ public class Reservation {
 private Integer id;
 private Integer hotelId;
 private Integer customerId;
-private Localdate date;
-private LocalDate orderedOn;
-private Integer totalPrice;
+private LocalDate date;
+
 
 Reservation(){
 
 }
-Reservation(Integer customerId,LocalDate orderedOn,Integer totalPrice){
+Reservation(Integer customerId,LocalDate orderedOn){
     this.customerId=customerId;
-    this.orderedOn=orderedOn;
-    this.totalPrice=totalPrice;
+    this.date=orderedOn;
 }
 
 public Integer getId(){

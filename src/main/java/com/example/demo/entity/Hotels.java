@@ -1,24 +1,24 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name="hotels")
 public class Hotels {
 /*松本が変更・更新しますtest*/
-
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Integer id;
-private Interger areaId;
+private Integer Id;
+private Integer areaId;
 private String name;
 private String detail;
 private String address;
 private String image;
-private Interger capacity;
-private Interger price;
+private Integer capacity;
+private Integer price;
 
 Hotels(){}
 
-Hotels(Interger areaId,String name,String detail,String address,String image,Interger capacity,Interger price){
+Hotels(Integer areaId,String name,String detail,String address,String image,Integer capacity,Integer price){
 this.areaId = areaId;
 this.name = name;
 this.detail = detail;
@@ -66,7 +66,7 @@ public Integer getCapacity() {
 	return capacity;
 }
 
-public void setAddress(String capacity) {
+public void setCapacity(Integer capacity) {
 	this.capacity = capacity;
 }
 public Integer getPrice() {
