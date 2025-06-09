@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Customers {
     private String email;
     private String password;
     private String image;
+    @Column(name = "card_no")
     private Integer cardNo;
     private Integer code;
     private Integer expiry;

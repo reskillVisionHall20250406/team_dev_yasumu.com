@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 	<header>
 		<h1>休.com</h1>
 	</header>
-	<h2>ログイン</h2>
-		<div class="login">
-		<div class="form1">
- 	
+		<div class="login-container">
+		<div class="form-group">
+
+			<h2>ログイン</h2>
 			<ul th:if="${errors}" class="error">
 		    <li th:each="error : ${errors}" th:text="${error}"></li> 
 		</ul>
@@ -20,7 +21,7 @@
     <form action="/login" method="post">
             <input type="text" name="email" placeholder="メールアドレス"><br>
             <input type="password" name="password" placeholder="パスワード"><br>
-            <button>ログイン</button>
+            <button class="login_button">ログイン</button>
     </form>
      <p>アカウントをお持ちではありませんか？</p>
 	<a href='/user/add';>ユーザー新規登録</a><br/><br/>
