@@ -19,14 +19,14 @@ public class Customers {
     private String email;
     private String password;
     private String image;
-    private Integer cardNo;
+    private Integer CardNo;
     private Integer code;
     private Integer expiry;
 
-    Customers(){
+    Costomers(){
 
     }
-    Customers(Integer id,String name,String address,Integer tel,String email,String password,String image,Integer CardNo,Integer code,Integer expiry, Integer cardNo){
+    Costomers(Integer id,String name,String address,Integer tel,String email,String password,String image,Integer CardNo,Integer code,Integer expiry){
         this.id=id;
         this.name=name;
         this.address=address;
