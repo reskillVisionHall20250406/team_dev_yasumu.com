@@ -9,12 +9,17 @@
 		<h1>休.com</h1>
 	</header>
 	<h2>宿予約内容確認</h2>
-	ホテル日航金沢　石川県, 金沢市, 本町2-15-1　06月09日　で予約いたします。<br>
+	<span th:text="${hotels.name}"></span>
+    <span th:text="${hotels.address}"></span>
+    <span th:text="${date}"></span><br>
 
     <h2>クレジットカード情報・変更・登録</h2>
-    クレジットカード番号　0123-4567-8910-1112<br>
-    セキュリティ番号　123<br>
-    有効期限 28/12
+    <table>
+        <tr><th>クレジットカード番号</th><td></td></tr>
+        <tr><th>セキュリティ番号</th><td></td></tr>
+        <tr><th>有効期限</th><td></td></tr>
+    </table>
+
     <button>戻る</button><br>
     <button>予約確定</button>
 </body>
