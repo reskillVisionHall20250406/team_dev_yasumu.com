@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ import com.example.demo.entity.Customers;
 import com.example.demo.model.Account;
 import com.example.demo.repository.CustomersRepository;
 
+@Controller
+//コントローラーが必須に必要
 public class AccountController {
     @Autowired
     HttpSession session;
