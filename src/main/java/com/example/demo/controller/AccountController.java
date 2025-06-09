@@ -37,7 +37,7 @@ public class AccountController {
 	public String add(
 			@RequestParam(name = "name", defaultValue = "") String name,
 			@RequestParam(name = "address", defaultValue = "") String address,
-			@RequestParam(name = "tel", defaultValue = "") Integer tel,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
 			@RequestParam(name = "email", defaultValue = "") String email,
 			@RequestParam(name = "password", defaultValue = "") String password,
 			@RequestParam(value = "image") String image,
@@ -130,7 +130,7 @@ public class AccountController {
 	public String infoEdit(
 			@RequestParam(name = "name", defaultValue = "") String name,
 			@RequestParam(name = "address", defaultValue = "") String address,
-			@RequestParam(name = "tel", defaultValue = "") Integer tel,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
 			@RequestParam(name = "email", defaultValue = "") String email,
 			@RequestParam(name = "password", defaultValue = "") String password,
 			@RequestParam(name = "image", defaultValue = "") String image,

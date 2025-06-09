@@ -6,8 +6,19 @@ INSERT INTO area(name) VALUES('中国地方');
 INSERT INTO area(name) VALUES('四国地方');
 INSERT INTO area(name) VALUES('九州地方');
 
-INSERT INTO customers(name,address,tel,email,password,image,cardNo,code,expiry)
-VALUES('ジュン','東京都新宿区','09012345678','jung@gmail.com','ajitama','jung.png','123456789101112','123','0629');
+id SERIAL PRIMARY KEY,
+    name VARCHAR(60),
+    address VARCHAR(150),
+    tel VARCHAR(11),
+    email VARCHAR(256) UNIQUE,
+    password VARCHAR(255),
+    image VARCHAR(255),
+    card_no VARCHAR(255),
+    code VARCHAR(255),
+    expiry
+    
+INSERT INTO customers(name,address,tel,email,password,image,card_no,code,expiry)
+VALUES('ジュン・ヘスン','東京都新宿区','jung@gmail.com','himitu','image1.png','012356789012','123','0828');
 INSERT INTO hotels(area_id, name, address, detail, image, image2, image3,capacity, price) VALUES (
     1,
     'ホテルニューショーヘイ',

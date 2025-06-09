@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "customers")
 public class Customers {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -19,7 +20,7 @@ public class Customers {
 	private String email;
 	private String password;
 	private String image;
-	@Column(name = "cardno")
+	@Column(name = "card_no")
 	private String cardNo;
 	private String code;
 	private String expiry;
@@ -27,6 +28,7 @@ public class Customers {
 	protected Customers() {
 	}
 
+	//test
 	public Customers(String name, String address, String tel, String email, String password, String image,
 			String CardNo, String code, String expiry) {
 		this.name = name;

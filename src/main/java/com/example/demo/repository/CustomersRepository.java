@@ -9,7 +9,7 @@ import com.example.demo.entity.Customers;
 public interface CustomersRepository extends JpaRepository<Customers, Integer> {
     Customers findByEmail(String email);
 
-    List<Customers> findByCardNo(String cardNo);
+    List<Customers> findByCardNo(Integer cardNo);
 
     List<Customers> findByEmailAndPassword(String email, String password);
-}
+}//test
