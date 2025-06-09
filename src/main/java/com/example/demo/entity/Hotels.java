@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+@Entity
+@Table(name="hotels")
 public class Hotels {
 /*松本が変更・更新しますtest*/
 private Interger areaId;
