@@ -20,6 +20,8 @@ name VARCHAR(MAX),
 address VARCHAR(MAX),
 detail VARCHAR(MAX),
 image VARCHAR(MAX),
+image2 VARCHAR(MAX),
+image3 VARCHAR(MAX),
 price INTEGER
 );
 -- 顧客テーブル
