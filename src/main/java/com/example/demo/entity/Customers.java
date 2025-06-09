@@ -7,42 +7,112 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="customers")
+@Table(name = "customers")
 public class Customers {
-@Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    private String address;
-    private Integer tel;
-    private String email;
-    private String password;
-    private String image;
-    private Integer cardNo;
-    private Integer code;
-    private Integer expiry;
+	private Integer id;
+	private String name;
+	private String address;
+	private Integer tel;
+	private String email;
+	private String password;
+	private String image;
+	private Integer cardNo;
+	private Integer code;
+	private Integer expiry;
 
-    Customers(){
+	Customers() {
 
-    }
-    Customers(Integer id,String name,String address,Integer tel,String email,String password,String image,Integer CardNo,Integer code,Integer expiry){
-        this.id=id;
-        this.name=name;
-        this.address=address;
-        this.tel=tel;
-        this.email=email;
-        this.password=password;
-        this.image=image;
-        this.CardNo=CardNo;
-        this.code=code;
-    }
+	}
 
-    public Integer getExpiry(){
-        return expiry;
-    }
+	Customers(Integer id, String name, String address, Integer tel, String email, String password, String image,
+			Integer CardNo, Integer code, Integer expiry) {
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.tel = tel;
+		this.email = email;
+		this.password = password;
+		this.image = image;
+		this.cardNo = CardNo;
+		this.code = code;
+	}
 
-    public void setExpiry(Integer expiry){
-        this.expiry=expiry;
-    }
+	public Integer getExpiry() {
+		return expiry;
+	}
+
+	public void setExpiry(Integer expiry) {
+		this.expiry = expiry;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setCardNo(Integer cardNo) {
+		this.cardNo = cardNo;
+	}
+
+	public void setCode(Integer code) {
+		this.code = code;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setTel(Integer tel) {
+		this.tel = tel;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public Integer getCardNo() {
+		return cardNo;
+	}
+
+	public Integer getCode() {
+		return code;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public Integer getTel() {
+		return tel;
+	}
 
 }
