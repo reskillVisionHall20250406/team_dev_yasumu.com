@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 public class Hotels {
 /*松本が変更・更新しますtest*/
-private Interger id;
 private Interger areaId;
 private String name;
 private String detail;
@@ -21,6 +20,55 @@ this.address = address;
 this.image = image;
 this.capacity = capacity;
 this.price = price;
+}
+
+public Integer getAreaId() {
+	return areaId;
+}
+
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+
+public String getDetail() {
+	return detail;
+}
+
+public void setDetail(String detail) {
+	this.detail = detail;
+}
+public String getAddress() {
+	return address;
+}
+
+public void setAddress(String address) {
+	this.address = address;
+}
+public String getImage() {
+	return image;
+}
+
+public void setImage(String image) {
+	this.image = image;
+}
+
+public Integer getCapacity() {
+	return capacity;
+}
+
+public void setAddress(String capacity) {
+	this.capacity = capacity;
+}
+public Integer getPrice() {
+	return price;
+}
+
+public void setPrice(Integer price) {
+	this.price = price;
 }
 
 }
