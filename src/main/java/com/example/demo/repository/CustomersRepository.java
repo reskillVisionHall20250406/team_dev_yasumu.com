@@ -12,4 +12,4 @@ public interface CustomersRepository extends JpaRepository<Customers, Integer> {
     List<Customers> findByCardNo(Integer cardNo);
 
     List<Customers> findByEmailAndPassword(String email, String password);
-}
+}//test
