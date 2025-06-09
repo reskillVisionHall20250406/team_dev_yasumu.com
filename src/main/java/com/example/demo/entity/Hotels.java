@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Hotels {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 	@Column(name = "area_id")
 	private Integer areaId;
 	private String name;
@@ -35,6 +35,10 @@ public class Hotels {
 		this.image = image;
 		this.capacity = capacity;
 		this.price = price;
+	}
+	
+	public Integer getId() {
+		return id;
 	}
 
 	public Integer getAreaId() {
