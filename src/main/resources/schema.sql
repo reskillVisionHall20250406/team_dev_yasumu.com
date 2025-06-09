@@ -33,8 +33,8 @@ CREATE TABLE customers (
     email VARCHAR(256) UNIQUE,
     password VARCHAR(255),
     image VARCHAR(255),
-    card_no INTEGER,
-    code INTEGER,
+    card_no VARCHAR(255),
+    code VARCHAR(255),
     expiry VARCHAR(255)
 );
 
