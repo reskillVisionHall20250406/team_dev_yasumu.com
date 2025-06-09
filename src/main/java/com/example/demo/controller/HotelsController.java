@@ -30,31 +30,63 @@ public class HotelsController {
 	// ホテル一覧表示
 	@GetMapping("/hotels")
 	public String index(
-			@RequestParam(name = "capacity", required = false) String capacity,
+			@RequestParam(name = "capacity", required = false) String capacity1,
 			@RequestParam(name = "price", required = false) Integer price,
 			@RequestParam(name = "keyword", required = false) String keyword,
 			@RequestParam(name = "areaId", required = false, defaultValue = "0") Integer areaId,
 			@RequestParam(name = "page", defaultValue = "0") Integer page,
 			Model model) {
 
+		// 先頭付近
+		Integer capacity = null;
+		if (capacity1 != null && !capacity1.isBlank()) {
+			try {
+				capacity = Integer.parseInt(capacity1);
+			} catch (NumberFormatException e) {
+				// 数字でなかった場合は無視（そのまま capacityNum = null）
+			}
+		}
+
 		int pageSize = 8;
 		Pageable pageable = PageRequest.of(page, pageSize);
 		Page<Hotels> hotelsPage;
 
-		// 条件に応じた検索処理
-		/* if (areaId != null && areaId > 0) {
-		    hotelsPage = hotelsRepository.findByAreaId(areaId, pageable);
+		// 検索条件の組み合わせに応じて処理を分岐
+		if (areaId > 0 && capacity != null && price != null && keyword != null && !keyword.isEmpty()) {
+			hotelsPage = hotelsRepository.findByAreaIdAndCapacityAndPriceLessThanEqualAndNameContaining(
+					areaId, capacity, price, keyword, pageable);
+		} else if (areaId > 0 && capacity != null && price != null) {
+			hotelsPage = hotelsRepository.findByAreaIdAndCapacityAndPriceLessThanEqual(
+					areaId, capacity, price, pageable);
+		} else if (areaId > 0 && capacity != null && keyword != null && !keyword.isEmpty()) {
+			hotelsPage = hotelsRepository.findByAreaIdAndCapacityAndNameContaining(
+					areaId, capacity, keyword, pageable);
+		} else if (areaId > 0 && capacity != null) {
+			hotelsPage = hotelsRepository.findByAreaIdAndCapacity(
+					areaId, capacity, pageable);
+		} else if (capacity != null && price != null && keyword != null && !keyword.isEmpty()) {
+			hotelsPage = hotelsRepository.findByCapacityAndPriceLessThanEqualAndNameContaining(
+					capacity, price, keyword, pageable);
+		} else if (capacity != null && price != null) {
+			hotelsPage = hotelsRepository.findByCapacityAndPriceLessThanEqual(
+					capacity, price, pageable);
+		} else if (capacity != null && keyword != null && !keyword.isEmpty()) {
+			hotelsPage = hotelsRepository.findByCapacityAndNameContaining(
+					capacity, keyword, pageable);
+		} else if (capacity != null) {
+			hotelsPage = hotelsRepository.findByCapacity(
+					capacity, pageable);
+		} else if (areaId > 0) {
+			hotelsPage = hotelsRepository.findByAreaId(areaId, pageable);
 		} else if (keyword != null && !keyword.isEmpty() && price != null) {
-		    hotelsPage = hotelsRepository.findByPriceLessThanEqualAndNameContaining(price, keyword, pageable);
+			hotelsPage = hotelsRepository.findByPriceLessThanEqualAndNameContaining(price, keyword, pageable);
 		} else if (keyword != null && !keyword.isEmpty()) {
-		    hotelsPage = hotelsRepository.findByNameContaining(keyword, pageable);
+			hotelsPage = hotelsRepository.findByNameContaining(keyword, pageable);
 		} else if (price != null) {
-		    hotelsPage = hotelsRepository.findByPriceLessThanEqual(price, pageable);
+			hotelsPage = hotelsRepository.findByPriceLessThanEqual(price, pageable);
 		} else {
-		    hotelsPage = hotelsRepository.findAll(pageable);
+			hotelsPage = hotelsRepository.findAll(pageable);
 		}
-		*/
-		hotelsPage = hotelsRepository.findAll(pageable);
 
 		// Modelに情報を追加
 		model.addAttribute("areas", areaRepository.findAll());

@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +19,7 @@ import com.example.demo.repository.CustomersRepository;
 import com.example.demo.repository.HotelsRepository;
 import com.example.demo.repository.ReservationRepository;
 
+@Controller
 public class ReservationController {
 
 	@Autowired
@@ -33,9 +37,18 @@ public class ReservationController {
 	@PostMapping("/reservation/{id}")
 	public String reservation(
 			@PathVariable("id") Integer id,
-			@RequestParam("date") LocalDate date, Model model) {
-		Hotels hotels = hotelsRepository.findById(id).get();
+			Model model) {
+		Hotels hotels = hotelsRepository.findById(id).get();//クリックされた宿のIDから宿情報を取得
+		Customers customer = customersRepository.findByEmail("jung@gmail.com");
+		//ログインされているアカウントからクレジットカードの情報を取得
+		List<String> card = new ArrayList<>();
+		card.add(customer.getCardNo());
+		card.add(customer.getCode());
+		card.add(customer.getExpiry());
+
 		model.addAttribute("hotels", hotels);
+		//		@RequestParam("date") LocalDate date,
+		//		model.addAttribute("date", date);
 		return "reservation";
 	}
 
