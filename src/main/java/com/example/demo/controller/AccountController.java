@@ -37,7 +37,7 @@ public class AccountController {
     public String add(
             @RequestParam(name = "name", defaultValue = "") String name,
             @RequestParam(name = "address", defaultValue = "") String address,
-            @RequestParam(name = "tel", defaultValue = "") Integer tel,
+            @RequestParam(name = "tel", defaultValue = "") String tel,
             @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "password", defaultValue = "") String password,
             @RequestParam(value = "image") String image,
@@ -130,7 +130,7 @@ public class AccountController {
     public String infoEdit(
             @RequestParam(name = "name", defaultValue = "") String name,
             @RequestParam(name = "address", defaultValue = "") String address,
-            @RequestParam(name = "tel", defaultValue = "") Integer tel,
+            @RequestParam(name = "tel", defaultValue = "") String tel,
             @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "password", defaultValue = "") String password,
             @RequestParam(name = "image", defaultValue = "") String image,
@@ -152,6 +152,10 @@ public class AccountController {
         }
         if (password.isEmpty()) {
             errorList.add("パスワードを入力してください");
+        }else if(password.length() <8) {
+        	errorList.add("パスワードは8文字以上で入力してください");
+        }else if(!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
+        	errorList.add("パスワードは英字と数字の両方を含めてください");
         }
         if (!errorList.isEmpty()) {
             model.addAttribute("errors", errorList);
