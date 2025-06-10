@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>休.com</title>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/Aikawa.css">
 
 	<!-- Google Fonts 読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,30 +23,76 @@
 
 		<div class="relative">
 			<img src="image/1-10.png" width="100%" class="imgth">
-			<div class="boxer">こんにちは
+			<div class="boxer">
+				<form action="" method="post">
+
+					<div class="selectbox-3">
+						<select size="1" name="area">
+							<option value="1">東北地方</option>
+							<option value="2">関東地方</option>
+							<option value="3">中部地方</option>
+							<option value="4">近畿地方</option>
+							<option value="5">中国地方</option>
+							<option value="6">四国地方</option>
+							<option value="7">九州地方</option>
+
+						</select>
+					</div>
+					<div class="selectbox-3">
+						<select size="1" name="capacity">
+							<option value="1">1人</option>
+							<option value="2">2人</option>
+							<option value="3">3人</option>
+							<option value="4">4人</option>
+							<option value="5">5人</option>
+						</select>
+					</div>
+					<div class="search-form-3">
+						<label>
+							<input type="text" name="keyword" placeholder="キーワードを入力">
+						</label>
+					</div>
+					<button class="button-1">検索</button>
+
+					<fieldset class="radio-1">
+						<label>
+							<input type="radio" name="price" value="" checked />上限なし
+						</label>
+						<label>
+							<input type="radio" name="price" value="9000" />9000円以下
+						</label>
+						<label>
+							<input type="radio" name="price" value="10000"/>10000円以下
+						</label>
+						<label>
+							<input type="radio" name="price" value="14000" />14000円以下
+						</label>
+					</fieldset>
+				</form>
 			</div>
 		</div>
+		<div class="blank"></div>
 		<div class="aa">
-			<div class="bb">
-				<form><input type="text" name="keyword" th:value="${keyword}" placeholder="検索"><br>
-					<input type="radio" name="price" value="">上限なし
-					<input type="radio" name="price" value="9000">9000円以下
-					<input type="radio" name="price" value="10000">10000円以下
-					<input type="radio" name="price" value="14000">14000円以下
-					<br>金額で絞り込む
-					<input type="radio" name="capacity" value="">上限なし
-					<input type="radio" name="capacity" value="1">1人
-					<input type="radio" name="capacity" value="2">2人
-					<input type="radio" name="capacity" value="3">3人
-					<form>
-						<br><button>検索</button>
-					</form>
-					<a href="/hotels">全商品</a>
-					<a th:each="area : ${areas}" th:href="@{/hotels(areaId=${area.id})}" th:text="${area.name}"
-						style="margin-right: 5px;"></a><br>
-					地域を選ぶ<br>
+			<!--			<div class="bb">-->
+			<!--				<form><input type="text" name="keyword" th:value="${keyword}" placeholder="検索"><br>-->
+			<!--					<input type="radio" name="price" value="">上限なし-->
+			<!--					<input type="radio" name="price" value="9000">9000円以下-->
+			<!--					<input type="radio" name="price" value="10000">10000円以下-->
+			<!--					<input type="radio" name="price" value="14000">14000円以下-->
+			<!--					<br>金額で絞り込む-->
+			<!--					<input type="radio" name="capacity" value="">上限なし-->
+			<!--					<input type="radio" name="capacity" value="1">1人-->
+			<!--					<input type="radio" name="capacity" value="2">2人-->
+			<!--					<input type="radio" name="capacity" value="3">3人-->
+			<!--					<form>-->
+			<!--						<br><button>検索</button>-->
+			<!--					</form>-->
+			<!--					<a href="/hotels">全商品</a>-->
+			<!--					<a th:each="area : ${areas}" th:href="@{/hotels(areaId=${area.id})}" th:text="${area.name}"-->
+			<!--						style="margin-right: 5px;"></a><br>-->
+			<!--					地域を選ぶ<br>-->
 
-			</div>
+			<!--			</div>-->
 
 			<div class="row">
 				<div class="col" th:each="hotel : ${hotels}">
@@ -61,23 +107,26 @@
 				</div>
 			</div>
 		</div>
-		<!-- ページネーションリンク -->
-		<div>
-			<span th:if="${page.hasPrevious()}">
+		<ol class="pagination-3">
+			<!-- 前へボタン -->
+			<li class="prev" th:if="${page.hasPrevious()}">
 				<a
-					th:href="@{/hotels(page=${page.number - 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">前へ</a>
-			</span>
+					th:href="@{/hotels(page=${page.number - 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">&lt;</a>
+			</li>
 
-			<span th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+			<!-- ページ番号 -->
+			<li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+				th:classappend="${i == page.number} ? 'current'">
 				<a th:href="@{/hotels(page=${i}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}"
-					th:text="${i + 1}" th:classappend="${i == page.number} ? 'active'"></a>
-			</span>
+					th:text="${i + 1}">1</a>
+			</li>
 
-			<span th:if="${page.hasNext()}">
+			<!-- 次へボタン -->
+			<li class="next" th:if="${page.hasNext()}">
 				<a
-					th:href="@{/hotels(page=${page.number + 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">次へ</a>
-			</span>
-		</div>
+					th:href="@{/hotels(page=${page.number + 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">&gt;</a>
+			</li>
+		</ol>
 
 	</main>
 
