@@ -15,9 +15,9 @@
 			<h2>ログイン</h2>
 		
 
-    <form action="/login" method="post">
-            <input class="login_text" type="text" name="email" placeholder="メールアドレス"><br>
-            <input class="login_text"type="password" name="password" placeholder="パスワード"><br>
+    <form class="login_text" action="/login" method="post">
+            <input type="text" name="email" placeholder="メールアドレス"><br>
+            <input type="password" name="password" placeholder="パスワード"><br>
             <button class="login_button">ログイン</button>
     </form>
 	<ul th:if="${errors}" class="error">
