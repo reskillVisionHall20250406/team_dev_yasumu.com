@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<link rel="stylesheet" type="text/css" href="/css/matsumoto.css">
 <meta charset="UTF-8">
 <title>ログイン</title>
 </head>
 <body>
-	<header>
-		<h1>休.com</h1>
-	</header>
+	<header th:replace="header"></header>
 	<h2>宿予約内容確認</h2>
 	<span th:text="${hotels.name}"></span>
     <span th:text="${hotels.address}"></span>
 <!--    <span th:text="${date}"></span><br>-->
-
     <h2>クレジットカード情報・変更・登録</h2>
     <table>
-        <tr><th>クレジットカード番号</th><td></td></tr>
-        <tr><th>セキュリティ番号</th><td></td></tr>
-        <tr><th>有効期限</th><td></td></tr>
+        <tr><th>クレジットカード番号</th><td th:text="${customers.cardNo}"></td></tr>
+        <tr><th>セキュリティ番号</th><td th:text="${customers.code}"></td></tr>
+        <tr><th>有効期限</th><td th:text="${customers.expiry}"></td></tr>
     </table>
 
 	<form th:action="@{/hotelsdetail/{id}(id=${hotels.id})}" method="get">
