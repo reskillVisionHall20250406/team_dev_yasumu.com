@@ -28,6 +28,7 @@
 
 					<div class="selectbox-3">
 						<select size="1" name="area">
+							<option value="">エリア</option>
 							<option value="1">東北地方</option>
 							<option value="2">関東地方</option>
 							<option value="3">中部地方</option>
@@ -40,6 +41,7 @@
 					</div>
 					<div class="selectbox-3">
 						<select size="1" name="capacity">
+							<option value="">宿泊人数</option>
 							<option value="1">1人</option>
 							<option value="2">2人</option>
 							<option value="3">3人</option>
@@ -62,7 +64,7 @@
 							<input type="radio" name="price" value="9000" />9000円以下
 						</label>
 						<label>
-							<input type="radio" name="price" value="10000"/>10000円以下
+							<input type="radio" name="price" value="10000" />10000円以下
 						</label>
 						<label>
 							<input type="radio" name="price" value="14000" />14000円以下
@@ -72,7 +74,21 @@
 			</div>
 		</div>
 		<div class="blank"></div>
+		<!--ログ表示-->
+		<h4 class="log">最近見た宿</h4>
+
+		<div class="log2">
+			<div class="log5"></div>
+			<div class="log3"><a th:href="@{/hotelsdetail/{Id}(id=${hotels.id})}" th:value="${hotels.id}"
+					th:each="hotels:${@log.getHotels()}">
+					<div class="log4"><img th:src="${hotels.image}" width="100%"></div>
+				</a>
+			</div>
+			<div class="log5"></div>
+		</div>
 		<div class="aa">
+
+
 			<!--			<div class="bb">-->
 			<!--				<form><input type="text" name="keyword" th:value="${keyword}" placeholder="検索"><br>-->
 			<!--					<input type="radio" name="price" value="">上限なし-->
