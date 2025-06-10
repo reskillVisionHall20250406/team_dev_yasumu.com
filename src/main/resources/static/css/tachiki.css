@@ -516,11 +516,12 @@ label {
 }
 
 .login_text {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box; /* padding 포함한 전체 너비 계산 */
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+	/* padding 포함한 전체 너비 계산 */
 }
 
 .login_button {
@@ -573,18 +574,61 @@ label {
 }
 
 /*マイページ画面*/
-.mypage-title{
+.mypage-name{
 	text-align: center;
 }
-.mypage-button{
+.mypage-title {
+	text-align: center;
+}
+
+.mypage-button {
 	background-color: #007bff;
 	width: 15em;
 	display: block;
-	 margin: 0 auto;
+	margin: 0 auto;
 }
-.mypage-rireki{
+
+.mypage-rireki {
 	text-align: center;
 }
+
+/*会員情報登録変更画面*/
+.edit-main {
+	background-color: #FFFFFF;
+	min-height: 50px;
+	padding: 20px;
+	margin: 25px 400px;
+}
+
+.edit-error {
+	color: red;
+	text-align: center;
+	list-style-type: none;
+}
+
+.edit-h1 {
+	text-align: center;
+}
+
+.edit-form {
+	text-align: center;
+}
+
+.edit-commentt {
+	color: red;
+}
+
+.edit-link {
+	text-align: center;
+}
+
+.edit-button {
+	background-color: #007bff;
+	width: 10em;
+	display: block;
+	margin: 0 auto;
+}
+/*宿予約履歴画面*/
 
 body,
 header,
