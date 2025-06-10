@@ -127,24 +127,35 @@ public class AccountController {
         return "redirect:/hotels";
     }
 
-    @GetMapping("/mypage")
-    public String mypage() {
-        return "mypage";
-    }
+	@GetMapping("/mypage")
+	public String mypage(Model model) {
+		Customers currentUser = (Customers) session.getAttribute("currentUser");
+		if (currentUser == null) {
+			return "redirect:/login";
+		}
+
+		Customers customers = customersRepository.findByName(account.getName());
+		model.addAttribute("customers", customers);
+		return "mypage";
+	}
 
     @GetMapping("/mypage/edit")
     public String edit() {
         return "edit";
     }
 
-    @PostMapping("/mypage/edit")
-    public String infoEdit(
-            @RequestParam(name = "name", defaultValue = "") String name,
-            @RequestParam(name = "address", defaultValue = "") String address,
-            @RequestParam(name = "tel", defaultValue = "") String tel,
-            @RequestParam(name = "email", defaultValue = "") String email,
-            @RequestParam(name = "password", defaultValue = "") String password,
-            Model model) {
+	@PostMapping("/mypage/edit")
+	public String infoEdit(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			@RequestParam(name = "imgname", defaultValue = "") String imgname,
+			@RequestParam(name = "cardNo", defaultValue = "") Integer cardNo,
+			@RequestParam(name = "code", defaultValue = "") Integer code,
+			@RequestParam(name = "expiry", defaultValue = "") Integer expiry,
+			Model model) {
 
         List<String> errorList = new ArrayList<>();
 
@@ -167,10 +178,11 @@ public class AccountController {
             model.addAttribute("errors", errorList);
             return "edit";
 
-        }
-        Customers customers = new Customers(name, address, tel, email, password);
-        customersRepository.save(customers);
-        return "redirect:/mypage";
+		}
+		Customers customers = new Customers(name, address, tel, email, password, imgname);
+		customersRepository.save(customers);
+		account.setName(name);
+		return "redirect:/mypage";
 
     }
 

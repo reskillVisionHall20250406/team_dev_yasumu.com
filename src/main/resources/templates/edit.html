@@ -16,29 +16,42 @@
 		<li th:each="error : ${errors}" th:text="${error}" class="edit-error"></li>
 	</ul>
 	<main class="edit-main">
-	<h1 class="edit-h1">会員情報変更</h1>
-	<form action="/mypage/edit" class="edit-form" method="post">
-		<input type="text" name="name" placeholder="*名前"><br>
-		<input type="text" name="email" placeholder="*メールアドレス"><br>
-		<input type="text" name="address" placeholder="*住所"><br>
-		<input type="text" name="tel" placeholder="*電話番号"><br>
-		<input type="password" name="password" placeholder="*パスワード（8文字以上）"><br>
-		<input type="text" name="cardNo" placeholder="クレジットカード番号"><br>
-		<input type="text" name="code" placeholder="セキュリティコード"><br>
-		<input type="text" style="width: 80px;" name="expiry" placeholder="月">
-		<a>/</a>
-		<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)"><br>
-		<form action="/mypage/edit" method="post" enctype="multipart/form-data">
-		<input type="file" name="image"><br>
-		<a class="edit-commentt">*は必須項目です</a><br>
-		<button class="edit-button">変更</button>
-	</form>
-	<h1>アップロードした画像の表示</h1>
-	<img alt="" th:src="${imageUrl}" style="width: 300px;">
+		<h1 class="edit-h1">会員情報変更</h1>
+		<form action="/mypage/edit" class="edit-form" method="post">
+			<input type="text" name="name" placeholder="*名前"><br>
+			<input type="text" name="email" placeholder="*メールアドレス"><br>
+			<input type="text" name="address" placeholder="*住所"><br>
+			<input type="text" name="tel" placeholder="*電話番号"><br>
+			<input type="password" name="password" placeholder="*パスワード（8文字以上）"><br>
+			<input type="text" name="cardNo" placeholder="クレジットカード番号"><br>
+			<input type="text" name="code" placeholder="セキュリティコード"><br>
+			<input type="text" style="width: 80px;" name="expiry" placeholder="月">
+			<a>/</a>
+			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)"><br>
+			<input type="file" name="img" id="img" class="poi"><br>
+			<a class="edit-commentt">*は必須項目です</a><br>
+			<input type="hidden" name="imgname" value="" id="imgname">
+			<button type="submit" class="edit-button">変更</button>
+		</form>
+		<h1>アップロードした画像の表示</h1>
+		<img alt="" th:src="${imageUrl}" style="width: 300px;">
 	</main>
 	<div style="text-align: center;">
-	     <a href="/mypage">マイページへ</a>
-	   </div>
+		<a href="/mypage">マイページへ</a>
+	</div>
+
+	<script>
+
+		document.getElementById('img').addEventListener('change', function (event) {
+			const file = event.target.files[0]; // 最初のファイルを取得
+			if (file) {
+				document.getElementById('imgname').value = `/image/${file.name}`;
+			} else {
+				document.getElementById('imgname').value = 'ファイルが選択されていません';
+			}
+		});
+	</script>
+
 </body>
 
 </html>
