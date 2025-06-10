@@ -1,5 +1,5 @@
 <header id="header">
-	<a href="/items" class="logo"><img src="/image/logo.png" width="19.5%"></a>
+	<a href="/hotels" class="logo"><img src="/image/休.com.png" width="14.5%"></a>
 	<div class="keyp">
 
 		<div class="key">
@@ -8,7 +8,7 @@
 				<button class="poi3">検索</button>
 			</form>
 			<form action="/login" method="get">
-				<button class="key2"><span th:if="${account.name == null}"></span></button>
+				<button class="key2">ログイン<span th:if="${account.name == null}"></span></button>
 				<span th:if="${account.name != null}" th:text="${account.name}+さんがログイン中"></span>
 			</form>
 			<form action="samplel.cgi" method="post" class="key4">
@@ -28,7 +28,7 @@
 				</div>
 				<nav>
 					<ul>
-						<li><a href="/ozisan">TOP</a></li>
+						<li><a href="/mypage">マイページ</a></li>
 						<li><a href="/logout" onclick="return confirm('ログアウトしますか？')">LOGOUT</a></li>
 						<li><a href="">SERVICE</a></li>
 					</ul>
@@ -36,4 +36,13 @@
 			</div>
 		</div>
 	</div>
+	<!--	JavaScript-->
+		<script>
+			const hmbBtn = document.getElementById("hmb");
+			const header = document.getElementById("header");
+
+			hmbBtn.addEventListener("click", function () {
+				header.classList.toggle("active");
+			});
+		</script>
 </header>
