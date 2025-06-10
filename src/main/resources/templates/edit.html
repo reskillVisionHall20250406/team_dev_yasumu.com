@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>会員情報変更</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
@@ -14,8 +15,9 @@
 	<ul th:if="${errors}" class="error">
 		<li th:each="error : ${errors}" th:text="${error}"></li>
 	</ul>
-	<h1>会員情報変更</h1>
-	<form action="/mypage/edit" method="post">
+	<main>
+	<a href="/mypage" class="edit-h1">会員情報変更</h1>
+	<form action="/mypage/edit" class="edit-form" method="post">
 		<input type="text" name="name" placeholder="*名前"><br>
 		<input type="text" name="email" placeholder="*メールアドレス"><br>
 		<input type="text" name="address" placeholder="*住所"><br>
@@ -30,6 +32,7 @@
 		<a>*は必須項目です</a><br>
 		<button>変更</button>
 	</form>
+	</main>
 </body>
 
 </html>

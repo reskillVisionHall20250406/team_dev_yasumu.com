@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title>マイページ画面</title>
+<link rel="stylesheet" type="text/css" href="/css/tachiki.css">
 </head>
 <body>
 	<header>
 		<h1>休.com</h1>
 	</header>
-	<h1>マイページ</h1>
-	[[${@account.name}]]さん
+	<h1 class="mypage-title">マイページ</h1>
+<!--	<span class="mypage-name" th:text="${account.name}+さん"></span>-->
 	<form th:action="@{/mypage/edit}" method="get">
-		<button>プロフィールを編集する</button>
+		<button class="mypage-button">プロフィールを編集する</button>
 	</form>
-	<form th:action="@{/yado/histoy}" method="post">
-	<a href="/yado/history">ご予約履歴はこちら</a>
+	<div style="text-align: center;">
+	  <a href="/yado/history">ご予約の確認はこちらから</a>
+	</div>
 	</form>
 </body>
 </html>

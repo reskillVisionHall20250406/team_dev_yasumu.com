@@ -1,0 +1,593 @@
+/* 全体 */
+html {
+	font-family: 'M PLUS 1p', sans-serif;
+	overflow-x: hidden;
+}
+
+header button {
+	font-family: 'M PLUS 1p', sans-serif;
+}
+
+.logo {
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 50;
+}
+
+.top-banner {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.top-banner li {
+	width: calc(100%/2);
+	/*←画像を横に4つ並べる場合*/
+	/*padding: 0 5px;*/
+	/*←画像の左右に5pxの余白を入れる場合*/
+	/*box-sizing: border-box;*/
+}
+
+.top-banner li img {
+	max-width: 100%;
+	/*画像のはみだしを防ぐ*/
+	height: auto;
+	/*画像の縦横比を維持 */
+	border: solid 1px #ccc;
+	/*←画像を1pxのグレーの枠線で囲む指定の場合*/
+}
+
+.banner ul {
+	padding-left: 0;
+}
+
+.banner li {
+	list-style: none;
+}
+
+.keyp {
+	/*background-color: rgb(192, 192, 192);*/
+	top: 0;
+	width: 100%;
+}
+
+.key {
+	left: 20%;
+	/*background-color: rgb(192, 192, 192);*/
+	width: 75%;
+	height: 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	z-index: 60;
+}
+
+
+/*#header.active {*/
+/*	background-color: lightblue;*/
+/*}*/
+
+/*非アクティブ*/
+#hmb {
+	width: 32px;
+	height: 28px;
+	cursor: pointer;
+	position: relative;
+	z-index: 30;
+}
+
+#hmb span {
+	width: 32px;
+	height: 3px;
+	display: block;
+	background-color: #000000;
+	border-radius: 2px;
+	position: absolute;
+	transition: .2s;
+}
+
+#hmb span:first-child {
+	top: 0;
+}
+
+
+
+#hmb span:nth-child(2) {
+	top: 12px;
+}
+
+#hmb span:last-child {
+	top: 24px;
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 80%;
+	max-width: 400px;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	background-color: rgb(255, 96, 96);
+	z-index: 20;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateX(100%);
+	transition-property: all;
+	transition-duration: .2s;
+}
+
+nav ul li a {
+	/*background-color: rgb(255, 255, 255);*/
+	color: #000000;
+	display: block;
+	margin-bottom: 16px;
+}
+
+/*アクティブ*/
+.active #hmb span:first-child {
+	top: 12px;
+	transform: rotate(45deg);
+}
+
+.active #hmb span:nth-child(2) {
+	opacity: 0;
+}
+
+.active #hmb span:last-child {
+	top: 12px;
+	transform: rotate(-45deg);
+}
+
+.active nav {
+	visibility: visible;
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.active::before {
+	/*	content: '';
+	position: fixed;
+	top: 0;
+	right: 0;
+	background-color: black;
+	width: 100vw;
+	height: 100vh;
+	opacity: 0.4;
+	z-index: 10;
+*/
+}
+
+body {
+	background-color: #EFF0F7;
+}
+
+h4 {
+	text-align: center;
+	color: #e5857b;
+}
+
+.aa {
+	display: flex;
+	text-align: center;
+	width: 95%;
+	margin: auto;
+	justify-content: space-between;
+}
+
+.cc {
+	width: 84%;
+}
+
+.bb {
+	width: 18%;
+}
+
+/* ヘッダー、ナビゲーションメニュー、フッター */
+nav,
+footer {
+	background-color: rgb(255, 96, 96);
+	/* 背景色 */
+	text-align: center;
+	color: #ffffff;
+	/* 文字色 */
+	padding-top: 16px;
+	/* 内側余白(上) */
+	padding-bottom: 16px;
+	/* 内側余白(下) */
+}
+
+/* ヘッダー、ナビゲーション内リンク */
+
+nav a {
+	color: #ffffff;
+}
+
+/* ヘッダー内見出し */
+header h1 {
+	font-size: 20pt;
+	margin: 10px auto;
+}
+
+/* 仕切り線 */
+hr {
+	width: 100%;
+	border-color: rgb(255, 83, 83);
+}
+
+/* メイン */
+main {
+	background-color: #FFFFFF;
+	min-height: 50px;
+
+}
+
+/* 表線 */
+table,
+th,
+td {
+	border-collapse: collapse;
+	border: 1px solid #7d8bae;
+}
+
+
+
+/* 表見出しセル */
+table th {
+	background: #7d8bae;
+	color: #ffffff;
+}
+
+/* 送信ボタン */
+button {
+	margin: 2px;
+	padding: 5px 20px;
+	background-color: #e5857b;
+	color: #ffffff;
+	border: none;
+	width: 150px;
+	cursor: pointer;
+}
+
+/* 送信ボタン(マウスオーバー時) */
+button:hover {
+	background-color: #f1b2b2;
+}
+
+body {
+	font-family: 'M PLUS 1p', sans-serif;
+}
+
+.section {
+
+	padding: 25px 0;
+
+
+}
+
+.row {
+	width: 90%;
+	max-width: 1140px;
+	margin: 0 auto;
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	row-gap: 20px;
+	justify-content: space-between;
+}
+
+.col {
+	padding-top: 8px;
+	background-color: #EFF0F7;
+	width: 24%;
+	height: 400px;
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0px 0px -9px #777777;
+}
+
+
+
+.key2 {
+	color: #000000;
+	font-size: 20px;
+	font-family: 'M PLUS 1p', sans-serif;
+	background-color: #EFF0F7;
+}
+
+.key3 {
+	color: #000000;
+	font-size: 20px;
+	font-family: 'M PLUS 1p', sans-serif;
+	background-color: #EFF0F7;
+}
+
+li {
+	color: #000000;
+	font-size: 20px;
+	font-family: 'M PLUS 1p', sans-serif;
+
+}
+
+.log {
+	text-align: center;
+}
+
+.log2 {
+	width: 90%;
+	align-items: center;
+	margin: auto auto;
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 2%;
+}
+
+.log3 {
+	width: 50%;
+	border-radius: 5px;
+	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.log4 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.log4 img {
+	height: 75px;
+	border-radius: 100%;
+}
+
+.log5 {
+	width: 20%;
+}
+
+.pi {
+	max-width: 400px;
+	margin: 6% auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	display: block;
+}
+
+.pi2 {
+	margin-bottom: 15px;
+}
+
+label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.poi {
+	width: 95%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.poi2 {
+	width: 50%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.poi3 {
+	width: 25%;
+	padding: 7px;
+	border: 1px solid;
+	border-radius: 3px;
+
+}
+
+.poi button[type="submit"] {
+	width: 100%;
+	padding: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.pi3 {
+	height: 10px;
+	background-color: #FFFFFF;
+}
+
+.piu {
+	padding-top: 30px;
+	text-align: center;
+}
+
+.piui2 {
+	margin: auto auto;
+	width: 40%;
+}
+
+.div3 {
+	bottom: 20px;
+}
+
+.div4 {
+	height: 250px;
+}
+
+.piu6 {
+	text-align: center;
+	padding-top: 50px;
+	color: #FFFFFF;
+}
+
+article {
+	width: 100%;
+	height: 750px;
+	background-size: 100%;
+	background-image: url("/css/25.jpg");
+}
+
+.kuzuo {
+	margin: auto;
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+.kuzuo imput[type="text"],
+textarea {
+	display: block;
+}
+
+.sms,
+.kik {
+	width: 50%;
+}
+
+.aeoy {
+	display: flex;
+	justify-content: center;
+	/* 横中央 */
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.aeoy2 {
+	text-align: center;
+	margin: auto;
+	/*	 padding-top: 1px;*/
+	/*		 padding-bottom: 10px;*/
+}
+
+
+.aeoy3 hr {
+	width: 50%;
+}
+
+
+ul.ioio {
+	border: none;
+	height: 30px;
+	margin: 20px 50px;
+	font-size: 20px;
+	color: rgb(0, 0, 0);
+}
+
+.ioio table {
+	border: none;
+}
+
+/*여기부터 정해승 로그인 css*/
+.login-container {
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* 내부 요소를 가로 중앙 정렬 */
+}
+
+.form-group {
+	margin-bottom: 15px;
+	width: 100%;
+	/* 너비 유지 */
+}
+
+label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.login_text {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box; /* padding 포함한 전체 너비 계산 */
+}
+
+.login_button {
+	width: 100%;
+	padding: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+/*여기까지 정해승 로그인 css*/
+.relative {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.imgth {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	z-index: 0;
+}
+
+.boxer {
+	z-index: 100;
+	box-shadow: 0 0 8px gray;
+	border-radius: 20px;
+	background-color: rgb(255, 255, 255);
+	width: 70%;
+	/* 必ず明示的な幅を指定 */
+	max-width: 900px;
+	/* 任意：画面が広すぎる時の制限 */
+	height: 20%;
+	position: absolute;
+	/* 親.relativeを基準に中央配置 */
+	top: 85%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	/* 中のテキストを中央寄せしたい場合 */
+	justify-content: center;
+	align-items: center;
+}
+
+/*マイページ画面*/
+.mypage-title{
+	text-align: center;
+}
+.mypage-button{
+	background-color: #007bff;
+	width: 15em;
+	display: block;
+	 margin: 0 auto;
+}
+.mypage-rireki{
+	text-align: center;
+}
+
+body,
+header,
+footer {
+	width: 100%;
+}
