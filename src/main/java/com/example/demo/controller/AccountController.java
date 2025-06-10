@@ -69,6 +69,16 @@ public class AccountController {
             return "user"; // ログインページにエラーを表示
         }
 
+        // 이메일 중복 확인
+        if (customersRepository.findByEmail(email).isPresent()) {
+            errorList.add("このメールアドレスは既に登録されています");
+        }
+
+        if (!errorList.isEmpty()) {
+            model.addAttribute("errors", errorList);
+            return "user"; // 사용자 입력 폼 페이지로 다시 이동
+        }
+
         Customers customers = new Customers(name, address, tel, email, password, image);
         customersRepository.save(customers);
         return "redirect:/login";
