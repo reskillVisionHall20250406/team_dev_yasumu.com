@@ -20,7 +20,14 @@
         <tr><th>有効期限</th><td></td></tr>
     </table>
 
-    <button>戻る</button><br>
-    <button>予約確定</button>
+	<form th:action="@{/hotelsdetail/{id}(id=${hotels.id})}" method="get">
+		<button>戻る</button>	
+	</form>
+	<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" method="post">
+		<!--仮の日付選択-->
+		<input type="date" name="orderedOn">
+		<button>予約確定</button>
+	</form>
+ 
 </body>
 </html>

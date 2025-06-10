@@ -41,6 +41,7 @@ CREATE TABLE customers (
 -- 予約テーブル
 CREATE TABLE reservation (
     id SERIAL PRIMARY KEY,
-    customerId INTEGER REFERENCES customers(id),
+    hotel_id INTEGER REFERENCES hotels(id),
+    customer_id INTEGER REFERENCES customers(id),
     date DATE DEFAULT CURRENT_DATE
 );

@@ -40,7 +40,8 @@ public class ReservationController {
 			Model model) {
 
 		Hotels hotels = hotelsRepository.findById(id).get();//クリックされた宿のIDから宿情報を取得
-		Customers customer = customersRepository.findByEmail("jung@gmail.com");
+		System.out.println(account.getEmail());
+		Customers customer = customersRepository.findByEmail(account.getEmail());
 		//ログインされているアカウントからクレジットカードの情報を取得
 		List<String> card = new ArrayList<>();
 		card.add(customer.getCardNo());
@@ -53,7 +54,7 @@ public class ReservationController {
 		return "reservation";
 	}
 
-	@PostMapping("/reservation/approval")
+	@PostMapping("/reservation/approval/{id}")
 	public String approval(
 			@PathVariable("id") Integer id,
 			@RequestParam("orderedOn") LocalDate orderedOn, Model model) {

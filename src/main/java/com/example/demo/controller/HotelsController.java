@@ -102,8 +102,7 @@ public class HotelsController {
 	}
 
 	@GetMapping("/hotelsdetail/{id}")
-	public String showDetail(@PathVariable("id") String ii,
-			@RequestParam(name = "id", defaultValue = "") Integer id,
+	public String showDetail(@PathVariable("id") Integer id,
 			Model model) {
 
 		//itemsテーブルをID(主キー)で検索
