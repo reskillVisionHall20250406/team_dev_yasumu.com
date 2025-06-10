@@ -143,6 +143,9 @@ public class AccountController {
 			@RequestParam(name = "email", defaultValue = "") String email,
 			@RequestParam(name = "password", defaultValue = "") String password,
 			@RequestParam(name = "image", defaultValue = "") String image,
+			@RequestParam(name = "image", defaultValue = "") Integer cardNo,
+			@RequestParam(name = "image", defaultValue = "") Integer code,
+			@RequestParam(name = "image", defaultValue = "") Integer expiry,
 			Model model) {
 
 		List<String> errorList = new ArrayList<>();
@@ -167,7 +170,7 @@ public class AccountController {
 			return "edit";
 
 		}
-		Customers customers = new Customers(name, address, tel, email, password, image);
+		Customers customers = new Customers(name, address, tel, email, password,image);
 		customersRepository.save(customers);
 		return "redirect:/mypage";
 
