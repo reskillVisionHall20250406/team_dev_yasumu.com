@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>宿予約履歴</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title>宿予約履歴</title>
+	<link rel="stylesheet" type="text/css" href="/css/tachiki.css">
 </head>
+
 <body>
 	<header>
 		<h1>休.com</h1>
 	</header>
-	[[${@account.name}]]さんのご予約履歴
-	<img src="yado2.jpg" width="300px" height="200px"><br>
-	<a href="/mypage">マイページへ</a>
+	[[${@account.name}]]さんのご予約履歴<br>
+	<main class="history-main1">
+		<img src="/image/1-1.jpg" class="history-image" width="300px" height="200px"><br>
+	</main>
+	<main class="history-main2">
+		<img src="/image/1-10.jpg" width="300px" height="200px"><br>
+	</main>
+	<div style="text-align: center;">
+		<a href="/mypage">マイページへ</a>
+	</div>
 </body>
+
 </html>

@@ -26,6 +26,9 @@ public class Customers {
     private String expiry;
 
     //test
+    public Customers() {
+    	
+    }
     public Customers(String name, String address, String tel, String email, String password,
             String CardNo, String code, String expiry) {
         this.name = name;
