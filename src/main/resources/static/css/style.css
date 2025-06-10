@@ -164,12 +164,6 @@ nav ul li a {
 
 body {
 	background-color: #EFF0F7;
-	/* 背景色  */
-	/*text-align: center;*/
-	/* 中央寄せ */
-	min-width: 900px;
-	/* 最小幅 */
-
 }
 
 h4 {
@@ -240,11 +234,7 @@ td {
 	border: 1px solid #7d8bae;
 }
 
-/* 表 */
-table {
-	margin: 5px auto;
-	min-width: 800px;
-}
+
 
 /* 表見出しセル */
 table th {
@@ -500,32 +490,32 @@ ul.ioio {
 
 /*여기부터 정해승 로그인 css*/
 .login-container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 내부 요소를 가로 중앙 정렬 */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* 내부 요소를 가로 중앙 정렬 */
 }
 
 .form-group {
-  margin-bottom: 15px;
-  width: 100%; /* 너비 유지 */
+	margin-bottom: 15px;
+	width: 100%;
+	/* 너비 유지 */
 }
 
 label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"]{
+.login_text {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -534,13 +524,56 @@ input[type="email"]{
 }
 
 .login_button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
+	width: 100%;
+	padding: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
 }
 
 /*여기까지 정해승 로그인 css*/
+.relative {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.imgth {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	z-index: 0;
+}
+
+.boxer {
+	z-index: 100;
+	box-shadow: 0 0 8px gray;
+	border-radius: 20px;
+	background-color: rgb(255, 255, 255);
+	width: 70%;
+	/* 必ず明示的な幅を指定 */
+	max-width: 900px;
+	/* 任意：画面が広すぎる時の制限 */
+	height: 20%;
+	position: absolute;
+	/* 親.relativeを基準に中央配置 */
+	top: 85%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	/* 中のテキストを中央寄せしたい場合 */
+	justify-content: center;
+	align-items: center;
+}
+
+body,
+header,
+footer {
+	width: 100%;
+}

@@ -6,126 +6,132 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "customers")
 public class Customers {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String name;
-	private String address;
-	private String tel;
-	private String email;
-	private String password;
-	private String image;
-	@Column(name = "cardno")
-	private String cardNo;
-	private String code;
-	private String expiry;
 
-	protected Customers() {
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String name;
+    private String address;
+    private String tel;
+    private String email;
+    private String password;
+    private String image;
+    @Column(name = "card_no")
+    private String cardNo;
+    private String code;
+    private String expiry;
 
-	public Customers(String name, String address, String tel, String email, String password, String image,
-			String CardNo, String code, String expiry) {
-		this.name = name;
-		this.address = address;
-		this.tel = tel;
-		this.email = email;
-		this.password = password;
-		this.image = image;
-		this.cardNo = CardNo;
-		this.code = code;
-	}
+    protected Customers() {
+    }
 
-	public Customers(String name, String address, String tel, String email, String password, String image) {
-		this.name = name;
-		this.address = address;
-		this.email = email;
-		this.password = password;
-		this.tel = tel;
-		this.image = image;
-	}
+    //test
+    public Customers(String name, String address, String tel, String email, String password, String image,
+            String CardNo, String code, String expiry) {
+        this.name = name;
+        this.address = address;
+        this.tel = tel;
+        this.email = email;
+        this.password = password;
+        this.image = image;
+        this.cardNo = CardNo;
+        this.code = code;
+    }
 
-	public String getExpiry() {
-		return expiry;
-	}
+    public Customers(String name, String address, String tel, String email, String password, String image) {
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.tel = tel;
+        this.image = image;
+    }
 
-	public void setExpiry(String expiry) {
-		this.expiry = expiry;
-	}
+    public String getExpiry() {
+        return expiry;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getTel() {
-		return tel;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
+    public String getTel() {
+        return tel;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getImage() {
-		return image;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public String getCardNo() {
-		return cardNo;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public void setCardNo(String cardNo) {
-		this.cardNo = cardNo;
-	}
+    public String getCardNo() {
+        return cardNo;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
 }
