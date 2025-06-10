@@ -50,7 +50,7 @@
 
 			<div class="row">
 				<div class="col" th:each="hotel : ${hotels}">
-					<a th:href="@{/hotelsdetail/{Id}(id=${hotel.id})}">
+					<a th:href="@{/hotelsdetail/{id}(id=${hotel.id})}">
 						<div class="div4">
 							<img th:src="${hotel.image}" height="140px" alt="ホテル画像">
 							<h3 th:text="${hotel.name}"></h3>
