@@ -28,13 +28,12 @@
 			<a>/</a>
 			<input class="login_text" type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)"><br>
 			<p>アイコンの写真選択</p>
-			<form action="/upload" method="post"  enctype="multipart/form-data">
-				<input name="image" type="file">
-			</form>
+			    <input type="file" name="image"><br>
 
-			<h2>アップロードした画像の表示</h2>
-			<img alt="" th:src="${imageUrl}" style="width: 300px;">	
-			<br>
+			    <h2>アップロードした画像の表示</h2>
+			    <img alt="" th:src="${imageUrl}" style="width: 300px;">	
+				
+			    <br>
 			<button class="login_button">送信</button>
 			
 			<ul th:if="${errors}" class="error">
