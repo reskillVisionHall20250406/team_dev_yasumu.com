@@ -69,14 +69,12 @@ public class AccountController {
             return "user"; // ログインページにエラーを表示
         }
 
-        // 이메일 중복 확인
-        if (customersRepository.findByEmail(email).isPresent()) {
+        //        여기 밑에줄에서 이메일을 DB에서 찾아와서 메일이 등록되이는지 확인된다 눌이 아닌 확인하도록 에러코드
+        Customers existingCustomer = customersRepository.findByEmail(email);
+        if (existingCustomer != null) {
             errorList.add("このメールアドレスは既に登録されています");
-        }
-
-        if (!errorList.isEmpty()) {
             model.addAttribute("errors", errorList);
-            return "user"; // 사용자 입력 폼 페이지로 다시 이동
+            return "user";
         }
 
         Customers customers = new Customers(name, address, tel, email, password, image);
@@ -108,7 +106,7 @@ public class AccountController {
         Customers Customers = customersRepository.findByEmail(email);
 
         if (!email.isEmpty() && !password.isEmpty()) {
-            if (Customers != null && Customers.getPassword().equals(password)) {
+            if (Customers != null && Customers.equals(password)) {
                 session.setAttribute("currentUser", Customers);
             } else {
                 errorList.add("メールアドレスまたはパスワードが正しくありません");
@@ -121,7 +119,7 @@ public class AccountController {
         }
 
         account.setName(Customers.getName());
-        //        account.setId(Customers.getId());
+        account.setId(Customers.getId());
 
         return "redirect:/hotels";
     }
