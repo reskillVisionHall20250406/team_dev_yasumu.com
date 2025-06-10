@@ -16,23 +16,23 @@
 		
 			</ul>
 		
-		<form action="/user/add" method="post">
-			<input class="login_text" type="text" name="name" placeholder="名前"><br>
-			<input class="login_text" type="email" name="email" placeholder="メールアドレス"><br>
-			<input class="login_text" type="text" name="address" placeholder="住所"><br>
-			<input class="login_text" type="text" name="tel" placeholder="電話番号" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input class="login_text" type="password" name="password" minlength="8" placeholder="パスワード（8文字以上）"><br>
-			<input class="login_text" type="text" name="cardNo" placeholder="クレジットカード情報登録" maxlength="16" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input class="login_text" type="text" name="code" placeholder="セキュリティコード"><br>
-			<input class="login_text" type="text" style="width: 80px;" name="expiry" placeholder="月">
+		<form class="login_text" action="/user/add" method="post">
+			<input type="text" name="name" placeholder="名前"><br>
+			<input type="email" name="email" placeholder="メールアドレス"><br>
+			<input type="text" name="address" placeholder="住所"><br>
+			<input type="text" name="tel" placeholder="電話番号" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="password" name="password" minlength="8" placeholder="パスワード（8文字以上）"><br>
+			<input type="text" name="cardNo" placeholder="クレジットカード情報登録" maxlength="16" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text" name="code" placeholder="セキュリティコード"><br>
+			<input type="text" style="width: 80px;" name="expiry" placeholder="月">
 			<a>/</a>
-			<input class="login_text" type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)"><br>
-			<p>アイコンの写真選択</p>
-			    <input type="file" name="image"><br>
+			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)"><br>
+<!--			<p>アイコンの写真選択</p>-->
+<!--			    <input type="file" name="image"><br>-->
 
-			    <h2>アップロードした画像の表示</h2>
-			    <img alt="" th:src="${imageUrl}" style="width: 300px;">	
-				
+<!--			    <h2>アップロードした画像の表示</h2>-->
+<!--			    <img alt="" th:src="${imageUrl}" style="width: 300px;">	-->
+<!--				<button class="login_button" name="imagebtn" th:value="btn">画像確認</button>-->
 			    <br>
 			<button class="login_button">送信</button>
 			

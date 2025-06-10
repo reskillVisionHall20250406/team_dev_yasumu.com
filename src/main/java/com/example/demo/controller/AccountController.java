@@ -40,9 +40,7 @@ public class AccountController {
             @RequestParam(name = "tel", defaultValue = "") String tel,
             @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "password", defaultValue = "") String password,
-            @RequestParam(value = "image") String image,
             Model model) {
-
         List<String> errorList = new ArrayList<>();
 
         if (name.isEmpty()) {
@@ -77,7 +75,7 @@ public class AccountController {
             return "user";
         }
 
-        Customers customers = new Customers(name, address, tel, email, password, image);
+        Customers customers = new Customers(name, address, tel, email, password);
         customersRepository.save(customers);
         return "redirect:/login";
     }
@@ -141,7 +139,6 @@ public class AccountController {
             @RequestParam(name = "tel", defaultValue = "") String tel,
             @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "password", defaultValue = "") String password,
-            @RequestParam(name = "image", defaultValue = "") String image,
             Model model) {
 
         List<String> errorList = new ArrayList<>();
@@ -166,7 +163,7 @@ public class AccountController {
             return "edit";
 
         }
-        Customers customers = new Customers(name, address, tel, email, password, image);
+        Customers customers = new Customers(name, address, tel, email, password);
         customersRepository.save(customers);
         return "redirect:/mypage";
 

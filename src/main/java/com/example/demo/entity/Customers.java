@@ -6,10 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "customers")
@@ -45,13 +41,12 @@ public class Customers {
         this.code = code;
     }
 
-    public Customers(String name, String address, String tel, String email, String password, String image) {
+    public Customers(String name, String address, String tel, String email, String password) {
         this.name = name;
         this.address = address;
         this.email = email;
         this.password = password;
         this.tel = tel;
-        this.image = image;
     }
 
     public String getExpiry() {
