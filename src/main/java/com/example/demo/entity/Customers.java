@@ -25,30 +25,26 @@ public class Customers {
     private String code;
     private String expiry;
 
-    protected Customers() {
-    }
-
     //test
-    public Customers(String name, String address, String tel, String email, String password, String image,
+    public Customers(String name, String address, String tel, String email, String password,
             String CardNo, String code, String expiry) {
         this.name = name;
         this.address = address;
         this.tel = tel;
         this.email = email;
         this.password = password;
-        this.image = image;
+
         this.cardNo = CardNo;
         this.code = code;
-        this.expiry=expiry;
+        this.expiry = expiry;
     }
 
-    public Customers(String name, String address, String tel, String email, String password,String image) {
+    public Customers(String name, String address, String tel, String email, String password) {
         this.name = name;
         this.address = address;
         this.email = email;
         this.password = password;
         this.tel = tel;
-        this.image=image;
     }
 
     public String getExpiry() {
