@@ -43,12 +43,16 @@ public class AccountController {
             Model model) {
 
         List<String> errorList = new ArrayList<>();
+        //      여기 밑에줄에서 이메일을 DB에서 찾아와서 메일이 등록되이는지 확인된다 눌이 아닌 확인하도록 에러코드
+        Customers existingCustomer = customersRepository.findByEmail(email);
 
         if (name.isEmpty()) {
             errorList.add("お名前を入力してください");
         }
         if (email.isEmpty()) {
             errorList.add("メールを入力してください");
+        } else if (existingCustomer != null) {
+            errorList.add("このメールアドレスは既に登録されています");
         }
         if (address.isEmpty()) {
             errorList.add("住所を入力してください");
@@ -63,6 +67,7 @@ public class AccountController {
         } else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
             errorList.add("パスワードは英字と数字の両方を含めてください");
         }
+
         if (!errorList.isEmpty()) {
             model.addAttribute("errors", errorList);
             model.addAttribute("name", name);
@@ -72,14 +77,6 @@ public class AccountController {
             return "user"; // ログインページにエラーを表示
         }
         
-
-        //        여기 밑에줄에서 이메일을 DB에서 찾아와서 메일이 등록되이는지 확인된다 눌이 아닌 확인하도록 에러코드
-        Customers existingCustomer = customersRepository.findByEmail(email);
-        if (existingCustomer != null) {
-            errorList.add("このメールアドレスは既に登録されています");
-            model.addAttribute("errors", errorList);
-            return "user";
-        }
 
         Customers customers = new Customers(name, address, tel, email, password);
         customersRepository.save(customers);
