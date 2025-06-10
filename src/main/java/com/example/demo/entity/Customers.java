@@ -39,14 +39,16 @@ public class Customers {
         this.image = image;
         this.cardNo = CardNo;
         this.code = code;
+        this.expiry=expiry;
     }
 
-    public Customers(String name, String address, String tel, String email, String password) {
+    public Customers(String name, String address, String tel, String email, String password,String image) {
         this.name = name;
         this.address = address;
         this.email = email;
         this.password = password;
         this.tel = tel;
+        this.image=image;
     }
 
     public String getExpiry() {
