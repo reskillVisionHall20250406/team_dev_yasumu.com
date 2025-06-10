@@ -40,7 +40,7 @@ public class ReservationController {
 			Model model) {
 
 		Hotels hotels = hotelsRepository.findById(id).get();//クリックされた宿のIDから宿情報を取得
-		System.out.println(account.getEmail());
+
 		Customers customer = customersRepository.findByEmail(account.getEmail());
 		//ログインされているアカウントからクレジットカードの情報を取得
 		List<String> card = new ArrayList<>();
@@ -49,6 +49,8 @@ public class ReservationController {
 		card.add(customer.getExpiry());
 
 		model.addAttribute("hotels", hotels);
+		model.addAttribute("customers", customer);
+		model.addAttribute("account", account);
 		//		@RequestParam("date") LocalDate date,
 		//		model.addAttribute("date", date);
 		return "reservation";
@@ -58,9 +60,12 @@ public class ReservationController {
 	public String approval(
 			@PathVariable("id") Integer id,
 			@RequestParam("orderedOn") LocalDate orderedOn, Model model) {
+		Hotels hotels = hotelsRepository.findById(id).get();
 		Customers customer = customersRepository.findByEmail(account.getEmail());
 		Reservation reservation = new Reservation(id, customer.getId(), orderedOn);
 		reservationRepository.save(reservation);
+		model.addAttribute("hotels", hotels);
+
 		return "completed";
 	}
 }
