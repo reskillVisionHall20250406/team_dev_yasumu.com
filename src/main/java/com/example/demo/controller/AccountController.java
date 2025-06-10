@@ -106,7 +106,7 @@ public class AccountController {
         Customers Customers = customersRepository.findByEmail(email);
 
         if (!email.isEmpty() && !password.isEmpty()) {
-            if (Customers != null && Customers.equals(password)) {
+            if (Customers != null && Customers.getPassword().equals(password)) {
                 session.setAttribute("currentUser", Customers);
             } else {
                 errorList.add("メールアドレスまたはパスワードが正しくありません");
