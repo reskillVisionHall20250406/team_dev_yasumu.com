@@ -6,9 +6,8 @@
 <link rel="stylesheet" type="text/css" href="/css/Jung.css">
 </head>
 <body>
-	<header>
-		<h1>休.com</h1>
-	</header>
+    <span th:replace="header2">
+	</span>
 		<div class="login-container">
 		<div class="form-group">
 
@@ -16,7 +15,7 @@
 		
 
     <form class="login_text" action="/login" method="post">
-            <input type="text" name="email" placeholder="メールアドレス"><br>
+            <input type="text" name="email" th:value="${email}" placeholder="メールアドレス"><br>
             <input type="password" name="password" placeholder="パスワード"><br>
             <button class="login_button">ログイン</button>
     </form>
