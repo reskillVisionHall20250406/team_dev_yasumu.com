@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Hotels;
 import com.example.demo.model.Account;
+import com.example.demo.model.Log;
 import com.example.demo.repository.AreaRepository;
 import com.example.demo.repository.HotelsRepository;
 
@@ -26,6 +27,9 @@ public class HotelsController {
 
 	@Autowired
 	private Account account;
+	
+	@Autowired
+	Log log;
 
 	// ホテル一覧表示
 	@GetMapping("/hotels")
@@ -105,8 +109,10 @@ public class HotelsController {
 	public String showDetail(@PathVariable("id") Integer id,
 			Model model) {
 
-		//itemsテーブルをID(主キー)で検索
+		//hotelsテーブルをID(主キー)で検索
 		Hotels hotels = hotelsRepository.findById(id).get();
+
+				log.add(hotels);
 
 		model.addAttribute("account", account);
 		model.addAttribute("hotels", hotels);

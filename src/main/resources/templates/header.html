@@ -8,7 +8,7 @@
 				<button class="poi3">検索</button>
 			</form>
 			<form action="/login" method="get">
-				<button class="key2">ログイン<span th:if="${account.name == null}"></span></button>
+				<button class="key2"><span th:if="${account.name == null}">ログイン</span></button>
 				<span th:if="${account.name != null}" th:text="${account.name}+さんがログイン中"></span>
 			</form>
 			<form action="samplel.cgi" method="post" class="key4">
