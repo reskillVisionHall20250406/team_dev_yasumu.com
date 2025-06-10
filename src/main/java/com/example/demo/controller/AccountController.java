@@ -71,6 +71,7 @@ public class AccountController {
             model.addAttribute("tel", tel);
             return "user"; // ログインページにエラーを表示
         }
+        
 
         //        여기 밑에줄에서 이메일을 DB에서 찾아와서 메일이 등록되이는지 확인된다 눌이 아닌 확인하도록 에러코드
         Customers existingCustomer = customersRepository.findByEmail(email);
