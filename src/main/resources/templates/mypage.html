@@ -9,12 +9,10 @@
 		<h1>休.com</h1>
 	</header>
 	<h1>マイページ</h1>
-	[[${@account.name}]]さん
-	<form th:action="@{/mypage/edit}" method="get">
+	<a>[[${@account.name}]]さん</a>
+	<form action="/mypage" method="get">
 		<button>プロフィールを編集する</button>
 	</form>
-	<form th:action="@{/yado/histoy}" method="post">
 	<a href="/yado/history">ご予約履歴はこちら</a>
-	</form>
 </body>
 </html>
