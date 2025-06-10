@@ -27,13 +27,21 @@
 			<input class="login_text" type="text" style="width: 80px;" name="expiry" placeholder="月">
 			<a>/</a>
 			<input class="login_text" type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)"><br>
-			<p>アイコンの写真選択</p><input type="file" name="image" placeholder="アイコンの写真"><br>
-<!--			<input type="password" name="password_confirm" placeholder="パスワード(確認）"><br>-->
+			<p>アイコンの写真選択</p>
+			<form action="/upload" method="post"  enctype="multipart/form-data">
+				<input name="image" type="file">
+			</form>
+
+			<h2>アップロードした画像の表示</h2>
+			<img alt="" th:src="${imageUrl}" style="width: 300px;">	
+			<br>
 			<button class="login_button">送信</button>
 			
 			<ul th:if="${errors}" class="error">
-						    <li th:each="error : ${errors}" th:text="${error}"></li>
+			<li th:each="error : ${errors}" th:text="${error}"></li>
+			</ul>
 		</form>
+		<br>
 		
 		<a href="/login">ログイン</a>
 		</div>

@@ -13,9 +13,6 @@
 		<div class="form-group">
 
 			<h2>ログイン</h2>
-			<ul th:if="${errors}" class="error">
-		    <li th:each="error : ${errors}" th:text="${error}"></li> 
-		</ul>
 		
 
     <form action="/login" method="post">
@@ -23,6 +20,9 @@
             <input class="login_text"type="password" name="password" placeholder="パスワード"><br>
             <button class="login_button">ログイン</button>
     </form>
+	<ul th:if="${errors}" class="error">
+			    <li th:each="error : ${errors}" th:text="${error}"></li> 
+			</ul>
      <p>アカウントをお持ちではありませんか？</p>
 	<a href='/user/add';>ユーザー新規登録</a><br/><br/>
 	</div>
