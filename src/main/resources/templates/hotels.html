@@ -76,18 +76,65 @@
 		</div>
 		<div class="blank"></div>
 		<!--ログ表示-->
-		<h4 class="log">最近見た宿</h4>
+		<h2 class="midashi">最近見た宿</h2>
 
-		<div class="log2">
-			<div class="log5"></div>
-			<div class="log3"><a th:href="@{/hotelsdetail/{Id}(id=${hotels.id})}" th:value="${hotels.id}"
-					th:each="hotels:${@log.getHotels()}">
-					<div class="log4"><img th:src="${hotels.image}" width="100%"></div>
-				</a>
-			</div>
-			<div class="log5"></div>
+
+		<div class="containers">
+			<ul class="carousel">
+				<li th:each="hotel : ${@log.getHotels()}" class="carousel-item"><a
+						th:href="@{/hotelsdetail/{id}(id=${hotel.id})}">
+						<div class="div4">
+							<img th:src="${hotel.image}" height="170px" width="100%" alt="ホテル画像">
+							<div class="popo">
+								<h3 th:text="${hotel.name}"></h3>
+								<div th:text="${hotel.address}"></div>
+							</div>
+							<div class="popo2">
+								<div th:text="${hotel.capacity} + '名 税込　'"></div>
+								<h3 th:text="${hotel.price} + '円'"></h3>
+							</div>
+							<!--							<div th:text="${hotel.capacity}"></div>-->
+						</div>
+					</a>
+			</ul>
 		</div>
+		
+		<style>
+			.carousel {
+				/* ... */
+
+				scroll-marker-group: after;
+
+				&::scroll-marker-group {
+					/* マーカーグループのスタイル　*/
+				}
+			}
+
+		</style>
+
+
+
+		<!--		<div class="log2">-->
+		<!--			<div class="log5"></div>-->
+		<!--			<div class="log3"><a th:href="@{/hotelsdetail/{id}(id=${hotels.id})}" th:value="${hotels.id}"-->
+		<!--					th:each="hotels:${@log.getHotels()}">-->
+		<!--					<div class="log4"><img th:src="${hotels.image}" width="100%"></div>-->
+		<!--				</a>-->
+		<!--			</div>-->
+		<!--			<div class="log5"></div>-->
+		<!--		</div>-->
 		<!--おすすめのやど-->
+		<h2 class="midashi">おすすめの宿</h2>
+		<div class="recommend">
+			<div class="recommend2">
+				<img src="/image/1-11.jpg" width="100%">
+
+			</div>
+			<div class="recommend2">
+				<img src="/image/1-13.jpg" width="100%">
+			</div>
+
+		</div>
 		<!--		<div class="recommend">-->
 		<!--			<div class="recommend2">-->
 		<!--				<div th:each="hotel : ${hotels}">-->
