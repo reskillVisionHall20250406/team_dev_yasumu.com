@@ -6,9 +6,10 @@
 <link rel="stylesheet" type="text/css" href="/css/tachiki.css">
 </head>
 <body>
-	<h1>休.com</h1>
+	<span th:replace="header2">
+	</span>
 	<h1 class="mypage-title">マイページ</h1>
-	<form th:action="@{/mypage/edit}" method="get">
+	<form class="mypage-form" th:action="@{/mypage/edit}" method="get">
 		<span class="mypage-name">[[${@account.name}]]さん</span>
 		
 			<img th:src="${customers.image}">
