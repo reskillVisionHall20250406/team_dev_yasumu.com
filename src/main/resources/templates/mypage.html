@@ -6,19 +6,19 @@
 <link rel="stylesheet" type="text/css" href="/css/tachiki.css">
 </head>
 <body>
-	<span th:replace="header2">
+	<span th:replace="header">
 	</span>
 	<h1 class="mypage-title">マイページ</h1>
 	<form class="mypage-form" th:action="@{/mypage/edit}" method="get">
-		<span class="mypage-name">[[${@account.name}]]さん</span>
+		<div class="mypage-name">[[${@account.name}]]さん</div>
 		
-			<img th:src="${customers.image}">
+<!--			<img th:src="${customers.image}">-->
 			<p th:text="${customers.name}">
 		</p>
 		<p th:text="${customers.image}"></p>
 		<p th:each="hotel:${hotels}" th:text="${hotel.name}" ></p>
 		<button class="mypage-button">プロフィールを編集する</button>
-		<img src="profile.jpg">
+<!--		<div img src="profile.jpg">-->
 	</form>
 	<div style="text-align: center;">
 	  <a href="/yado/history">ご予約の確認はこちらから</a>

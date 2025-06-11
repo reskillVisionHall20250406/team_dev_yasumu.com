@@ -150,6 +150,7 @@ public class AccountController {
 
         Customers customers = customersRepository.findByName(account.getName());
         model.addAttribute("customers", customers);
+        model.addAttribute("account", account);
         return "mypage";
     }
 
@@ -222,6 +223,8 @@ public class AccountController {
         }
         model.addAttribute("hotel", hotels);
         model.addAttribute("reservations", reservations);
+        model.addAttribute("account", account);
+        
         return "history";
     }
 }

@@ -581,6 +581,9 @@ label {
 .mypage-form{
 	text-align: center;
 }
+.mypage-image{
+	text-align: left;
+}
 
 .mypage-title {
 	text-align: center;
@@ -619,6 +622,7 @@ label {
 	text-align: center;
 }
 
+
 .edit-commentt {
 	color: red;
 }
@@ -636,9 +640,6 @@ label {
 /*宿予約履歴画面*/
 .history-image{
 	text-align: left;
-}
-.history-price{
-	text-align: right;
 }
 .history-hotelName{
 	font-size: 30px;
