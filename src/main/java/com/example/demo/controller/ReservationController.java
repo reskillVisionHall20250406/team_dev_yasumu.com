@@ -39,33 +39,68 @@ public class ReservationController {
 			@PathVariable("id") Integer id,
 			Model model) {
 
-		Hotels hotels = hotelsRepository.findById(id).get();//クリックされた宿のIDから宿情報を取得
+		if (account.getEmail() == null) {
+			return "login";
+		} else {
+			Hotels hotels = hotelsRepository.findById(id).get();//クリックされた宿のIDから宿情報を取得
 
-		Customers customer = customersRepository.findByEmail(account.getEmail());
-		//ログインされているアカウントからクレジットカードの情報を取得
-		List<String> card = new ArrayList<>();
-		card.add(customer.getCardNo());
-		card.add(customer.getCode());
-		card.add(customer.getExpiry());
+			Customers customer = customersRepository.findByEmail(account.getEmail());
+			//ログインされているアカウントからクレジットカードの情報を取得
+			List<String> card = new ArrayList<>();
+			card.add(customer.getCardNo());
+			card.add(customer.getCode());
+			card.add(customer.getExpiry());
 
-		model.addAttribute("hotels", hotels);
-		model.addAttribute("customers", customer);
-		model.addAttribute("account", account);
-		//		@RequestParam("date") LocalDate date,
-		//		model.addAttribute("date", date);
-		return "reservation";
+			model.addAttribute("hotels", hotels);
+			model.addAttribute("customers", customer);
+			model.addAttribute("account", account);
+			//		@RequestParam("date") LocalDate date,
+			//		model.addAttribute("date", date);
+			return "reservation";
+		}
 	}
 
 	@PostMapping("/reservation/approval/{id}")
 	public String approval(
 			@PathVariable("id") Integer id,
-			@RequestParam("orderedOn") LocalDate orderedOn, Model model) {
+			@RequestParam("orderedOn") LocalDate orderedOn,
+			@RequestParam("cardno") String cardNo,
+			@RequestParam("code") String code,
+			@RequestParam("expiry") String expiry, Model model) {
 		Hotels hotels = hotelsRepository.findById(id).get();
 		Customers customer = customersRepository.findByEmail(account.getEmail());
-		Reservation reservation = new Reservation(id, customer.getId(), orderedOn);
-		reservationRepository.save(reservation);
-		model.addAttribute("hotels", hotels);
+		List<String> errList = new ArrayList<>();
 
-		return "completed";
+		if (cardNo.equals("")) {
+			errList.add("クレジットカード番号を入力してください");
+		}
+
+		if (code.equals("")) {
+			errList.add("セキュリティコードを入力してください");
+		}
+
+		if (expiry.equals("")) {
+			errList.add("有効期限を入力してください");
+		}
+
+		if (errList.isEmpty()) {
+			customer.setCardNo(cardNo);
+			customer.setCode(code);
+			customer.setExpiry(expiry);
+
+			Reservation reservation = new Reservation(id, customer.getId(), orderedOn);
+			reservationRepository.save(reservation);
+			model.addAttribute("hotels", hotels);
+			model.addAttribute("reservation", reservation);
+
+			return "completed";
+		}
+
+		model.addAttribute("orderedOn", orderedOn);
+		model.addAttribute("hotels", hotels);
+		model.addAttribute("customers", customer);
+		model.addAttribute("account", account);
+		model.addAttribute("err", errList);
+		return "reservation";
 	}
 }

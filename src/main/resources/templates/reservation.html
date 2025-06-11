@@ -1,31 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/matsumoto.css">
-<meta charset="UTF-8">
-<title>ログイン</title>
+	<meta charset="UTF-8">
+	<title>宿予約内容確認</title>
 </head>
+
 <body>
 	<header th:replace="header"></header>
-	<h2>宿予約内容確認</h2>
-	<span th:text="${hotels.name}"></span>
-    <span th:text="${hotels.address}"></span>
-<!--    <span th:text="${date}"></span><br>-->
-    <h2>クレジットカード情報・変更・登録</h2>
-    <table>
-        <tr><th>クレジットカード番号</th><td th:text="${customers.cardNo}"></td></tr>
-        <tr><th>セキュリティ番号</th><td th:text="${customers.code}"></td></tr>
-        <tr><th>有効期限</th><td th:text="${customers.expiry}"></td></tr>
-    </table>
+	<hr>
+	<div class="center">
+		<form th:action="@{/hotelsdetail/{id}(id=${hotels.id})}" method="get" class="right">
+			<button>戻る</button>
+		</form>
+		<h2>宿予約内容確認</h2>
+		<span class="flex">
+			<img th:src="${hotels.image}" height="170px" alt="ホテル画像">
+			<div>
+				<div th:text="${hotels.name}"></div>
+				<div th:text="${hotels.address}"></div>
+				<div th:text="宿泊人数： + ${hotels.capacity} + 人"></div>
+				<div th:text="値段： + ${hotels.price} + 円"></div>
+				<!--    <span th:text="${date}"></span><br>-->
+			</div>
+		</span>
+		<hr>
+		<h2>クレジットカード情報・変更・登録</h2>
 
-	<form th:action="@{/hotelsdetail/{id}(id=${hotels.id})}" method="get">
-		<button>戻る</button>	
-	</form>
-	<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" method="post">
-		<!--仮の日付選択-->
-		<input type="date" name="orderedOn">
-		<button>予約確定</button>
-	</form>
- 
+		<div class="btn">
+
+			<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" method="post">
+
+				<table align="center">
+					<tr>
+						<th>クレジットカード番号</th>
+						<td><input type="text" th:value="${customers.cardNo}" name="cardno"></td>
+					</tr>
+					<tr>
+						<th>セキュリティ番号</th>
+						<td><input type="text" th:value="${customers.code}" name="code"></td>
+					</tr>
+					<tr>
+						<th>有効期限</th>
+						<td><input type="text" th:value="${customers.expiry}" name="expiry"></td>
+					</tr>
+				</table>
+				<!--仮の日付選択-->
+				<input type="date" name="orderedOn" th:value=${orderedOn} required>
+				<button>予約確定</button>
+			</form>
+
+		</div>
+		<ul th:if="${err}" class="error">
+			<li th:each="error : ${err}" th:text="${error}"></li>
+		</ul>
+	</div>
+
 </body>
+
 </html>
