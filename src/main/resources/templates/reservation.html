@@ -10,12 +10,14 @@
 <body>
 	<header th:replace="header"></header>
 	<hr>
+	<div  class="btn">
+		<a th:href="@{/hotelsdetail/{Id}(id=${hotels.id})}"></a>
+	</div>
 	<div class="center">
-		<form th:action="@{/hotelsdetail/{id}(id=${hotels.id})}" method="get" class="right">
-			<button>戻る</button>
-		</form>
-		<h2>宿予約内容確認</h2>
-		<span class="flex">
+		<h2>宿予約内容確認/クレジットカード情報・変更・登録</h2>
+		<div class="login-container">
+		
+		<div class="flex">
 			<img th:src="${hotels.image}" height="170px" alt="ホテル画像">
 			<div>
 				<div th:text="${hotels.name}"></div>
@@ -24,12 +26,11 @@
 				<div th:text="値段： + ${hotels.price} + 円"></div>
 				<!--    <span th:text="${date}"></span><br>-->
 			</div>
-		</span>
-		<hr>
-		<h2>クレジットカード情報・変更・登録</h2>
-
+		</div>
+		
+		<div class="flex-item credit-form">
+		
 		<div class="btn">
-
 			<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" method="post">
 
 				<table align="center">
@@ -52,9 +53,11 @@
 			</form>
 
 		</div>
-		<ul th:if="${err}" class="error">
+		<ul th:if="${err}" class="err">
 			<li th:each="error : ${err}" th:text="${error}"></li>
 		</ul>
+		</div>
+		</div>
 	</div>
 
 </body>
