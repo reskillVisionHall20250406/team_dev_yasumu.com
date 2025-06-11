@@ -634,25 +634,26 @@ label {
 	margin: 0 auto;
 }
 /*宿予約履歴画面*/
-<<<<<<< HEAD
-=======
+.history-image{
+	text-align: left;
+}
+.history-price{
+	text-align: right;
+}
+.history-hotelName{
+	font-size: 30px;
+}
 .history-main1{
-	max-width: 500px;
+	max-width: 1200px;
 }
 .history-main2{
 	max-width: 500px;
 }
-
->>>>>>> aafc36e6f066cedbfbaf8fb6ea013abc9b4a19f0
+.flex{
+	display: flex;
+}
 body,
 header,
 footer {
 	width: 100%;
-}
-
-.history-main1{
-	max-width: 500px;
-}
-.history-main2{
-	max-width: 500px;
 }
