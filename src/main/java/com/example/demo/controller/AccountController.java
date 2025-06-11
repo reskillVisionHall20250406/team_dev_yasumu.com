@@ -23,6 +23,7 @@ import com.example.demo.repository.ReservationRepository;
 @Controller
 //コントローラーが必須に必要
 public class AccountController {
+
 	@Autowired
 	HttpSession session;
 
