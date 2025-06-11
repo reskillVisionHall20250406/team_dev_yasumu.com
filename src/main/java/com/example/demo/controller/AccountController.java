@@ -62,30 +62,6 @@ public class AccountController {
         //      여기 밑에줄에서 이메일을 DB에서 찾아와서 메일이 등록되이는지 확인된다 눌이 아닌 확인하도록 에러코드
         Customers existingCustomer = customersRepository.findByEmail(email);
 
-    @PostMapping("/user/add")
-    public String add(
-            @RequestParam(name = "name", defaultValue = "") String name,
-            @RequestParam(name = "address", defaultValue = "") String address,
-            @RequestParam(name = "tel", defaultValue = "") String tel,
-            @RequestParam(name = "email", defaultValue = "") String email,
-            @RequestParam(name = "password", defaultValue = "") String password,
-            @RequestParam(name = "cardNo", defaultValue = "") String cardNo,
-            @RequestParam(name = "code", defaultValue = "") String code,
-            @RequestParam(name = "expiry", defaultValue = "") String expiry,
-            Model model) {
-        time();
-        String expirys = expiry.replace(",", "");
-        //        , 이라는 단어를 뒤에 공란으로 만들어주는 replace라는 메소드
-        List<String> errorList = new ArrayList<>();
-        //      여기 밑에줄에서 이메일을 DB에서 찾아와서 메일이 등록되이는지 확인된다 눌이 아닌 확인하도록 에러코드
-        Customers existingCustomer = customersRepository.findByEmail(email);
-
-        String expirys = expiry.replace(",", "");
-        //        , 이라는 단어를 뒤에 공란으로 만들어주는 replace라는 메소드
-        List<String> errorList = new ArrayList<>();
-        //      여기 밑에줄에서 이메일을 DB에서 찾아와서 메일이 등록되이는지 확인된다 눌이 아닌 확인하도록 에러코드
-        Customers existingCustomer = customersRepository.findByEmail(email);
-
         if (name.isEmpty()) {
             errorList.add("お名前を入力してください");
         }
