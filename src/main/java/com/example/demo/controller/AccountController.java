@@ -80,7 +80,7 @@ public class AccountController {
         } else if (password.length() < 8) {
             errorList.add("パスワードは8文字以上で入力してください");
         } else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
-            errorList.add("パスワードは英字と数字の両方を含めてください");
+            errorList.add("パスワードは半角英字と数字の両方を含めてください");
         }
 
         if (!errorList.isEmpty()) {

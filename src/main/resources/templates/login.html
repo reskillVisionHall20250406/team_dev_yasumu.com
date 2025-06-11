@@ -15,17 +15,40 @@
 		
 
     <form class="login_text" action="/login" method="post">
-            <input type="text" name="email" th:value="${email}" placeholder="メールアドレス"><br>
-            <input type="password" name="password" placeholder="パスワード"><br>
-            <button class="login_button">ログイン</button>
-    </form>
+  <div class="form-group">
+    <input type="text" name="email" th:value="${email}" placeholder="メールアドレス">
+  </div>
+
+  <div class="form-group" style="position: relative;">
+    <input type="password" id="password" name="password" placeholder="パスワード">
+    
+    <!--  비밀번호 표시 버튼  -->
+    <button type="button" onclick="togglePassword()" class="toggle-btn">🔒</button>
+  </div>
+
+  <button class="login_button">ログイン</button>
+</form>
 	<ul th:if="${errors}" class="error">
-			    <li th:each="error : ${errors}" th:text="${error}"></li> 
-			</ul>
+		 <li th:each="error : ${errors}" th:text="${error}"></li> 
+	</ul>
      <p>アカウントをお持ちではありませんか？</p>
 	<a href='/user/add';>ユーザー新規登録</a><br/><br/>
 	</div>
 	</div>
+	<script>
+  function togglePassword() {
+    const pwField = document.getElementById("password");
+    const btn = event.target;
+
+    if (pwField.type === "password") {
+      pwField.type = "text";
+      btn.textContent = "🔓"; // 숨기기
+    } else {
+      pwField.type = "password";
+      btn.textContent = "🔒";   // 보기
+    }
+  }
+</script>
 </body>
 </html>
 
