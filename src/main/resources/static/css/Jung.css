@@ -544,6 +544,28 @@ label {
 	margin-bottom: 10px;
 }
 
+/* 비밀번호 보기 버튼 (input 우측에 겹치게 배치) */
+.toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+  color: #888;
+  outline: none;             /* 포커스 테두리 제거 */
+}
+
+.toggle-btn:hover,
+.toggle-btn:focus,
+.toggle-btn:active {
+  background: transparent !important; /* hover, focus 시 배경색 제거 */
+  box-shadow: none;                  /* 포커스 외곽선 제거 */
+}
+
 /*여기까지 정해승 로그인 css*/
 .relative {
 	width: 100%;

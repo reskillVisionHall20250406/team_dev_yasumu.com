@@ -20,10 +20,15 @@
 			<input type="email" name="email" th:value="${email}" placeholder="メールアドレス"><br>
 			<input type="text" name="address" th:value="${address}" placeholder="住所"><br>
 			<input type="text" name="tel" th:value="${tel}" placeholder="電話番号" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input type="password" name="password" minlength="8" placeholder="パスワード（8文字以上）"><br>
+		<div class="form-group" style="position: relative;">
+            <input type="password" id="password" name="password" minlength="8" placeholder="パスワード（半角英数字8文字以上）">
+            <!--  비밀번호 표시 버튼  -->
+            <button type="button" onclick="togglePassword(event)" class="toggle-btn">🔒</button>
+
+        </div>
 			<input type="text" name="cardNo" placeholder="クレジットカード情報登録" maxlength="16" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
 			<input type="text" name="code" placeholder="セキュリティコード" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input type="text" style="width: 80px;" name="expiry" placeholder="月" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+			<input type="text" style="width: 80px;"  name="expiry" id="expiry-month"placeholder="月"  maxlength="2"  oninput="validateMonth(this)">
 			<a>/</a>
 			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
 <!--			<p>アイコンの写真選択</p>-->
@@ -44,5 +49,60 @@
 		<a href="/login">ログイン</a>
 		</div>
 		</div>
-</body>
+	<script>
+			  const pwInput = document.getElementById("password");
+			  const warning = document.getElementById("pw-warning");
+
+			  function filterFullWidth(value) {
+			    return value.replace(/[^\u0020-\u007E]/g, '');
+			  }
+
+			  pwInput.addEventListener("input", function () {
+			    const original = this.value;
+			    const filtered = filterFullWidth(original);
+			    if (original !== filtered) {
+			      this.value = filtered;
+			      warning.textContent = "全角文字は使用できません。半角英数字のみ入力してください。";
+			    } else {
+			      warning.textContent = "";
+			    }
+			  });
+
+			 function togglePassword(event) {
+                const pwField = document.getElementById("password");
+                const btn = event.target;
+
+            if (pwField.type === "password") {
+            pwField.type = "text";
+            btn.textContent = "🔓"; // 보이기 상태
+            } else {
+            pwField.type = "password";
+            btn.textContent = "🔒"; // 숨기기 상태
+            }
+           }
+
+
+			  pwInput.addEventListener("compositionend", function () {
+			    this.value = filterFullWidth(this.value);
+			  });
+			   function validateMonth(input) {
+			    // 숫자 외 제거
+			    input.value = input.value.replace(/[^0-9]/g, '');
+
+			    // 1자리 숫자가 입력되면 자동으로 0을 앞에 붙여줌 (단, 2 이상 입력 시 적용)
+			    if (input.value.length === 1 && parseInt(input.value, 10) > 0) {
+			      input.value = '0' + input.value;
+			    }
+
+			    // 두 자리 숫자가 입력되었을 경우 유효성 검사
+			    if (input.value.length === 2) {
+			      const num = parseInt(input.value, 10);
+			      if (num < 1 || num > 12) {
+			        alert("1〜12の数字を入力してください。");
+			        input.value = '';
+			      }
+			    }
+			  }
+	</script>
+</body>		
 </html>
