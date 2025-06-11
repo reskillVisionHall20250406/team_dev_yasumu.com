@@ -55,6 +55,7 @@ public class AccountController {
             @RequestParam(name = "code", defaultValue = "") String code,
             @RequestParam(name = "expiry", defaultValue = "") String expiry,
             Model model) {
+        time();
         String expirys = expiry.replace(",", "");
         //        , 이라는 단어를 뒤에 공란으로 만들어주는 replace라는 메소드
         List<String> errorList = new ArrayList<>();
@@ -193,18 +194,18 @@ public class AccountController {
             model.addAttribute("errors", errorList);
             return "edit";
 
-		}
-		//		Customers customers = new Customers(name, address, tel, email, password, image);
-		//		customersRepository.save(customers);
-		Customers customers = new Customers();
-		customers = customersRepository.findById(account.getId()).get();
-		customers.setName(name);
-		customers.setAddress(address);
-		customers.setTel(tel);
-		customers.setEmail(email);
-		customers.setPassword(password);
-		customers.setImage(image);
-		customersRepository.save(customers);
+        }
+        //		Customers customers = new Customers(name, address, tel, email, password, image);
+        //		customersRepository.save(customers);
+        Customers customers = new Customers();
+        customers = customersRepository.findById(account.getId()).get();
+        customers.setName(name);
+        customers.setAddress(address);
+        customers.setTel(tel);
+        customers.setEmail(email);
+        customers.setPassword(password);
+        customers.setImage(image);
+        customersRepository.save(customers);
 
         account.setName(name);
         return "redirect:/mypage";
@@ -227,4 +228,12 @@ public class AccountController {
         
         return "history";
     }
+
+    public void time() {
+        try {
+            Thread.sleep(500); // 0.5秒(500ミリ秒)間だけ処理を止める
+        } catch (InterruptedException e) {
+        }
+    }
+
 }
