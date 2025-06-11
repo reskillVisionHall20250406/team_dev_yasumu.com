@@ -10,53 +10,69 @@
 <body>
 	<header th:replace="header"></header>
 	<hr>
-	<div  class="btn">
-		<a th:href="@{/hotelsdetail/{Id}(id=${hotels.id})}"></a>
-	</div>
 	<div class="center">
-		<h2>宿予約内容確認/クレジットカード情報・変更・登録</h2>
+		<h2 class="midashi">宿予約内容確認/クレジットカード情報・変更・登録</h2>
 		<div class="login-container">
-		
-		<div class="flex">
-			<img th:src="${hotels.image}" height="170px" alt="ホテル画像">
-			<div>
-				<div th:text="${hotels.name}"></div>
-				<div th:text="${hotels.address}"></div>
-				<div th:text="宿泊人数： + ${hotels.capacity} + 人"></div>
-				<div th:text="値段： + ${hotels.price} + 円"></div>
-				<!--    <span th:text="${date}"></span><br>-->
+
+			<div class="flex">
+				<img th:src="${hotels.image}" height="170px" alt="ホテル画像">
+				<div class="hoteldetail">
+					<h3 th:text="${hotels.name}"></h3>
+					<h6 th:text="${hotels.address}"></h6>
+					<div class="hoteldetail2">
+						<div th:text="宿泊人数： + ${hotels.capacity} + 人"></div>
+						<div th:text="値段： + ${hotels.price} + 円"></div>
+					</div>
+					<!--    <span th:text="${date}"></span><br>-->
+				</div>
 			</div>
-		</div>
-		
-		<div class="flex-item credit-form">
-		
-		<div class="btn">
-			<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" method="post">
 
-				<table align="center">
-					<tr>
-						<th>クレジットカード番号</th>
-						<td><input type="text" th:value="${customers.cardNo}" name="cardno"></td>
-					</tr>
-					<tr>
-						<th>セキュリティ番号</th>
-						<td><input type="text" th:value="${customers.code}" name="code"></td>
-					</tr>
-					<tr>
-						<th>有効期限</th>
-						<td><input type="text" th:value="${customers.expiry}" name="expiry"></td>
-					</tr>
-				</table>
-				<!--仮の日付選択-->
-				<input type="date" name="orderedOn" th:value=${orderedOn} required>
-				<button>予約確定</button>
-			</form>
+			<div class="flex-item credit-form">
 
-		</div>
-		<ul th:if="${err}" class="err">
-			<li th:each="error : ${err}" th:text="${error}"></li>
-		</ul>
-		</div>
+				<div class="btn">
+					<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" method="post">
+
+						<!--				<table align="center">-->
+						<!--					<tr>-->
+						<!--						<th>クレジットカード番号</th>-->
+						<!--						<td><input type="text" th:value="${customers.cardNo}" name="cardno"></td>-->
+						<!--					</tr>-->
+						<!--					<tr>-->
+						<!--						<th>セキュリティ番号</th>-->
+						<!--						<td><input type="text" th:value="${customers.code}" name="code"></td>-->
+						<!--					</tr>-->
+						<!--					<tr>-->
+						<!--						<th>有効期限</th>-->
+						<!--						<td><input type="text" th:value="${customers.expiry}" name="expiry"></td>-->
+						<!--					</tr>-->
+						<!--				</table>-->
+
+						<label>
+							<span class="textbox-3-label">クレジットカード番号</span>
+							<input type="text" th:value="${customers.cardNo}" name="cardno" class="textbox-3"
+								placeholder="クレジットカード番号" />
+						</label>
+						<label>
+							<span class="textbox-3-label">セキュリティ番号</span>
+							<input type="text" th:value="${customers.code}" name="code" class="textbox-3"
+								placeholder="セキュリティ番号" />
+						</label>
+						<label>
+							<span class="textbox-3-label">有効期限</span>
+							<input type="text" th:value="${customers.expiry}" name="expiry" class="textbox-3"
+								placeholder="有効期限" />
+						</label>
+						<br>
+						<!--仮の日付選択-->
+						<input type="date" name="orderedOn" th:value=${orderedOn} required>
+						<button>予約確定</button>
+					</form>
+
+				</div>
+				<ul th:if="${err}" class="err">
+					<li th:each="error : ${err}" th:text="${error}"></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 
