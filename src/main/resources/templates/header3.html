@@ -1,0 +1,30 @@
+<header id="header">
+	<a href="/hotels" class="logo"><img src="/image/休.com.png" width="12.5%"></a>
+	<div class="keyp">
+
+		<div class="hmhm">
+			<div id="hmb">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="/mypage">マイページ</a></li>
+					<li><a href="/logout" onclick="return confirm('ログアウトしますか？')">LOGOUT</a></li>
+					<li><a href="">SERVICE</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	</div>
+		JavaScript
+	<script>
+		const hmbBtn = document.getElementById("hmb");
+		const header = document.getElementById("header");
+
+		hmbBtn.addEventListener("click", function () {
+			header.classList.toggle("active");
+		});
+	</script>
+</header>

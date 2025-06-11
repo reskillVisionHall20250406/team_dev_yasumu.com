@@ -573,6 +573,45 @@ label {
 	align-items: center;
 }
 
+/*.logo {*/
+
+/*	position: absolute;*/
+/*	top: 1%;*/
+/*	left: 1%;*/
+/*	z-index: 50;*/
+/*}*/
+
+/*.top-banner {*/
+/*	display: flex;*/
+/*	flex-wrap: wrap;*/
+/*}*/
+
+/*.top-banner li {*/
+/*	width: calc(100%/2);*/
+/*	←画像を横に4つ並べる場合*/
+/*	padding: 0 5px;*/
+/*	←画像の左右に5pxの余白を入れる場合*/
+/*	box-sizing: border-box;*/
+/*}*/
+
+/*.top-banner li img {*/
+/*	max-width: 100%;*/
+/*	画像のはみだしを防ぐ*/
+/*	height: auto;*/
+/*	画像の縦横比を維持 */
+/*	border: solid 1px rgb(255, 255, 255);*/
+/*	←画像を1pxのグレーの枠線で囲む指定の場合*/
+/*}*/
+
+/*.banner ul {*/
+/*	padding-left: 0;*/
+/*}*/
+
+/*.banner li {*/
+/*	list-style: none;*/
+/*}*/
+
+
 /*マイページ画面*/
 .mypage-name{
 	text-align: center;
@@ -641,11 +680,12 @@ label {
 .history-image{
 	text-align: left;
 }
+
 .history-hotelName{
 	font-size: 30px;
 }
 .history-main1{
-	max-width: 1200px;
+	max-width: 1000px;
 }
 .history-main2{
 	max-width: 500px;
