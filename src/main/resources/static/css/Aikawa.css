@@ -258,9 +258,9 @@ button:hover {
 	background-color: #f1b2b2;
 }
 
-body {
-	font-family: 'M PLUS 1p', sans-serif;
-}
+/*body {*/
+/*	font-family: 'M PLUS 1p', sans-serif;*/
+/*}*/
 
 .section {
 
@@ -270,8 +270,8 @@ body {
 }
 
 .row {
-	width: 90%;
-	max-width: 1140px;
+	width: 95%;
+	max-width: 1340px;
 	margin: 0 auto;
 	display: flex;
 	align-items: flex-start;
@@ -281,14 +281,18 @@ body {
 }
 
 .col {
-	padding-top: 8px;
-	background-color: #EFF0F7;
-	width: 24%;
-	height: 270px;
-	border-radius: 16px;
+
+	background-color: rgb(255, 255, 255);
+	width: 23%;
+	height: 300px;
+	border-radius: 6px;
 	overflow: hidden;
-	box-shadow: 0px 0px -9px #777777;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .25);
+	text-align: justify;
+	font-size: 13px;
 }
+
+.col img {}
 
 
 
@@ -343,7 +347,7 @@ li {
 .log4 img {
 	height: 75px;
 	border-radius: 5%;
-	
+
 }
 
 .log5 {
@@ -553,7 +557,7 @@ footer {
 }
 
 header {
-/*	background-color: rgb(38, 63, 162);*/
+	/*	background-color: rgb(38, 63, 162);*/
 	height: 75px;
 }
 
@@ -582,6 +586,10 @@ body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
+}
+
+h3 {
+	margin: 0;
 }
 
 .blank {
@@ -655,151 +663,215 @@ body {
 
 
 .radio-1 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .3em 2em;
-    border: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: .3em 2em;
+	border: none;
 }
 
 .radio-1 label {
-    display: flex;
-    align-items: center;
-    gap: 0 .5em;
-    position: relative;
-    cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0 .5em;
+	position: relative;
+	cursor: pointer;
 }
 
 .radio-1 label::before,
 .radio-1 label:has(:checked)::after {
-    border-radius: 50%;
-    content: '';
+	border-radius: 50%;
+	content: '';
 }
 
 .radio-1 label::before {
-    width: 18px;
-    height: 18px;
-    background-color: #e6edf3;
+	width: 18px;
+	height: 18px;
+	background-color: #e6edf3;
 }
 
 .radio-1 label:has(:checked)::after {
-    position: absolute;
-    top: 50%;
-    left: 9px;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    background-color:#2589d0;
-    animation: anim-radio-1 .3s linear;
+	position: absolute;
+	top: 50%;
+	left: 9px;
+	transform: translate(-50%, -50%);
+	width: 10px;
+	height: 10px;
+	background-color: #2589d0;
+	animation: anim-radio-1 .3s linear;
 }
 
 @keyframes anim-radio-1 {
-    0% {
-        box-shadow: 0 0 0 1px transparent;
-    }
-    50% {
-        box-shadow: 0 0 0 10px #f2f2f233;
-    }
-    100% {
-        box-shadow: 0 0 0 10px transparent;
-    }
+	0% {
+		box-shadow: 0 0 0 1px transparent;
+	}
+
+	50% {
+		box-shadow: 0 0 0 10px #f2f2f233;
+	}
+
+	100% {
+		box-shadow: 0 0 0 10px transparent;
+	}
 }
 
 .radio-1 input {
-    display: none;
+	display: none;
 }
 
 /*========== ここだけ上書き / 追加 ==========*/
 
 /* .boxer ─ フォームが入る白いボックス */
-.boxer{
-  position:absolute;
-  left:50%;
-  top:95%;
-  transform:translate(-50%,-50%);
-  width:55%;
-  max-width:1000px;
-  padding:24px 32px;        /* ← 内側に少し余白を追加すると見やすい */
-  display:flex;
-  justify-content:center;  /* ボックス内でフォームを中央に */
-  align-items:center;
-  background:#fff;
-  border-radius:10px;
-  box-shadow:0 0 8px rgba(0,0,0,.25);
-  z-index:100;
+.boxer {
+	position: absolute;
+	left: 50%;
+	top: 95%;
+	transform: translate(-50%, -50%);
+	width: 55%;
+	max-width: 1000px;
+	padding: 24px 32px;
+	/* ← 内側に少し余白を追加すると見やすい */
+	display: flex;
+	justify-content: center;
+	/* ボックス内でフォームを中央に */
+	align-items: center;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .25);
+	z-index: 100;
 }
 
 /* フォーム本体（子どもは select 等） */
-.boxer > form{
-  width:100%;               /* ← ボックス幅いっぱいを使う */
-  display:flex;
-  justify-content:center;   /* 1 行目も 2 行目も中央寄せ */
-  align-items:center;
-  flex-wrap:wrap;           /* 幅が足りなくなれば折り返す */
-  gap:16px;
+.boxer>form {
+	width: 100%;
+	/* ← ボックス幅いっぱいを使う */
+	display: flex;
+	justify-content: center;
+	/* 1 行目も 2 行目も中央寄せ */
+	align-items: center;
+	flex-wrap: wrap;
+	/* 幅が足りなくなれば折り返す */
+	gap: 16px;
 }
 
 /* ─ フォーム直下パーツを全部まとめて最小幅の塊に ─ */
-.boxer > form > *,
+.boxer>form>*,
 .selectbox-3,
 .search-form-3,
-.button-1{
-  flex:0 0 auto;            /* 自分の幅以上には勝手に伸びない */
+.button-1 {
+	flex: 0 0 auto;
+	/* 自分の幅以上には勝手に伸びない */
 }
 
 /* セレクトボックス */
-.selectbox-3{
-  display:inline-flex;
-  position:relative;
+.selectbox-3 {
+	display: inline-flex;
+	position: relative;
 }
-.selectbox-3 select{
-  appearance:none;
-  min-width:100px;
-  padding:.4em 2.4em .4em .8em;
-  height:2.8em;
-  border:1px solid #d0d0d0;
-  border-radius:25px;
-  font-size:1em;
-  cursor:pointer;
+
+.selectbox-3 select {
+	appearance: none;
+	min-width: 100px;
+	padding: .4em 2.4em .4em .8em;
+	height: 2.8em;
+	border: 1px solid #d0d0d0;
+	border-radius: 25px;
+	font-size: 1em;
+	cursor: pointer;
 }
-.selectbox-3::after{
-  content:'';
-  position:absolute;
-  right:15px;top:50%;
-  width:10px;height:7px;
-  margin-top:-3.5px;
-  background:#535353;
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  pointer-events:none;
+
+.selectbox-3::after {
+	content: '';
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	width: 10px;
+	height: 7px;
+	margin-top: -3.5px;
+	background: #535353;
+	clip-path: polygon(0 0, 100% 0, 50% 100%);
+	pointer-events: none;
 }
 
 /* キーワード入力 */
-.search-form-3{
-  display:flex;
-  align-items:center;
-  border:1px solid #777;
-  border-radius:3px;
+.search-form-3 {
+	display: flex;
+	align-items: center;
+	border: 1px solid #777;
+	border-radius: 3px;
 }
-.search-form-3 input{
-  width:250px;
-  height:45px;
-  padding:5px 15px;
-  border:none;
-  font-size:1em;
-  outline:none;
+
+.search-form-3 input {
+	width: 250px;
+	height: 45px;
+	padding: 5px 15px;
+	border: none;
+	font-size: 1em;
+	outline: none;
 }
 
 /* 検索ボタン */
-.button-1{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width:120px;
-  padding:.9em 0;
-  background:#2589d0;
-  color:#fff;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
+.button-1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 120px;
+	padding: .9em 0;
+	background: #2589d0;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 /*========== ここまで ==========*/
+
+a {
+	color: black;
+}
+
+a {
+	text-decoration: none;
+	/* 通常時、下線を消す */
+}
+
+a:hover {
+	text-decoration: none;
+	/* マウスオーバー時も下線を消す */
+}
+
+.popo,
+.popo2 {
+	padding-left: 4%;
+	padding-top: 3%;
+	color: rgb(32, 32, 32);
+}
+
+.popo2 {
+	padding-top: 14%;
+	padding-bottom: 0;
+	justify-content: end;
+	padding-right: 4%;
+	display: flex;
+}
+
+.col:hover {
+	/* ホバー時の状態 */
+	filter: brightness(0.8);
+	/* 暗くする */
+	transition: filter 0.3s ease;
+	/* アニメーション効果 */
+}
+
+.midashi{
+	padding-left: 5%;
+	font-family:
+		"Yu Mincho",
+		/* Windows の標準和文フォント */
+		"YuGothic",
+		/* 一部環境でスペース無し表記 */
+		"游ゴシック",
+		/* 日本語名（念のため） */
+		"M PLUS 1p",
+		 次の候補 
+		sans-serif;
+}
