@@ -16,12 +16,12 @@
 			</ul>
 		
 		<form class="login_text" action="/user/add" method="post">
-			<input type="text" name="name" th:value="${name}" placeholder="名前"><br>
-			<input type="email" name="email" th:value="${email}" placeholder="メールアドレス"><br>
-			<input type="text" name="address" th:value="${address}" placeholder="住所"><br>
-			<input type="text" name="tel" th:value="${tel}" placeholder="電話番号" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text" name="name" th:value="${name}" placeholder="*名前"><br>
+			<input type="email" name="email" th:value="${email}" placeholder="*メールアドレス"><br>
+			<input type="text" name="address" th:value="${address}" placeholder="*住所"><br>
+			<input type="text" name="tel" th:value="${tel}" placeholder="*電話番号" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
 		<div class="form-group" style="position: relative;">
-            <input type="password" id="password" name="password" minlength="8" placeholder="パスワード（半角英数字8文字以上）">
+            <input type="password" id="password" name="password" minlength="8" placeholder="*パスワード（半角英数字8文字以上）">
             <!--  비밀번호 표시 버튼  -->
             <button type="button" onclick="togglePassword(event)" class="toggle-btn">🔒</button>
 
@@ -90,7 +90,7 @@
 			    input.value = input.value.replace(/[^0-9]/g, '');
 
 			    // 1자리 숫자가 입력되면 자동으로 0을 앞에 붙여줌 (단, 2 이상 입력 시 적용)
-			    if (input.value.length === 1 && parseInt(input.value, 10) > 0) {
+			    if (input.value.length === 1 && parseInt(input.value, 10) > 1) {
 			      input.value = '0' + input.value;
 			    }
 
@@ -98,7 +98,7 @@
 			    if (input.value.length === 2) {
 			      const num = parseInt(input.value, 10);
 			      if (num < 1 || num > 12) {
-			        alert("1〜12の数字を入力してください。");
+			        alert("1~12を入力してください。");
 			        input.value = '';
 			      }
 			    }
