@@ -12,12 +12,15 @@
 		<h1>休.com</h1>
 	</header>
 	[[${@account.name}]]さんのご予約履歴<br>
-	<main class="history-main1">
-		<img src="/image/1-1.jpg" class="history-image" width="300px" height="200px"><br>
-	</main>
-	<main class="history-main2">
-		<img src="/image/1-10.jpg" width="300px" height="200px"><br>
-	</main>
+	<div th:each="hotels:${hotel}">
+		<span th:text="${hotels.name}"></span>
+	</div>
+<!--	<main class="history-main1">-->
+<!--		<img src="/image/1-1.jpg" class="history-image" width="300px" height="200px"><br>-->
+<!--	</main>-->
+<!--	<main class="history-main2">-->
+<!--		<img src="/image/1-10.jpg" width="300px" height="200px"><br>-->
+<!--	</main>-->
 	<div style="text-align: center;">
 		<a href="/mypage">マイページへ</a>
 	</div>

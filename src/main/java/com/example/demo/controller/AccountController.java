@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Customers;
+import com.example.demo.entity.Hotels;
+import com.example.demo.entity.Reservation;
 import com.example.demo.model.Account;
 import com.example.demo.repository.CustomersRepository;
+import com.example.demo.repository.HotelsRepository;
+import com.example.demo.repository.ReservationRepository;
 
 @Controller
 //コントローラーが必須に必要
@@ -24,6 +28,12 @@ public class AccountController {
 
 	@Autowired
 	CustomersRepository customersRepository;
+	
+	@Autowired
+	ReservationRepository reservationRepository;
+	
+	@Autowired
+	HotelsRepository hotelsRepository;
 
 	@Autowired
 	Account account;
@@ -195,7 +205,16 @@ public class AccountController {
 	}
 
 	@GetMapping("yado/history")
-	public String history() {
+	public String history(Model model) {
+		List<Reservation> reservations = new ArrayList<>();
+		List<Hotels> hotels = new ArrayList<>();
+		reservations = reservationRepository.findByCustomerId(account.getId());
+		
+		for(Reservation reservation : reservations) {
+			Hotels hotel = hotelsRepository.findById(reservation.getHotelId()).get();
+			hotels.add(hotel);
+		}
+		model.addAttribute("hotel", hotels);
 		return "history";
 	}
 }
