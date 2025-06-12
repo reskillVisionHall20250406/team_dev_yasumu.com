@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ImageController {
-    @GetMapping("/user")
+    @GetMapping("/upload")
     public String show() {
-        return "user";
+        return "edit";
     }
 
     @PostMapping("/user")
