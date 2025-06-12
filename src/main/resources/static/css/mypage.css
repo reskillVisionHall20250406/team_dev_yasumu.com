@@ -716,11 +716,12 @@ label {
 .mypage-wrapper {
 	display: flex;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center; /* 수직 중앙 정렬 */
 	gap: 30px;
 	flex-wrap: wrap;
 	margin: 0 auto;
 	padding: 20px;
+	height: 300px; /* 필요시 명시적으로 높이 지정 */
 	max-width: 900px;
 }
 
@@ -730,6 +731,7 @@ label {
 	overflow: auto;
 	background-color: #fff;
 	padding: 15px;
+	margin-left: 13%;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	display: flex;
 	flex-direction: column;
