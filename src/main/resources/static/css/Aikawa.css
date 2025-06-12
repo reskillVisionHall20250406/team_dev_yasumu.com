@@ -192,7 +192,7 @@ nav,
 footer {
 	background-color: rgb(0, 64, 128);
 	/* 背景色 */
-/*	text-align: center;*/
+	/*	text-align: center;*/
 	color: #ffffff;
 	/* 文字色 */
 	padding-top: 16px;
@@ -564,7 +564,7 @@ header {
 }
 
 .im {
-	width: 90%;
+	width: 70%;
 	max-width: 1140px;
 	margin: 0 auto;
 	display: flex;
@@ -581,6 +581,7 @@ header {
 .mi img {
 	padding: 25px;
 	width: 500px;
+	border-radius: 32px;
 }
 
 html,
@@ -1082,6 +1083,7 @@ hr {
 	color: #999;
 	background: #fff;
 	margin: auto;
+	padding-top: 30vh;
 }
 
 .footer__navi {
@@ -1108,7 +1110,7 @@ hr {
 	}
 
 	.md-justify-between {
-	justify-content:space-between;
+		justify-content: space-between;
 	}
 
 	.copyright {
@@ -1116,8 +1118,73 @@ hr {
 	}
 }
 
-footer1{
+footer1 {
 	margin: auto;
 	justify-content: center;
+
+}
+
+.button-3 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 250px;
+	margin: 0 auto;
+	padding: .9em 2em;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 2px 3px rgb(0 0 0 / 25%), 0 2px 3px -2px rgb(0 0 0 / 15%);
+	background-color: #2589d0;
+	color: #fff;
+	font-weight: 600;
+	font-size: 1em;
+}
+
+.button-3:hover {
+	background-color: #1579c0;
+}
+
+.oimo {
+	justify-content: right;
+	text-align: right;
+}
+
+h4.oimo2 {
+	padding: 0;
+	margin: 0;
+}
+
+h1.mi {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	text-align: left;
+	justify-content: left;
+	padding-top: 3vh;
+	padding-bottom: 2vh;
+}
+
+.oimo3 {
+	width: 100%;
+	text-align: left;
+	justify-content: left;
+}
+
+h4.oimo3 {
+	width: 100%;
+	text-align: left;
+	justify-content: left;
+}
+h4.oimo2 {
+	padding: 0;
+	margin: 0;
+	text-align: left; /* 追加 */
+}
+
+p{
+	margin: 0;
+	padding: 0;
+	width: 500px;
+	padding-left: 25px;
 	
 }
