@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>マイページ画面</title>
-<link rel="stylesheet" type="text/css" href="/css/tachiki.css">
+	<meta charset="UTF-8">
+	<title>マイページ画面</title>
+	<link rel="stylesheet" type="text/css" href="/css/mypage.css">
+
+	<!-- Google Fonts 読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+		rel="stylesheet">
 </head>
 <body>
-	<span th:replace="header3">
-	</span>
+	<!-- 헤더 삽입 -->
+	<span th:replace="header3"></span>
+
+	<!-- 마이페이지 타이틀 -->
 	<h1 class="mypage-title">マイページ</h1>
-	<form class="mypage-form" th:action="@{/mypage/edit}" method="get">
-		<div class="mypage-name">[[${@account.name}]]さん</div>
-		
-<!--			<img th:src="${customers.image}">-->
-			<p th:text="${customers.name}">
-		</p>
-		<p th:text="${customers.image}"></p>
-		<p th:each="hotel:${hotels}" th:text="${hotel.name}" ></p>
-		<button class="mypage-button">プロフィールを編集する</button>
-<!--		<div img src="profile.jpg">-->
-	</form>
-	<div style="text-align: center;">
-	  <a href="/yado/history">ご予約の確認はこちらから</a>
+
+	<!-- 양쪽 폼을 감싸는 wrapper -->
+	<div class="mypage-wrapper">
+
+		<!-- 왼쪽: 이미지 폼 -->
+		<div class="mypage-div">
+			<img class="mypage-image" th:src="${customers.image}" alt="プロフィール画像">
+		</div>
+
+		<!-- 오른쪽: 정보 및 버튼 폼 -->
+		<form class="mypage-form" th:action="@{/mypage/edit}" method="get">
+			<div class="mypage-name">[[${@account.name}]] 様</div>
+		   <div class="mypage-class">
+           メールアドレス：<span th:text="${customers.email}"></span><br>
+           アドレス：<span th:text="${customers.address}"></span><br> 
+           電話番号：<span th:text="${customers.tel}"></span>
+           </div>
+			<p th:each="hotel : ${hotels}" th:text="${hotel.name}"></p>
+			<button class="mypage-button">プロフィールを編集する</button>
+		</form>
 	</div>
-	</form>
+
+	<!-- 예약 확인 링크 -->
+	<div style="text-align: center; margin-top: 20px;">
+		<a href="/yado/history">ご予約の確認はこちらから</a>
+	</div>
 </body>
 </html>
