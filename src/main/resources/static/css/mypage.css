@@ -9,9 +9,10 @@ header button {
 }
 
 .logo {
+
 	position: absolute;
-	top: 1%;
-	left: 1%;
+	top: 0;
+	left: 0;
 	z-index: 50;
 }
 
@@ -74,28 +75,19 @@ header button {
 	z-index: 60;
 }
 
+
+
 /*#header.active {*/
 /*	background-color: lightblue;*/
 /*}*/
 
 /*非アクティブ*/
-.hmhm {
-	text-align: -webkit-right;
-	margin-right: 32px;
-	margin-top: 16px;
-}
-
 #hmb {
 	width: 32px;
 	height: 28px;
 	cursor: pointer;
 	position: relative;
 	z-index: 30;
-}
-
-.keyp {
-	top: 0;
-	width: 100%;
 }
 
 #hmb span {
@@ -210,7 +202,7 @@ h4 {
 /* ヘッダー、ナビゲーションメニュー、フッター */
 nav,
 footer {
-	background-color:rgb(0, 64, 128);
+	background-color: rgb(255, 96, 96);
 	/* 背景色 */
 	text-align: center;
 	color: #ffffff;
@@ -706,36 +698,86 @@ label {
 	text-align: center;
 }
 
-.mypage-form{
-	max-width: 400px;
+.mypage-title {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.mypage-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 30px;
+	flex-wrap: wrap;
 	margin: 0 auto;
 	padding: 20px;
-	background-color: #fff;
-	border-radius: 5px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	max-width: 900px;
+}
 
+.mypage-form {
+	width: 300px;
+	height: 300px; 
+	overflow: auto;
+	background-color: #fff;
+	padding: 15px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-}
-.mypage-image{
-	width: 200px;
-	float: left;
+	border-radius: 10px;
+	justify-content: space-evenly; /* 항목 간 균등 간격 */
 }
 
-.mypage-title {
+.mypage-div {
+	width: 200px;
+	height: 200px; 
+	background-color: #fff;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 295px;
+}
+
+
+.mypage-image {
+	width: 200px;
+	height: 200px; 
+	object-fit: cover;
+	border-radius: 166px;
+}
+
+.mypage-name {
 	text-align: center;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+}
+
+.mypage-class {
+	text-align: center;
+	font-size: 0.9em;
+	margin-bottom: 10px;
 }
 
 .mypage-button {
 	background-color: #007bff;
+	color: #fff;
 	width: 15em;
-	display: block;
-	margin: 0 auto;
+	padding: 10px;
+	margin-top: 15px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
-.mypage-rireki {
-	text-align: center;
+/* 반응형 대응 */
+@media (max-width: 768px) {
+	.mypage-wrapper {
+		flex-direction: column;
+		align-items: center;
+	}
 }
 
 /*会員情報登録変更画面*/

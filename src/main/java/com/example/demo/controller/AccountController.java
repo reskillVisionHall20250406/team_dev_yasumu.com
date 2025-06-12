@@ -167,10 +167,12 @@ public class AccountController {
 		return "mypage";
 	}
 
-	@GetMapping("/mypage/edit")
-	public String edit() {
-		return "edit";
-	}
+    @GetMapping("/mypage/edit")
+    public String edit(Model model) {
+        Customers customers = customersRepository.findByName(account.getName());
+        model.addAttribute("customers", customers);
+        return "edit";
+    }
 
 	@PostMapping("/mypage/edit")
 	public String infoEdit(
@@ -187,24 +189,30 @@ public class AccountController {
 
 		List<String> errorList = new ArrayList<>();
 
-		if (name.isEmpty()) {
-			errorList.add("お名前を入力してください");
-		}
-		if (email.isEmpty()) {
-			errorList.add("メールを入力してください");
-		}
-		if (address.isEmpty()) {
-			errorList.add("住所を入力してください");
-		}
-		if (tel == null) {
-			errorList.add("電話番号を入力してください");
-		}
-		if (password.isEmpty()) {
-			errorList.add("パスワードを入力してください");
-		}
-		if (!errorList.isEmpty()) {
-			model.addAttribute("errors", errorList);
-			return "edit";
+        if (name.isEmpty()) {
+            errorList.add("お名前を入力してください");
+        }
+        if (email.isEmpty()) {
+            errorList.add("メールを入力してください");
+        }
+        if (address.isEmpty()) {
+            errorList.add("住所を入力してください");
+        }
+        if (tel == null) {
+            errorList.add("電話番号を入力してください");
+        }
+        if (password.isEmpty()) {
+            errorList.add("パスワードを入力してください");
+        }
+        if (!errorList.isEmpty()) {
+            Customers customers = customersRepository.findByName(account.getName());
+            customers.setName(name);
+            customers.setAddress(address);
+            customers.setTel(tel);
+            customers.setEmail(email);
+            model.addAttribute("customers", customers);
+            model.addAttribute("errors", errorList);
+            return "edit";
 
 		}
 		//		Customers customers = new Customers(name, address, tel, email, password, image);
@@ -230,16 +238,16 @@ public class AccountController {
 		List<Hotels> hotels = new ArrayList<>();
 		reservations = reservationRepository.findByCustomerId(account.getId());
 
-		for (Reservation reservation : reservations) {
-			Hotels hotel = hotelsRepository.findById(reservation.getHotelId()).get();
-			hotels.add(hotel);
-		}
-		model.addAttribute("hotel", hotels);
-		model.addAttribute("reservations", reservations);
-		model.addAttribute("account", account);
+        for (Reservation reservation : reservations) {
+            Hotels hotel = hotelsRepository.findById(reservation.getHotelId()).get();
+            hotels.add(hotel);
+        }
+        model.addAttribute("hotel", hotels);
+        model.addAttribute("reservations", reservations);
+        model.addAttribute("account", account);
 
-		return "history";
-	}
+        return "history";
+    }
 
 	public void time() {
 		try {
