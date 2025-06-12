@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,13 +13,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Hotels;
+import com.example.demo.entity.Review;
 import com.example.demo.model.Account;
 import com.example.demo.model.Log;
 import com.example.demo.repository.AreaRepository;
 import com.example.demo.repository.HotelsRepository;
+import com.example.demo.repository.ReviewRepository;
 
 @Controller
 public class HotelsController {
+
+	@Autowired
+	private ReviewRepository reviewRepository;
 
 	@Autowired
 	private HotelsRepository hotelsRepository;
@@ -27,7 +34,7 @@ public class HotelsController {
 
 	@Autowired
 	private Account account;
-	
+
 	@Autowired
 	Log log;
 
@@ -111,11 +118,23 @@ public class HotelsController {
 
 		//hotelsテーブルをID(主キー)で検索
 		Hotels hotels = hotelsRepository.findById(id).get();
+		List<Review> reviews = reviewRepository.findByHotelId(id);
 
-				log.add(hotels);
+		log.add(hotels);
 
 		model.addAttribute("account", account);
 		model.addAttribute("hotels", hotels);
+		model.addAttribute("reviews", reviews);
 		return "hotelsdetail";
+	}
+
+	@GetMapping("/hotelsdetail/comment/{id}")
+	public String comment(@PathVariable("id") Integer id,
+			@RequestParam(name = "star", defaultValue = "") Integer star,
+			@RequestParam(name = "comment", defaultValue = "") String comment,
+			Model model) {
+		Review review = new Review(star, comment, id);
+		reviewRepository.save(review);
+		return "redirect:/hotelsdetail/" + id;
 	}
 }
