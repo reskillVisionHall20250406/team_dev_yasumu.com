@@ -11,13 +11,15 @@
 	<header th:replace="header3">
 	</header>
 
-	<a style="font-size: 35px;">[[${@account.name}]]さんのご予約履歴</a><br>
+	<h2 class="history-title">
+	<a>[[${@account.name}]]さんのご予約履歴</a><br>
+	</h2>
 	<main class="history-main1">
 
 
 		<div th:each="hotels:${hotel}">
 			<div class="flex">
-				<img th:src="${hotels.image}" height="120px" alt="ホテル画像">
+				<img th:src="${hotels.image}" height="120px" width="200px" class="history-image" alt="ホテル画像">
 				<div class="flex2">
 					<div th:text="宿泊施設名：+${hotels.name}" class="history-hotelName">
 					</div>
@@ -32,7 +34,6 @@
 					<div th:text="値段：+${hotels.price}+円">
 					</div>
 				</div>
-				<div><hr></div>
 			</div>
 		</div>
 	</main>

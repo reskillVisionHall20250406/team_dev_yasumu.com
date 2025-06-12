@@ -267,7 +267,7 @@ table th {
 
 /* 送信ボタン(マウスオーバー時) */
 button:hover {
-	background-color:rgb(0, 0, 128);
+	background-color: rgb(0, 0, 128);
 }
 
 .button-37 {
@@ -285,9 +285,11 @@ button:hover {
 	border-radius: 3px;
 	cursor: pointer;
 }
+
 .button-37:focus {
 	color: transparent;
 }
+
 .button-37:focus::before {
 	display: flex;
 	justify-content: center;
@@ -559,12 +561,14 @@ label {
 	font-weight: bold;
 	margin-bottom: 5px;
 }
-.edit-form input{
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box; /* padding 포함한 전체 너비 계산 */
+
+.edit-form input {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+	/* padding 포함한 전체 너비 계산 */
 }
 
 
@@ -578,35 +582,38 @@ label {
 	cursor: pointer;
 }
 
-.error{
+.error {
 	padding: 0;
-    color: red;
+	color: red;
 	list-style-type: none;
-	font-size: 14px;       
-	font-family: sans-serif; 
+	font-size: 14px;
+	font-family: sans-serif;
 }
 
 /* 비밀번호 보기 버튼 input 우측에 겹치게 배치*/
 .toggle-btn {
-  all: unset;
-  position: absolute;
-  right: 0px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 0;
-  color: #888;
-  outline: none;             /* 포커스 테두리 제거 */
+	all: unset;
+	position: absolute;
+	right: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 20px;
+	padding: 0;
+	color: #888;
+	outline: none;
+	/* 포커스 테두리 제거 */
 }
 
 .toggle-btn:hover,
 .toggle-btn:focus,
 .toggle-btn:active {
-  background: transparent !important; /* hover, focus 시 배경색 제거 */
-  box-shadow: none;                  /* 포커스 외곽선 제거 */
+	background: transparent !important;
+	/* hover, focus 시 배경색 제거 */
+	box-shadow: none;
+	/* 포커스 외곽선 제거 */
 }
 
 .relative {
@@ -687,14 +694,15 @@ label {
 
 
 /*マイページ画面*/
-.mypage-name{
+.mypage-name {
 	text-align: center;
 }
 
-.mypage-form{
+.mypage-form {
 	text-align: center;
 }
-.mypage-image{
+
+.mypage-image {
 	text-align: left;
 }
 
@@ -750,23 +758,36 @@ label {
 	display: block;
 	margin: 0 auto;
 }
+
 /*宿予約履歴画面*/
-.history-image{
+.history-image {
 	text-align: left;
+	margin-right: 16px;
+
 }
 
-.history-hotelName{
-	font-size: 30px;
+.history-title {
+	font-size: 32px;
+	margin-bottom: 24px;
+	text-align: center;
 }
-.history-main1{
-	max-width: 1000px;
+
+.history-hotelName {
+	font-size: 24px;
+	padding-bottom: 5px;
 }
-.history-main2{
-	max-width: 500px;
+
+.history-main1 {
+	width: 80%;
+	margin: 0 auto;
 }
-.flex{
+
+.flex {
 	display: flex;
+	border-bottom: #EFF0F7 15px solid;
+	padding: 16px;
 }
+
 body,
 header,
 footer {
