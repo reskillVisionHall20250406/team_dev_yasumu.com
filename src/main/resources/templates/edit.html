@@ -15,8 +15,11 @@
 		<div class="form-group">
         <h2>会員情報変更</h2>
 		
-			</ul>
-		<form action="/mypage/edit" class="edit-form" method="post">
+		<img class="mypage-image"
+		     th:if="${customers.image != null and !#strings.isEmpty(customers.image) and customers.image != 'null'}"
+		     th:src="@{${customers.image}}"
+		     alt="プロフィール画像" />
+		<form action="/mypage/edit" class="edit-form" method="post" enctype="multipart/form-data">
 				<input type="text" name="name" th:value="${customers.name}" placeholder="*名前"><br>
 			<input type="email" name="email" th:value="${customers.email}" placeholder="*メールアドレス"><br>
 			<input type="text" name="address" th:value="${customers.address}" placeholder="*住所"><br>
@@ -33,8 +36,8 @@
 			<a>/</a>
 			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
 			
-		    <input name="img" type="file" id="img" class="poi">
-	        <button value="imgBtn">画像の表示</button><br>
+		    <input name="file" type="file" id="img" class="poi" th:value="${imageUrl}">
+	        <button name = "imgBtn" value="imgBtn">画像の表示</button><br>
 			<a class="edit-commentt">*は必須項目です</a><br>
 			<input type="hidden" name="imgname" value="" id="imgname">
 			<button class="button-37">送信</button>

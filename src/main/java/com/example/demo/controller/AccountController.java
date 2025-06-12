@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.Customers;
 import com.example.demo.entity.Hotels;
@@ -182,54 +185,88 @@ public class AccountController {
             @RequestParam(name = "email", defaultValue = "") String email,
             @RequestParam(name = "password", defaultValue = "") String password,
             @RequestParam(name = "imgname", defaultValue = "") String image,
+            @RequestParam("file") MultipartFile file,
             @RequestParam(name = "cardNo", defaultValue = "") Integer cardNo,
             @RequestParam(name = "code", defaultValue = "") Integer code,
             @RequestParam(name = "expiry", defaultValue = "") Integer expiry,
+            @RequestParam(name = "imgBtn", defaultValue = "") String imgBtn,
             Model model) {
+        time();
 
-        List<String> errorList = new ArrayList<>();
+        if (imgBtn.equals("")) {
+            List<String> errorList = new ArrayList<>();
 
-        if (name.isEmpty()) {
-            errorList.add("お名前を入力してください");
-        }
-        if (email.isEmpty()) {
-            errorList.add("メールを入力してください");
-        }
-        if (address.isEmpty()) {
-            errorList.add("住所を入力してください");
-        }
-        if (tel == null) {
-            errorList.add("電話番号を入力してください");
-        }
-        if (password.isEmpty()) {
-            errorList.add("パスワードを入力してください");
-        }
-        if (!errorList.isEmpty()) {
-            Customers customers = customersRepository.findByName(account.getName());
+            if (name.isEmpty()) {
+                errorList.add("お名前を入力してください");
+            }
+            if (email.isEmpty()) {
+                errorList.add("メールを入力してください");
+            }
+            if (address.isEmpty()) {
+                errorList.add("住所を入力してください");
+            }
+            if (tel == null) {
+                errorList.add("電話番号を入力してください");
+            }
+            if (password.isEmpty()) {
+                errorList.add("パスワードを入力してください");
+            }
+            if (!errorList.isEmpty()) {
+                Customers customers = customersRepository.findByName(account.getName());
+                customers.setName(name);
+                customers.setAddress(address);
+                customers.setTel(tel);
+                customers.setEmail(email);
+                model.addAttribute("customers", customers);
+                model.addAttribute("errors", errorList);
+                return "edit";
+
+            }
+
+            Customers customers = new Customers();
+            customers = customersRepository.findById(account.getId()).get();
+
+            try {
+                String filename = file.getOriginalFilename();
+                String filePath = "static/upload/" + filename;
+                byte[] content = file.getBytes();
+                Files.write(Paths.get(filePath), content);
+
+                String imageUrl = "/upload/" + filename;
+                model.addAttribute("imageUrl", imageUrl);
+                customers.setImage(imageUrl);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            customersRepository.save(customers);
             customers.setName(name);
             customers.setAddress(address);
             customers.setTel(tel);
             customers.setEmail(email);
-            model.addAttribute("customers", customers);
-            model.addAttribute("errors", errorList);
-            return "edit";
+            customers.setPassword(password);
+            customersRepository.save(customers);
+
+            account.setName(name);
+            return "redirect:/mypage";
 
         }
-        //		Customers customers = new Customers(name, address, tel, email, password, image);
-        //		customersRepository.save(customers);
         Customers customers = new Customers();
         customers = customersRepository.findById(account.getId()).get();
-        customers.setName(name);
-        customers.setAddress(address);
-        customers.setTel(tel);
-        customers.setEmail(email);
-        customers.setPassword(password);
-        customers.setImage(image);
-        customersRepository.save(customers);
+        try {
+            String filename = file.getOriginalFilename();
+            String filePath = "static/upload/" + filename;
+            byte[] content = file.getBytes();
+            Files.write(Paths.get(filePath), content);
 
-        account.setName(name);
-        return "redirect:/mypage";
-
+            String imageUrl = "/upload/" + filename;
+            model.addAttribute("imageUrl", imageUrl);
+            customers.setImage(imageUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("customers", customers);
+        return "edit";
     }
 
     @GetMapping("yado/history")
