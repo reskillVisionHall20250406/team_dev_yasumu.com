@@ -1,6 +1,7 @@
 -- 各種テーブル削除
 DROP TABLE IF EXISTS reservation;
 DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS hotels;
 DROP TABLE IF EXISTS area;
 
@@ -44,4 +45,13 @@ CREATE TABLE reservation (
     hotel_id INTEGER REFERENCES hotels(id),
     customer_id INTEGER REFERENCES customers(id),
     date DATE DEFAULT CURRENT_DATE
+);
+
+--レビューテーブル
+CREATE TABLE review (
+	    id SERIAL PRIMARY KEY,
+	    star INTEGER,
+	    comment VARCHAR(255),
+	    hotel_id INTEGER REFERENCES hotels(id)
+
 );

@@ -34,3 +34,25 @@ INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capaci
 (8, '仙台グリーンホテル', '宮城県仙台市青葉区22-24', '仙台グリーンホテルは、静かで快適な空間を提供。観光やビジネスに最適な立地です。', '/image/1-64.jpg', '/image/1-65.jpg', '/image/1-66.jpg', 3, 8000),
 (8, '仙台パークホテル', '宮城県仙台市宮城野区23-25', '仙台パークホテルは、市内中心部に位置し、アクセス良好。快適な客室とサービスを提供。', '/image/1-67.jpg', '/image/1-68.jpg', '/image/1-69.jpg', 2, 8500),
 (8, '仙台グランドホテル', '宮城県仙台市太白区24-26', '仙台グランドホテルは、ビジネス・観光に便利な高級ホテル。充実した施設とサービスを誇ります。', '/image/1-70.jpg', '/image/1-71.jpg', '/image/1-72.jpg', 4, 12500);
+
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 1);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 2);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 3);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 4);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 5);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 6);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 7);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 8);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 9);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 10);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 11);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 12);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 13);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 14);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 15);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 16);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 17);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 18);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 19);
+INSERT INTO review (star, comment, hotel_id) VALUES (0, '', 20);
+
