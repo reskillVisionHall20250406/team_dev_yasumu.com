@@ -694,6 +694,9 @@ label {
 .mypage-form{
 	text-align: center;
 }
+.mypage-image{
+	text-align: left;
+}
 
 .mypage-title {
 	text-align: center;
@@ -730,6 +733,7 @@ label {
 .edit-h1 {
 	text-align: center;
 }
+
 
 
 .edit-commentt {
