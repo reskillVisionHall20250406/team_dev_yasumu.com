@@ -32,10 +32,13 @@
 			<input type="text" style="width: 80px;"  name="expiry" id="expiry-month"placeholder="月"  maxlength="2"  oninput="validateMonth(this)">
 			<a>/</a>
 			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input type="file" name="img" id="img" class="poi"><br>
+			
+		    <input name="img" type="file" id="img" class="poi">
+	        <button value="imgBtn">画像の表示</button><br>
 			<a class="edit-commentt">*は必須項目です</a><br>
 			<input type="hidden" name="imgname" value="" id="imgname">
 			<button class="button-37">送信</button>
+			
 			
 		<ul th:if="${errors}" class="error">
 		<li th:each="error : ${errors}" th:text="${error}" class="error"></li>
