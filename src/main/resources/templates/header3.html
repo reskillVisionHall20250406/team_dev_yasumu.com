@@ -1,24 +1,45 @@
 <header id="header">
-	<a href="/hotels" class="logo"><img src="/image/休.com.png" width="12.5%"></a>
+	<a href="/hotels"><img src="/image/休.com.png" width="4.5%" class="logo"></a>
 	<div class="keyp">
 
-		<div class="hmhm">
-			<div id="hmb">
-				<span></span>
-				<span></span>
-				<span></span>
+<!--		<div class="key">-->
+<!--			<form class="key1"><input input type="text" name="keyword" th:value="${keyword}" placeholder="キーワードを入力"-->
+<!--					class="poi2">-->
+<!--				<button class="poi3">検索</button>-->
+<!--			</form>-->
+<!--			<form action="/login" method="get">-->
+<!--				<span th:if="${account.name == null}"><button class="key2">ログイン</button></span>-->
+<!--				<span th:if="${account.name != null}" th:text="${account.name}+さんがログイン中"></span>-->
+<!--			</form>-->
+<!--			<form action="samplel.cgi" method="post" class="key4">-->
+<!--				<select size="1" name="language">-->
+<!--					<option value="Japanese">日本語</option>-->
+<!--					<option value="English">English</option>-->
+<!--					<option value="Chinese">中文</option>-->
+<!--					<option value="Korean">한국어</option>-->
+<!--					<option value="Rosian">Русский</option>-->
+<!--				</select>-->
+<!--			</form>-->
+
+<!--		</div>-->
+<!--		<div class="key7">-->
+			<div class="hmhm">
+				<div id="hmb">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="/mypage">マイページ</a></li>
+						<li><a href="/logout" onclick="return confirm('ログアウトしますか？')">LOGOUT</a></li>
+						<li><a href="">SERVICE</a></li>
+					</ul>
+				</nav>
 			</div>
-			<nav>
-				<ul>
-					<li><a href="/mypage">マイページ</a></li>
-					<li><a href="/logout" onclick="return confirm('ログアウトしますか？')">LOGOUT</a></li>
-					<li><a href="">SERVICE</a></li>
-				</ul>
-			</nav>
 		</div>
 	</div>
-	</div>
-		JavaScript
+	<!--	JavaScript-->
 	<script>
 		const hmbBtn = document.getElementById("hmb");
 		const header = document.getElementById("header");
