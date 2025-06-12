@@ -12,31 +12,33 @@
 	</header>
 
 	<h2 class="history-title">
-	<a>[[${@account.name}]]さんのご予約履歴</a><br>
+		<a>[[${@account.name}]]さんのご予約履歴</a><br>
 	</h2>
 	<main class="history-main1">
 
 
-		<div th:each="hotels:${hotel}">
-			<a th:href="@{/hotelsdetail/{id}(id=${hotels.id})}">
-			<div class="flex">
-				<img th:src="${hotels.image}" height="120px" width="200px" class="history-image" alt="ホテル画像">
-				<div class="flex2">
-					<div th:text="宿泊施設名：+${hotels.name}" class="history-hotelName">
+		<th:block th:each="hotels:${hotel}" class="col">
+			<div class="bottom">
+				<a th:href="@{/hotelsdetail/{id}(id=${hotels.id})}" class="history-yado">
+					<div class="flex ">
+						<img th:src="${hotels.image}" height="120px" width="200px" class="history-image" alt="ホテル画像">
+						<div class="flex2">
+							<div th:text="宿泊施設名：+${hotels.name}" class="history-hotelName">
+							</div>
+							<div th:each="reservation:${reservations}">
+								<span th:if="${hotels.id} == ${reservation.hotelId}">
+									<div>
+										<div th:text="宿泊日：+${reservation.date}">
+										</div>
+								</span>
+							</div>
+							<div th:text="宿泊人数：+${hotels.capacity}+人"></div>
+							<div th:text="値段：+${hotels.price}+円">
+							</div>
+						</div>
 					</div>
-					<div th:each="reservation:${reservations}">
-						<span th:if="${hotels.id} == ${reservation.hotelId}">
-							<div>
-								<div th:text="宿泊日：+${reservation.date}">
-								</div>
-						</span>
-					</div>
-					<div th:text="宿泊人数：+${hotels.capacity}+人"></div>
-					<div th:text="値段：+${hotels.price}+円">
-					</div>
-				</div>
 			</div>
-		</div>
+		</th:block>
 	</main>
 	<div style="text-align: center;">
 		<a href="/mypage">マイページへ</a>
