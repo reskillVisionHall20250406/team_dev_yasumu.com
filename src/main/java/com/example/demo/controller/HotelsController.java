@@ -130,7 +130,7 @@ public class HotelsController {
 
 	@GetMapping("/hotelsdetail/comment/{id}")
 	public String comment(@PathVariable("id") Integer id,
-			@RequestParam(name = "star", defaultValue = "") Integer star,
+			@RequestParam(name = "star", defaultValue = "0") Integer star,
 			@RequestParam(name = "comment", defaultValue = "") String comment,
 			Model model) {
 		Review review = new Review(star, comment, id);
