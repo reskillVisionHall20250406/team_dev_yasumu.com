@@ -224,6 +224,8 @@ public class AccountController {
         }
         model.addAttribute("hotel", hotels);
         model.addAttribute("reservations", reservations);
+        model.addAttribute("account", account);
+        
         return "history";
     }
 
