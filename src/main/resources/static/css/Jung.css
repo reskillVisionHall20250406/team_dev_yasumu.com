@@ -6,11 +6,12 @@ html {
 
 header button {
 	font-family: 'M PLUS 1p', sans-serif;
-}
+}ｓ
 
 
 .logo {
-
+	margin: 20px; 
+	/* 로고 왼쪽 상단에서 조금 떨어지게 해주는거  */
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -277,8 +278,7 @@ button:hover {
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	margin: 0 auto;
-	font-size: 1em;
+
 
 	width: 100%;
 	padding: 10px;
@@ -541,16 +541,19 @@ ul.ioio {
 
 /*여기부터 정해승 로그인 css*/
 .login-container {
-	max-width: 400px;
+	width: 400px;
 	margin: 0 auto;
 	padding: 20px;
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%)translateX(-50%);
+    /* 폼 중앙에 오게 하는 것들 포지션, 탑, 레프트, 트렌스폼 */
 
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	/* 내부 요소를 가로 중앙 정렬 */
 }
 
@@ -582,6 +585,7 @@ label {
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
+	
 }
 
 .error{
