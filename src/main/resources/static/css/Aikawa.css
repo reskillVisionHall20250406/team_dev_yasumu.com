@@ -53,15 +53,15 @@ header button {
 }
 
 .key {
-	left: 20%;
 	/*background-color: rgb(192, 192, 192);*/
-	width: 75%;
+	width: 55%;
+	left: 25%;
 	height: 70px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	position: relative;
-	z-index: 60;
+	z-index: 15;
 }
 
 
@@ -112,7 +112,7 @@ nav {
 	display: flex;
 	align-items: center;
 	padding: 20px;
-	background-color: rgb(255, 96, 96);
+	background-color: rgb(0, 64, 128);
 	z-index: 20;
 	opacity: 0;
 	visibility: hidden;
@@ -150,7 +150,7 @@ nav ul li a {
 }
 
 .active::before {
-	/*	content: '';
+		content: '';
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -158,8 +158,8 @@ nav ul li a {
 	width: 100vw;
 	height: 100vh;
 	opacity: 0.4;
-	z-index: 10;
-*/
+	z-index: 19;
+
 }
 
 body {
@@ -190,7 +190,7 @@ h4 {
 /* ヘッダー、ナビゲーションメニュー、フッター */
 nav,
 footer {
-	background-color: rgb(255, 96, 96);
+	background-color: rgb(0, 64, 128);
 	/* 背景色 */
 	text-align: center;
 	color: #ffffff;
@@ -216,7 +216,7 @@ header h1 {
 /* 仕切り線 */
 hr {
 	width: 100%;
-	border-color: rgb(255, 83, 83);
+	border-color: rgb(0, 0, 128);
 }
 
 /* メイン */
@@ -255,7 +255,7 @@ button {
 
 /* 送信ボタン(マウスオーバー時) */
 button:hover {
-	background-color: #f1b2b2;
+	background-color: rgb(0, 0, 128);
 }
 
 /*body {*/
@@ -382,6 +382,7 @@ li {
 	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
+	z-index: 17;
 }
 
 .poi3 {
@@ -389,6 +390,7 @@ li {
 	padding: 7px;
 	border: 1px solid;
 	border-radius: 3px;
+	z-index: 17;
 
 }
 
@@ -737,7 +739,7 @@ h3 {
 	background: #fff;
 	border-radius: 10px;
 	box-shadow: 0 0 8px rgba(0, 0, 0, .25);
-	z-index: 100;
+	z-index: 18;
 }
 
 /* フォーム本体（子どもは select 等） */
@@ -982,39 +984,40 @@ a:hover {
 	margin: 0px;
 	padding: 16px 0px;
 	margin-left: 5%;
-	
+	margin-bottom: 5vh;
 
-	 /** スクロールボタンをクリックしたとき、スムーズにスクロールする */
-	 scroll-behavior: smooth;
 
-	 /* ... */
-	 &::scroll-button(right) {
-	   position: absolute;
-	   top: 40%;
-	   right: 20;
-	   content: "⮕" / "Scroll Right";
-	 }
+	/** スクロールボタンをクリックしたとき、スムーズにスクロールする */
+	scroll-behavior: smooth;
 
-	 &::scroll-button(left) {
-	   position: absolute;
-	   top: 40%;
-	   left: 20;
-	   content: "⬅" / "Scroll Left";
-	 }
+	/* ... */
+	&::scroll-button(right) {
+		position: absolute;
 
-	 &::scroll-button(*) {
-	   width: 50px;
-	   height: 50px;
-	   background-color: transparent;
-	   border-radius: 50%;
-	   color: #fff;
-	   border: 1px solid #444;
-	 }
+		right: 45%;
+		content: "⮕" / "Scroll Right";
+	}
 
-	 &::scroll-button(*):hover {
-	   background-color: #444;
-	   color: #fff;
-	 }
+	&::scroll-button(left) {
+		justify-content: left;
+		position: absolute;
+		left: 45%;
+		content: "⬅" / "Scroll Left";
+	}
+
+	&::scroll-button(*) {
+		width: 50px;
+		height: 50px;
+		background-color: transparent;
+		border-radius: 50%;
+		color: rgb(0, 0, 0);
+		border: 1px solid #444;
+	}
+
+	&::scroll-button(*):hover {
+		background-color: #444;
+		color: #fff;
+	}
 }
 
 .carousel-item {
@@ -1028,4 +1031,15 @@ a:hover {
 	text-align: justify;
 	font-size: 13px;
 	flex-shrink: 0;
+}
+
+.recommend2:hover {
+	background-color: #ffffff;
+	opacity: 0.7;
+}
+
+.key7{
+	position: absolute;
+	top: 3%;
+	right: 3%;
 }

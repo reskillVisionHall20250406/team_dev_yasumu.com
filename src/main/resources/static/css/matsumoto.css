@@ -120,7 +120,7 @@ nav ul li a {
 /* 仕切り線 */
 hr {
 	width: 100%;
-	border-color: rgb(255, 83, 83);
+	border-color: rgb(0, 128, 192);
 }
 
 /* メイン */
@@ -161,9 +161,9 @@ button:hover {
 	background-color: #f1b2b2;
 }
 
-.center {
-	text-align: center;
-}
+/*.center {*/
+/*	text-align: center;*/
+/*}*/
 
 .btn {
 	display: flex;
@@ -217,31 +217,82 @@ li {
 	justify-content: space-between;
 	/* カラム間に余白を配置 */
 	gap: 30px;
+	padding-left: 30px;
 }
+
+
 .credit-form {
-  flex: 1;
+	flex: 1;
 }
+
 .form-group {
 	margin-bottom: 15px;
 	width: 100%;
 }
 
 .flex-item {
-  flex: 1;           /* 等分に幅を取得 */
-  box-sizing: border-box;
+	flex: 1;
+	/* 等分に幅を取得 */
+	box-sizing: border-box;
 }
 
-.hotel-info, .credit-form {
-  margin-top: 50px;
-}
+
 
 @media (max-width: 768px) {
-  .login-container {
-    flex-direction: column; /* スマホでは縦並びに切り替え */
-    align-items: center;
-  }
-  .flex-item {
-    width: 100%;
-  }
+	.login-container {
+		flex-direction: column;
+		/* スマホでは縦並びに切り替え */
+		align-items: center;
+	}
+
+	.flex-item {
+		width: 100%;
+	}
 }
 
+/*相川追加*/
+.textbox-3-label,
+.textbox-3 {
+	color: #333;
+}
+
+.textbox-3-label {
+	display: block;
+	margin-bottom: 5px;
+	font-size: .9em;
+	padding-top: 10px;
+}
+
+.textbox-3 {
+	width: 65%;
+	padding: 8px 10px;
+	border: none;
+	border-radius: 3px;
+	background: #f7f7f7;
+	font-size: 1em;
+	line-height: 1.5;
+}
+
+.textbox-3::placeholder {
+	color: #999;
+}
+
+.hoteldetail{
+	padding-left: 10vh;
+}
+h6,h3{
+	margin: 0;
+	padding: 0;
+}
+.flex img{
+	border-radius: 7px;
+}
+
+.hoteldetail2{
+	margin-top: 10vh;
+	text-align: right;
+	text-align: end;
+}
+.midashi{
+	padding-left: 11%;
+}
