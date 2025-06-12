@@ -19,7 +19,7 @@
 <body>
 	<header th:replace="header">
 	</header>
-<hr>
+	<hr>
 	<main>
 		<div class="im">
 			<div class="mi">
@@ -40,29 +40,34 @@
 					<button class="button-3">予約する</button>
 				</form>
 			</div>
+			<hr>
+			<div>
+				<form th:action="@{/hotelsdetail/comment/{id}(id=${hotels.id})}" method="get">
+
+					<th:block th:each="review:${reviews}">
+						<span th:text="${review.star}"></span>
+						<span th:text="${review.comment}"></span>
+					</th:block>
+					<br>
+
+					<div class="star-rating">
+						<input type="radio" id="star5" name="star" value="5"><label for="star5">★</label>
+						<input type="radio" id="star4" name="star" value="4"><label for="star4">★</label>
+						<input type="radio" id="star3" name="star" value="3"><label for="star3">★</label>
+						<input type="radio" id="star2" name="star" value="2"><label for="star2">★</label>
+						<input type="radio" id="star1" name="star" value="1"><label for="star1">★</label>
+					</div>
+					<br><br>
+					<label>
+						<span class="textbox-2-label">ラベルの例</span>
+						<textarea class="textbox-2" name="comment" rows="4" cols="50"
+							placeholder="レビューを入力してください"></textarea> <br><br>
+						<button type="submit">レビュー送信</button>
+					</label>
+				</form>
+			</div>
 		</div>
 	</main>
-	<hr>
-
-	<form th:action="@{/hotelsdetail/comment/{id}(id=${hotels.id})}" method="get">
-	    <div class="star-rating">
-	      <input type="radio" id="star5" name="star" value="5"><label for="star5">★</label>
-	      <input type="radio" id="star4" name="star" value="4"><label for="star4">★</label>
-	      <input type="radio" id="star3" name="star" value="3"><label for="star3">★</label>
-	      <input type="radio" id="star2" name="star" value="2"><label for="star2">★</label>
-	      <input type="radio" id="star1" name="star" value="1"><label for="star1">★</label>
-	    </div>
-	    <br><br>
-	    <textarea name="comment" rows="4" cols="50" placeholder="レビューを入力してください"></textarea><br><br>
-	    <button type="submit">レビュー送信</button>
-	  </form>
-	  
-	  <th:block th:each="review:${reviews}">
-	  	<span th:text="${review.star}"></span>
-		<span th:text="${review.comment}"></span>
-	  </th:block>
-	  
-
 </body>
 
 </html>

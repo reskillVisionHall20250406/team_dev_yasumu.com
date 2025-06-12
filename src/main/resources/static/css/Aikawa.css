@@ -107,7 +107,7 @@ nav {
 	top: 0;
 	right: 0;
 	width: 80%;
-	max-width: 400px;
+	max-width: 250px;
 	height: 100vh;
 	display: flex;
 	align-items: center;
@@ -123,7 +123,7 @@ nav {
 
 nav ul li a {
 	/*background-color: rgb(255, 255, 255);*/
-	color: #000000;
+	color: rgb(240, 240, 240);
 	display: block;
 	margin-bottom: 16px;
 }
@@ -1175,16 +1175,43 @@ h4.oimo3 {
 	text-align: left;
 	justify-content: left;
 }
+
 h4.oimo2 {
 	padding: 0;
 	margin: 0;
-	text-align: left; /* 追加 */
+	text-align: left;
+	/* 追加 */
 }
 
-p{
+p {
 	margin: 0;
 	padding: 0;
 	width: 500px;
 	padding-left: 25px;
-	
+
+}
+
+.textbox-2-label,
+.textbox-2 {
+	color: #333;
+}
+
+.textbox-2-label {
+	display: block;
+	margin-bottom: 5px;
+	font-size: .9em;
+}
+
+.textbox-2 {
+	width: 100%;
+	padding: 8px 10px;
+	border: 1px solid #d2d2d2;
+	border-radius: 3px;
+	background: #f7f7f7;
+	font-size: 1em;
+	line-height: 1.5;
+}
+
+.textbox-2::placeholder {
+	color: #999;
 }
