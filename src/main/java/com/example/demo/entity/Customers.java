@@ -27,8 +27,9 @@ public class Customers {
 
     //test
     public Customers() {
-    	
+
     }
+
     public Customers(String name, String address, String tel, String email, String password,
             String CardNo, String code, String expiry) {
         this.name = name;
@@ -36,7 +37,7 @@ public class Customers {
         this.tel = tel;
         this.email = email;
         this.password = password;
-
+        this.image = "/image/profile.png";
         this.cardNo = CardNo;
         this.code = code;
         this.expiry = expiry;

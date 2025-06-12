@@ -7,7 +7,7 @@ INSERT INTO area(name) VALUES('四国地方');
 INSERT INTO area(name) VALUES('九州地方');
     
 INSERT INTO customers(name,address,tel,email,password,image,card_no,code,expiry)
-VALUES('ジョン・ヘスン','東京都新宿区','09012345678','jung@gmail.com','himitu','image1.png','012356789012','123','0828');
+VALUES('ジョン・ヘスン','東京都新宿区','09012345678','jung@gmail.com','himitu','/image/profile.png','012356789012','123','0828');
 
 INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capacity, price) VALUES
 (1, 'ホテルニューショーヘイ', '東京都千代田区1-1', 'ホテルニューショーヘイは、東京都千代田区に位置する落ち着いた雰囲気のビジネスホテルです。東京の中心にありながら、静かで快適な空間を提供し、出張や観光に最適です。清潔感のある客室と充実したアメニティで、ゆったりとした滞在をサポート。交通アクセスも良好で、主要駅や観光地への移動もスムーズです。心温まるサービスと利便性を兼ね備えた、都会の隠れ家的ホテルです。', '/image/1-1.jpg', '/image/1-2.jpg', '/image/1-3.jpg', 3, 9000),

@@ -27,15 +27,15 @@
 	<div class="mypage-div">
   <!-- 이미지가 있을 때 -->
   <img class="mypage-image"
-       th:if="${customers.image != null and !#strings.isEmpty(customers.image)}"
-       th:src="@{${customers.image}}"
-       alt="プロフィール画像" />
+     th:if="${customers.image != null and !#strings.isEmpty(customers.image) and customers.image != 'null'}"
+     th:src="@{${customers.image}}"
+     alt="プロフィール画像" />
 
-  <!-- 이미지가 없을 때 기본 이미지 -->
-  <img class="mypage-image"
-       th:unless="${customers.image != null and !#strings.isEmpty(customers.image)}"
-       src="/image/profile.jpg"
-       alt="デフォルト画像" />
+<!-- 나머지 경우엔 기본 이미지 표시 -->
+<img class="mypage-image"
+     th:unless="${customers.image != null and !#strings.isEmpty(customers.image) and customers.image != 'null'}"
+     src="/image/profile.png"
+     alt="デフォルト画像" />
 </div>
 
 
