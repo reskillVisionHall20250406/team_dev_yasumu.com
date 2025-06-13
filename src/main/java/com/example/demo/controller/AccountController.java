@@ -86,7 +86,36 @@ public class AccountController {
         } else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
             errorList.add("パスワードは半角英字と数字の両方を含めてください");
         }
-
+        if (!(cardNo.equals("")) || !(code.equals("")) || !(expiry.equals(""))) {
+            System.out.println(cardNo);
+            System.out.println(code);
+            System.out.println(expiry);
+            if (cardNo.equals("")) {
+                errorList.add("クレジットカード番号を入力してください");
+            } else if (cardNo.length() > 16 || cardNo.length() < 14) {
+                errorList.add("クレジットカード番号は14～16桁で入力してください");
+            }
+            if (code.equals("")) {
+                errorList.add("セキュリティ番号を入力してください");
+            } else if (code.length() != 3) {
+                errorList.add("セキュリティ番号は3桁で入力してください");
+            }
+            String newString = "";
+            Integer newExpiry = 0;
+            if (expiry.equals("")) {
+                errorList.add("有効期限を入力してください");
+            } else if (!(expiry.equals(""))) {
+                if (expiry.length() < 4) {
+                    errorList.add("有効期限はMM(01～12)/YYの4桁で入力してください");
+                } else {
+                    newString = expiry.substring(0, 2);
+                    newExpiry = Integer.parseInt(newString);
+                    if (newExpiry < 1 || newExpiry > 12) {
+                        errorList.add("有効期限はMM(01～12)/YYで入力してください");
+                    }
+                }
+            }
+        }
         if (!errorList.isEmpty()) {
             model.addAttribute("errors", errorList);
             model.addAttribute("name", name);
@@ -164,7 +193,7 @@ public class AccountController {
             return "redirect:/login";
         }
 
-        Customers customers = customersRepository.findByName(account.getName());
+        Customers customers = customersRepository.findByEmail(account.getEmail());
         model.addAttribute("customers", customers);
         model.addAttribute("account", account);
         return "mypage";
@@ -172,7 +201,7 @@ public class AccountController {
 
     @GetMapping("/mypage/edit")
     public String edit(Model model) {
-        Customers customers = customersRepository.findByName(account.getName());
+        Customers customers = customersRepository.findByEmail(account.getEmail());
         model.addAttribute("customers", customers);
         return "edit";
     }
@@ -224,28 +253,33 @@ public class AccountController {
             } else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
                 errorList.add("パスワードは半角英字と数字の両方を含めてください");
             }
-            if (cardNo.equals("")) {
-                errorList.add("クレジットカード番号を入力してください");
-            } else if (cardNo.length() > 16 || cardNo.length() < 14) {
-                errorList.add("クレジットカード番号は14～16桁で入力してください");
-            }
-            if (code.equals("")) {
-                errorList.add("セキュリティ番号を入力してください");
-            } else if (code.length() != 3) {
-                errorList.add("セキュリティ番号は3桁で入力してください");
-            }
-            String newString = "";
-            Integer newExpiry = 0;
-            if (expiry.equals("")) {
-                errorList.add("有効期限を入力してください");
-            } else if (!(expiry.equals(""))) {
-                if (expiry.length() < 4) {
-                    errorList.add("有効期限はMM(01～12)/YYの4桁で入力してください");
-                } else {
-                    newString = expiry.substring(0, 2);
-                    newExpiry = Integer.parseInt(newString);
-                    if (newExpiry < 1 || newExpiry > 12) {
-                        errorList.add("有効期限はMM(01～12)/YYで入力してください");
+            if (!(cardNo.equals("")) || !(code.equals("")) || !(expiry.equals(""))) {
+                System.out.println(cardNo);
+                System.out.println(code);
+                System.out.println(expiry);
+                if (cardNo.equals("")) {
+                    errorList.add("クレジットカード番号を入力してください");
+                } else if (cardNo.length() > 16 || cardNo.length() < 14) {
+                    errorList.add("クレジットカード番号は14～16桁で入力してください");
+                }
+                if (code.equals("")) {
+                    errorList.add("セキュリティ番号を入力してください");
+                } else if (code.length() != 3) {
+                    errorList.add("セキュリティ番号は3桁で入力してください");
+                }
+                String newString = "";
+                Integer newExpiry = 0;
+                if (expiry.equals(",")) {
+                    errorList.add("有効期限を入力してください");
+                } else if (!(expiry.equals(","))) {
+                    if (expiry.length() < 4) {
+                        errorList.add("有効期限はMM(01～12)/YYの4桁で入力してください");
+                    } else {
+                        newString = expiry.substring(0, 2);
+                        newExpiry = Integer.parseInt(newString);
+                        if (newExpiry < 1 || newExpiry > 12) {
+                            errorList.add("有効期限はMM(01～12)/YYで入力してください");
+                        }
                     }
                 }
             }
