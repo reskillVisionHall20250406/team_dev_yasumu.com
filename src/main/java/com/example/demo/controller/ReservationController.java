@@ -40,6 +40,11 @@ public class ReservationController {
 	@Autowired
 	ReservationRepository reservationRepository;
 
+	@GetMapping("/kari")
+	public String kari() {
+		return "reservation_kari";
+	}
+
 	@GetMapping("/reservation/{id}")
 	public String reservation(
 			@PathVariable("id") Integer id,
