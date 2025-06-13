@@ -8,7 +8,8 @@
 </head>
 
 <body>
-	<header th:replace="header"></header>
+	<header th:replace="header3"></header>
+	<br>
 	<hr>
 	<div class="center">
 		<h2 class="midashi">宿予約内容確認/クレジットカード情報・変更・登録</h2>
@@ -32,35 +33,20 @@
 				<div class="btn">
 					<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" method="post">
 
-						<!--				<table align="center">-->
-						<!--					<tr>-->
-						<!--						<th>クレジットカード番号</th>-->
-						<!--						<td><input type="text" th:value="${customers.cardNo}" name="cardno"></td>-->
-						<!--					</tr>-->
-						<!--					<tr>-->
-						<!--						<th>セキュリティ番号</th>-->
-						<!--						<td><input type="text" th:value="${customers.code}" name="code"></td>-->
-						<!--					</tr>-->
-						<!--					<tr>-->
-						<!--						<th>有効期限</th>-->
-						<!--						<td><input type="text" th:value="${customers.expiry}" name="expiry"></td>-->
-						<!--					</tr>-->
-						<!--				</table>-->
-
 						<label>
 							<span class="textbox-3-label">クレジットカード番号</span>
 							<input type="text" th:value="${customers.cardNo}" name="cardno" class="textbox-3"
-								placeholder="クレジットカード番号" />
+								placeholder="クレジットカード番号" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
 						</label>
 						<label>
 							<span class="textbox-3-label">セキュリティ番号</span>
 							<input type="text" th:value="${customers.code}" name="code" class="textbox-3"
-								placeholder="セキュリティ番号" />
+								placeholder="セキュリティ番号" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
 						</label>
 						<label>
 							<span class="textbox-3-label">有効期限</span>
 							<input type="text" th:value="${customers.expiry}" name="expiry" class="textbox-3"
-								placeholder="有効期限" />
+								placeholder="有効期限" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
 						</label>
 						<br>
 						<!--仮の日付選択-->
@@ -77,7 +63,61 @@
 			</div>
 		</div>
 	</div>
+	<script>
+			  const pwInput = document.getElementById("password");
+			  const warning = document.getElementById("pw-warning");
 
+			  function filterFullWidth(value) {
+			    return value.replace(/[^\u0020-\u007E]/g, '');
+			  }
+
+			  pwInput.addEventListener("input", function () {
+			    const original = this.value;
+			    const filtered = filterFullWidth(original);
+			    if (original !== filtered) {
+			      this.value = filtered;
+			      warning.textContent = "全角文字は使用できません。半角英数字のみ入力してください。";
+			    } else {
+			      warning.textContent = "";
+			    }
+			  });
+
+			 function togglePassword(event) {
+	            const pwField = document.getElementById("password");
+	            const btn = event.target;
+
+	        if (pwField.type === "password") {
+	        pwField.type = "text";
+	        btn.textContent = "🔓"; // 보이기 상태
+	        } else {
+	        pwField.type = "password";
+	        btn.textContent = "🔒"; // 숨기기 상태
+	        }
+	       }
+
+
+			  pwInput.addEventListener("compositionend", function () {
+			    this.value = filterFullWidth(this.value);
+			  });
+			   function validateMonth(input) {
+			    // 숫자 외 제거
+			    input.value = input.value.replace(/[^0-9]/g, '');
+
+			    // 1자리 숫자가 입력되면 자동으로 0을 앞에 붙여줌 (단, 2 이상 입력 시 적용)
+			    if (input.value.length === 1 && parseInt(input.value, 10) > 1) {
+			      input.value = '0' + input.value;
+			    }
+
+			    // 두 자리 숫자가 입력되었을 경우 유효성 검사
+			    if (input.value.length === 2) {
+			      const num = parseInt(input.value, 10);
+			      if (num < 1 || num > 12) {
+			        alert("1~12を入力してください。");
+			        input.value = '';
+			      }
+			    }
+			  }
+	</script>
 </body>
 
 </html>

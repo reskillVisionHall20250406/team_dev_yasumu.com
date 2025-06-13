@@ -45,6 +45,11 @@ public class ReservationController {
 		return "reservation_kari";
 	}
 
+	@PostMapping("/kari")
+	public String kripost() {
+		return "reservation";
+	}
+
 	@GetMapping("/reservation/{id}")
 	public String reservation(
 			@PathVariable("id") Integer id,
@@ -86,20 +91,35 @@ public class ReservationController {
 
 		if (cardNo.equals("")) {
 			errList.add("クレジットカード番号を入力してください");
+		} else if (cardNo.length() > 16 || cardNo.length() < 14) {
+			errList.add("クレジットカード番号は14～16桁で入力してください");
 		}
 
 		if (code.equals("")) {
-			errList.add("セキュリティコードを入力してください");
+			errList.add("セキュリティ番号を入力してください");
+		} else if (code.length() != 3) {
+			errList.add("セキュリティ番号は3桁で入力してください");
 		}
-
+		String newString = "";
+		Integer newExpiry = 0;
 		if (expiry.equals("")) {
 			errList.add("有効期限を入力してください");
+		} else if (!(expiry.equals(""))) {
+			if (expiry.length() < 4) {
+				errList.add("有効期限はMM(01～12)/YYの4桁で入力してください");
+			} else {
+				newString = expiry.substring(0, 2);
+				newExpiry = Integer.parseInt(newString);
+				if (newExpiry < 1 || newExpiry > 12) {
+					errList.add("有効期限はMM(01～12)/YYで入力してください");
+				}
+			}
 		}
 
+		customer.setCardNo(cardNo);
+		customer.setCode(code);
+		customer.setExpiry(expiry);
 		if (errList.isEmpty()) {
-			customer.setCardNo(cardNo);
-			customer.setCode(code);
-			customer.setExpiry(expiry);
 
 			Reservation reservation = new Reservation(id, customer.getId(), orderedOn);
 			reservationRepository.save(reservation);
@@ -115,5 +135,6 @@ public class ReservationController {
 		model.addAttribute("account", account);
 		model.addAttribute("err", errList);
 		return "reservation";
+
 	}
 }
