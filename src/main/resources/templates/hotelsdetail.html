@@ -82,7 +82,7 @@
 						<span th:text="${review.comment}"></span>
 					</div>
 				</div>
-				<form th:action="@{/hotelsdetail/comment/{id}(id=${hotels.id})}" method="get">
+				<form th:action="@{/hotelsdetail/comment/{id}(id=${hotels.id})}" method="get" class="jjj">
 					<br>
 
 					<div class="star-rating">
@@ -97,7 +97,7 @@
 						<span class="textbox-2-label">感想、評価を投稿する</span>
 						<textarea class="textbox-2" name="comment" rows="4" cols="50"
 							placeholder="レビューを入力してください"></textarea> <br><br>
-						<button type="submit">投稿する</button>
+						<button type="submit" class="button-03">投稿する</button>
 					</label>
 				</form>
 			</div>
