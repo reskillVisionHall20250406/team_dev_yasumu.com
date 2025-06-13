@@ -205,7 +205,7 @@ public class AccountController {
                 errorList.add("メールを入力してください");
                 
     		if (existingCustomer != null) {
-    			errorList.add("登録済みのメールアドレスです");
+    			errorList.add("このメールアドレスは既に登録されています");
     		}
             if (address.isEmpty()) {
                 errorList.add("住所を入力してください");
