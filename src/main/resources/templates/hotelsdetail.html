@@ -24,7 +24,7 @@
 		<div class="im">
 			<div class="mi">
 				<img th:src="${hotels.image}" width="100%" height="350vh"><br>
-				<p th:text="${hotels.detail}" class="detail3">
+				<p th:utext="${#strings.replace(hotels.detail, '\n', '<br/>')}" class="detail3">
 				</p>
 			</div>
 			<div class="mi">

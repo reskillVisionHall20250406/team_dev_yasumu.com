@@ -24,7 +24,7 @@
 				<form>
 
 					<div class="selectbox-3">
-						<select size="1" name="area">
+						<select size="1" name="areaId">
 							<option value="">エリア</option>
 							<option value="1">東北地方</option>
 							<option value="2">関東地方</option>
@@ -202,20 +202,20 @@
 			<!-- 前へボタン -->
 			<li class="prev" th:if="${page.hasPrevious()}">
 				<a
-					th:href="@{/hotels(page=${page.number - 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">&lt;</a>
+					th:href="@{/hotels(page=${page.number - 1}, price=${price}, keyword=${keyword}, areaId=${areaId},capacity=${capacity})}">&lt;</a>
 			</li>
 
 			<!-- ページ番号 -->
 			<li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
 				th:classappend="${i == page.number} ? 'current'">
-				<a th:href="@{/hotels(page=${i}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}"
+				<a th:href="@{/hotels(page=${i}, price=${price}, keyword=${keyword}, areaId=${areaId},capacity=${capacity})}"
 					th:text="${i + 1}">1</a>
 			</li>
 
 			<!-- 次へボタン -->
 			<li class="next" th:if="${page.hasNext()}">
 				<a
-					th:href="@{/hotels(page=${page.number + 1}, categoryId=${categoryId}, keyword=${keyword}, maxPrice=${maxPrice})}">&gt;</a>
+					th:href="@{/hotels(page=${page.number + 1}, price=${price}, keyword=${keyword}, areaId=${areaId},capacity=${capacity})}">&gt;</a>
 			</li>
 		</ol>
 		<div class="footer1">

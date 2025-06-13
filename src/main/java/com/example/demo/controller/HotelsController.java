@@ -62,7 +62,6 @@ public class HotelsController {
 		Pageable pageable = PageRequest.of(page, pageSize);
 		Page<Hotels> hotelsPage;
 
-		// 検索条件の組み合わせに応じて処理を分岐
 		if (areaId > 0 && capacity != null && price != null && keyword != null && !keyword.isEmpty()) {
 			hotelsPage = hotelsRepository.findByAreaIdAndCapacityAndPriceLessThanEqualAndNameContaining(
 					areaId, capacity, price, keyword, pageable);
@@ -72,29 +71,38 @@ public class HotelsController {
 		} else if (areaId > 0 && capacity != null && keyword != null && !keyword.isEmpty()) {
 			hotelsPage = hotelsRepository.findByAreaIdAndCapacityAndNameContaining(
 					areaId, capacity, keyword, pageable);
-		} else if (areaId > 0 && capacity != null) {
-			hotelsPage = hotelsRepository.findByAreaIdAndCapacity(
-					areaId, capacity, pageable);
+		} else if (areaId > 0 && price != null && keyword != null && !keyword.isEmpty()) {
+			hotelsPage = hotelsRepository.findByAreaIdAndPriceLessThanEqualAndNameContaining(
+					areaId, price, keyword, pageable);
 		} else if (capacity != null && price != null && keyword != null && !keyword.isEmpty()) {
 			hotelsPage = hotelsRepository.findByCapacityAndPriceLessThanEqualAndNameContaining(
 					capacity, price, keyword, pageable);
+		} else if (areaId > 0 && capacity != null) {
+			hotelsPage = hotelsRepository.findByAreaIdAndCapacity(
+					areaId, capacity, pageable);
+		} else if (areaId > 0 && price != null) {
+			hotelsPage = hotelsRepository.findByAreaIdAndPriceLessThanEqual(
+					areaId, price, pageable);
+		} else if (areaId > 0 && keyword != null && !keyword.isEmpty()) {
+			hotelsPage = hotelsRepository.findByAreaIdAndNameContaining(
+					areaId, keyword, pageable);
 		} else if (capacity != null && price != null) {
 			hotelsPage = hotelsRepository.findByCapacityAndPriceLessThanEqual(
 					capacity, price, pageable);
 		} else if (capacity != null && keyword != null && !keyword.isEmpty()) {
 			hotelsPage = hotelsRepository.findByCapacityAndNameContaining(
 					capacity, keyword, pageable);
-		} else if (capacity != null) {
-			hotelsPage = hotelsRepository.findByCapacity(
-					capacity, pageable);
+		} else if (price != null && keyword != null && !keyword.isEmpty()) {
+			hotelsPage = hotelsRepository.findByPriceLessThanEqualAndNameContaining(
+					price, keyword, pageable);
 		} else if (areaId > 0) {
 			hotelsPage = hotelsRepository.findByAreaId(areaId, pageable);
-		} else if (keyword != null && !keyword.isEmpty() && price != null) {
-			hotelsPage = hotelsRepository.findByPriceLessThanEqualAndNameContaining(price, keyword, pageable);
-		} else if (keyword != null && !keyword.isEmpty()) {
-			hotelsPage = hotelsRepository.findByNameContaining(keyword, pageable);
+		} else if (capacity != null) {
+			hotelsPage = hotelsRepository.findByCapacity(capacity, pageable);
 		} else if (price != null) {
 			hotelsPage = hotelsRepository.findByPriceLessThanEqual(price, pageable);
+		} else if (keyword != null && !keyword.isEmpty()) {
+			hotelsPage = hotelsRepository.findByNameContaining(keyword, pageable);
 		} else {
 			hotelsPage = hotelsRepository.findAll(pageable);
 		}
