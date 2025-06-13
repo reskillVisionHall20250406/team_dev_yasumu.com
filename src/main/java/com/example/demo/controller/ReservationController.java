@@ -88,7 +88,8 @@ public class ReservationController {
 		Hotels hotels = hotelsRepository.findById(id).get();
 		Customers customer = customersRepository.findByEmail(account.getEmail());
 		List<String> errList = new ArrayList<>();
-
+		System.out.println(cardNo);
+		System.out.println(cardNo.length());
 		if (cardNo.equals("")) {
 			errList.add("クレジットカード番号を入力してください");
 		} else if (cardNo.length() > 16 || cardNo.length() < 14) {
