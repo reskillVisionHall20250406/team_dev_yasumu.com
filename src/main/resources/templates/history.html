@@ -10,13 +10,24 @@
 <body>
 	<header th:replace="header3">
 	</header>
+	
 
-	<h2 class="history-title">
-		<a>[[${@account.name}]]さんのご予約履歴</a><br>
-	</h2>
+	
+	<div th:if="${#lists.isEmpty(hotel)}" class="login-container">
+		<h2 class="history-title">
+				<a>[[${@account.name}]]さん<br>
+					ご予約履歴</a><br>
+			</h2>
+				<div style="text-align: center; color: red;">
+					<p style="font-size: 20px;">予約した宿が見つかりませんでした</p>
+				</div>
+	</div>
+	<th:block th:unless="${#lists.isEmpty(hotel)}">
+		<h2 class="history-title">
+				<a>[[${@account.name}]]さん<br>
+					ご予約履歴</a><br>
+			</h2>
 	<main class="history-main1">
-
-
 		<th:block th:each="hotels:${hotel}" class="col">
 			<div class="bottom">
 				<a th:href="@{/hotelsdetail/{id}(id=${hotels.id})}" class="history-yado">
@@ -38,8 +49,9 @@
 						</div>
 					</div>
 			</div>
-		</th:block>
 	</main>
+	</th:block>
+	
 	<div style="text-align: center;">
 		<a href="/mypage">マイページへ</a>
 	</div>
