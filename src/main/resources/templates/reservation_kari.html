@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>宿予約 - チェックイン日選択</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			background: #f9f9f9;
+			margin: 0;
+			padding: 0;
+		}
+
+		header,
+		footer {
+			background: #0066cc;
+			color: white;
+			padding: 1em;
+			text-align: center;
+		}
+
+		main {
+			padding: 2em;
+			max-width: 800px;
+			margin: auto;
+		}
+
+		h2 {
+			text-align: center;
+			color: #0066cc;
+		}
+
+		.calendar-section {
+			margin-bottom: 3em;
+		}
+
+		.month-selector {
+			text-align: center;
+			margin-top: 1em;
+		}
+
+		.month-selector button {
+			padding: 0.5em 1em;
+			margin: 0 0.5em;
+			background: #0066cc;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 2em;
+		}
+
+		th,
+		td {
+			width: 14.28%;
+			text-align: center;
+			padding: 0.5em;
+		}
+
+		button.date-btn {
+			width: 100%;
+			padding: 1em;
+			background: #ffffff;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		button.date-btn:hover:not(:disabled) {
+			background-color: #e6f0ff;
+		}
+
+		button.date-btn:disabled {
+			background-color: #eee;
+			color: #aaa;
+			cursor: not-allowed;
+		}
+
+		.selected {
+			background-color: #0066cc !important;
+			color: white;
+		}
+
+		.holiday {
+			background-color: #ffdddd;
+			color: #c00;
+		}
+
+		.saturday {
+			color: #00f;
+		}
+
+		.sunday {
+			color: #c00;
+		}
+
+		.confirm-area {
+			margin-top: 2em;
+			text-align: center;
+		}
+
+		.confirm-area button {
+			padding: 0.7em 1.5em;
+			background: #0066cc;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h1>宿予約サイト</h1>
+	</header>
+	<main>
+		<div class="calendar-section">
+			<h2>チェックイン日を選択してください</h2>
+			<div class="month-selector">
+				<button onclick="changeMonth(-1)">前の月</button>
+				<span id="month-year"></span>
+				<button onclick="changeMonth(1)">次の月</button>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>日</th>
+						<th>月</th>
+						<th>火</th>
+						<th>水</th>
+						<th>木</th>
+						<th>金</th>
+						<th>土</th>
+					</tr>
+				</thead>
+				<tbody id="calendar"></tbody>
+			</table>
+		</div>
+		<div class="confirm-area">
+			<p id="selected-dates">選択された日付: なし</p>
+			<button onclick="confirmDate()">この日程で予約する</button>
+		</div>
+	</main>
+	<script>
+		const today = new Date();
+		today.setHours(0, 0, 0, 0);
+
+
+		let current = new Date(today);
+		let selected = null;
+		let selectedBtn = null;
+
+		const holidays = [
+			"2025-01-01", "2025-01-13", "2025-02-11", "2025-02-23",
+			"2025-03-20", "2025-04-29", "2025-05-03", "2025-05-04", "2025-05-05",
+			"2025-07-21", "2025-08-11", "2025-09-15", "2025-09-23",
+			"2025-10-14", "2025-11-03", "2025-11-23", "2025-12-23"
+		];
+
+
+		const reservedDates = [
+			// ここに予約済みの日付を "YYYY-MM-DD" 形式で追加
+			"2025-06-18", "2025-07-10", "2025-07-15"
+		];
+
+		function updateCalendar() {
+			const year = current.getFullYear();
+			const month = current.getMonth();
+			document.getElementById("month-year").textContent = `${year}年 ${month + 1}月`;
+			const calendarBody = document.getElementById("calendar");
+			calendarBody.innerHTML = "";
+			const firstDay = new Date(year, month, 1);
+			const lastDay = new Date(year, month + 1, 0);
+			let row = document.createElement("tr");
+
+
+			for (let i = 0; i < firstDay.getDay(); i++) {
+				row.appendChild(document.createElement("td"));
+			}
+
+
+			for (let d = 1; d <= lastDay.getDate(); d++) {
+				if (row.children.length === 7) {
+					calendarBody.appendChild(row);
+					row = document.createElement("tr");
+				}
+				const cell = document.createElement("td");
+				const btn = document.createElement("button");
+				btn.className = "date-btn";
+				btn.textContent = d;
+
+
+				const date = new Date(year, month, d);
+				date.setHours(0, 0, 0, 0);
+
+
+				const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+
+
+				let isDisabled = date < today || reservedDates.includes(dateStr);
+
+
+				if (isDisabled) {
+					btn.disabled = true;
+					btn.title = reservedDates.includes(dateStr) ? "予約済み" : "選択不可";
+				} else {
+					btn.onclick = () => selectDate(date, btn);
+				}
+
+
+				if (holidays.includes(dateStr)) {
+					btn.classList.add("holiday");
+				} else if (date.getDay() === 0) {
+					btn.classList.add("sunday");
+				} else if (date.getDay() === 6) {
+					btn.classList.add("saturday");
+				}
+
+
+				cell.appendChild(btn);
+				row.appendChild(cell);
+			}
+
+
+			while (row.children.length < 7) {
+				row.appendChild(document.createElement("td"));
+			}
+			calendarBody.appendChild(row);
+		}
+
+
+		function selectDate(date, btn) {
+			if (selectedBtn) selectedBtn.classList.remove("selected");
+			selected = date;
+			selectedBtn = btn;
+			btn.classList.add("selected");
+			document.getElementById("selected-dates").textContent = `選択された日付: ${formatDate(date)}`;
+		}
+
+
+		function formatDate(date) {
+			if (!date) return "未選択";
+			return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+		}
+
+
+		function changeMonth(diff) {
+			current.setMonth(current.getMonth() + diff);
+			updateCalendar();
+			
+		}
+
+
+		function confirmDate() {
+			if (!selected) {
+				alert("チェックイン日を選択してください。");
+				return;
+			}
+
+
+		
+				alert("登録しました");
+
+			postReservation(guestName, email, formatDate(selected));
+		}
+
+		updateCalendar();
+	</script>
+</body>
+
+</html>

@@ -7,7 +7,7 @@ INSERT INTO area(name) VALUES('四国地方');
 INSERT INTO area(name) VALUES('九州地方');
     
 INSERT INTO customers(name,address,tel,email,password,image,card_no,code,expiry)
-VALUES('ジョン・ヘスン','東京都新宿区','09012345678','jung@gmail.com','himitu','/image/profile.png','012356789012','123','0828');
+VALUES('ジョン・ヘスン','東京都新宿区','09012345678','jung@gmail.com','himitu123','/image/profile.png','012356789012','123','0828');
 
 INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capacity, price) VALUES
 (1, 'サクラホテル東京', '東京都新宿区2-3', 'サクラホテル東京は、新宿駅から徒歩圏内に位置する便利なビジネスホテルです。モダンな内装と快適なベッドで、ビジネス・観光双方におすすめです。館内には無料Wi-Fiやコインランドリーも完備。', '/image/1-4.jpg', '/image/1-5.jpg', '/image/1-6.jpg', 2, 8500),
