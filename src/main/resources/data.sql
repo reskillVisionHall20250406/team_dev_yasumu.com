@@ -36,24 +36,3 @@ INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capaci
 (3, '京都グランドホテル', '京都府京都市下京区9-11', '京都グランドホテルは、歴史ある街並みに溶け込むモダンなホテル。ビジネス・観光に便利な施設が揃っています。', '/image/1-25.jpg', '/image/1-26.jpg', '/image/1-27.jpg', 4, 13000);
 
 
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '1', 1);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '2', 2);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '3', 3);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '4', 4);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '5', 5);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '6', 6);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '7', 7);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '8', 8);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '9', 9);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '10', 10);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '11', 11);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '12', 12);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '13', 13);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '14', 14);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '15', 15);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '16', 16);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '17', 17);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '18', 18);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '19', 19);
-INSERT INTO review (star, comment, hotel_id) VALUES (0, '20', 20);
-

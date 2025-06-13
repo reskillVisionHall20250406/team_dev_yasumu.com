@@ -41,13 +41,48 @@
 				</form>
 			</div>
 			<hr>
-			<div>
-				<form th:action="@{/hotelsdetail/comment/{id}(id=${hotels.id})}" method="get">
+			<div class="im2">
 
-					<th:block th:each="review:${reviews}">
-						<span th:text="${review.star}"></span>
+				<div class="box-015">
+					<span th:text="${hotels.name}+'に投稿された評価、感想'"></span>
+				</div>
+
+				<!-- グレー背景＋余白つき -->
+				<div class="reviews-wrapper">
+					<!-- 1レビューごとに白いボックス -->
+					<div class="box-017" th:each="review : ${reviews}">
+						<div th:switch="${review.star}">
+							<div th:case="1" class="star-color3">
+								<div class="star-color">★</div>
+								<div class="star-color2">★★★★</div>
+								<div class="star-color">　1</div>
+							</div>
+							<div th:case="2" class="star-color3">
+								<div class="star-color">★★</div>
+								<div class="star-color2">★★★</div>
+								<div class="star-color">　2</div>
+							</div>
+							<div th:case="3" class="star-color3">
+								<div class="star-color">★★★</div>
+								<div class="star-color2">★★</div>
+								<div class="star-color">　3</div>
+							</div>
+							<div th:case="4" class="star-color3">
+								<div class="star-color">★★★★</div>
+								<div class="star-color2">★</div>
+								<div class="star-color">　4</div>
+							</div>
+							<div th:case="5" class="star-color3">
+								<div class="star-color">★★★★★</div>
+								<div class="star-color">　5</div>
+							</div>
+						</div>
+
+
 						<span th:text="${review.comment}"></span>
-					</th:block>
+					</div>
+				</div>
+				<form th:action="@{/hotelsdetail/comment/{id}(id=${hotels.id})}" method="get">
 					<br>
 
 					<div class="star-rating">
@@ -55,14 +90,14 @@
 						<input type="radio" id="star4" name="star" value="4"><label for="star4">★</label>
 						<input type="radio" id="star3" name="star" value="3"><label for="star3">★</label>
 						<input type="radio" id="star2" name="star" value="2"><label for="star2">★</label>
-						<input type="radio" id="star1" name="star" value="1"><label for="star1">★</label>
+						<input type="radio" id="star1" name="star" value="1" checked><label for="star1">★</label>
 					</div>
 					<br><br>
 					<label>
-						<span class="textbox-2-label">ラベルの例</span>
+						<span class="textbox-2-label">感想、評価を投稿する</span>
 						<textarea class="textbox-2" name="comment" rows="4" cols="50"
 							placeholder="レビューを入力してください"></textarea> <br><br>
-						<button type="submit">レビュー送信</button>
+						<button type="submit">投稿する</button>
 					</label>
 				</form>
 			</div>
