@@ -707,10 +707,10 @@ label {
 	flex-direction: column;
 	align-items: center;
 }
-.mypage-image{
-	width: 200px;
-	float: left;
-	padding-bottom: 20px;
+.mypage-image {
+    width: 200px;
+    padding-bottom: 20px;
+    padding-left: 96px;
 }
 .mypage-title {
 	text-align: center;

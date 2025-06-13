@@ -13,7 +13,7 @@
 
 	<div class="login-container">
 		<div class="form-group">
-        <h2>会員情報変更</h2>
+        <h2 style="text-align: center;">会員情報変更</h2>
 		
 		<img class="mypage-image"
 		     th:if="${customers.image != null and !#strings.isEmpty(customers.image) and customers.image != 'null'}"
@@ -30,11 +30,10 @@
             <button type="button" onclick="togglePassword(event)" class="toggle-btn">🔒</button>
 
         </div>
-			<input type="text" name="cardNo" placeholder="クレジットカード情報登録" maxlength="16" pattern="\d{16}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input type="text" name="code" placeholder="セキュリティコード" maxlength="3" pattern="\d{3}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input type="text" style="width: 80px;"  name="expiry" id="expiry-month"placeholder="月"  maxlength="2" pattern="\d{2}" oninput="validateMonth(this)">
-			<a>/</a>
-			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)" maxlength="2" pattern="\d{2}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text" name="cardNo" placeholder="クレジットカード情報登録"  oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text" name="code" placeholder="セキュリティコード" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text"  name="expiry"
+											placeholder="有効期限" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
 			
 		    <input name="file" type="file" id="img" class="poi" th:value="${imageUrl}">
 	        <button name = "imgBtn" value="imgBtn">画像の表示</button><br>
