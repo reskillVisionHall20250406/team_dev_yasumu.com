@@ -26,11 +26,12 @@
             <button type="button" onclick="togglePassword(event)" class="toggle-btn">🔒</button>
 
         </div>
-			<input type="text" name="cardNo" placeholder="クレジットカード情報登録" maxlength="16" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input type="text" name="code" placeholder="セキュリティコード" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input type="text" style="width: 80px;"  name="expiry" id="expiry-month"placeholder="月"  maxlength="2"  oninput="validateMonth(this)">
+			<input type="text" name="cardNo" placeholder="クレジットカード情報登録" minlength="16" maxlength="16" pattern="\d{16}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<!-- pattern은 이걸 달성해야 뒤에 조건으로 갈 수 있다고 알려줌 max도 있어야야지 적기 쉬우니까 같이 넣어주기  -->
+			<input type="text" name="code" placeholder="セキュリティコード" maxlength="3" pattern="\d{3}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text" style="width: 80px;"  name="expiry" id="expiry-month"placeholder="月"  maxlength="2" pattern="\d{2}" oninput="validateMonth(this)">
 			<a>/</a>
-			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)" maxlength="2" pattern="\d{2}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
 <!--			<p>アイコンの写真選択</p>-->
 <!--			    <input type="file" name="image"><br>-->
 
