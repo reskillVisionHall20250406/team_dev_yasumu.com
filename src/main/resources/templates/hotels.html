@@ -206,7 +206,8 @@
 			</li>
 
 			<!-- ページ番号 -->
-			<li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+			<th:block th:if="${page.totalPages == 0}" th:text="${page.totalPages}+1"></th:block>
+			<li th:if="${page.totalPages != 0}" th:each="i : ${#numbers.sequence(0, page.totalPages-1)}"
 				th:classappend="${i == page.number} ? 'current'">
 				<a th:href="@{/hotels(page=${i}, price=${price}, keyword=${keyword}, areaId=${areaId},capacity=${capacity})}"
 					th:text="${i + 1}">1</a>
