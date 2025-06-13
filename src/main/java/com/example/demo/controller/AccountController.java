@@ -39,13 +39,13 @@ public class AccountController {
 	@Autowired
 	HotelsRepository hotelsRepository;
 
-    @Autowired
-    Account account;
+	@Autowired
+	Account account;
 
-    @GetMapping("/user/add")
-    public String create() {
-        return "user";
-    }
+	@GetMapping("/user/add")
+	public String create() {
+		return "user";
+	}
 
 	@PostMapping("/user/add")
 	public String add(
@@ -112,20 +112,20 @@ public class AccountController {
 		return "login";
 	}
 
-    @PostMapping("/login")
-    public String login(
-            @RequestParam(name = "email", defaultValue = "") String email,
-            @RequestParam(name = "password", defaultValue = "") String password,
-            Model model) {
+	@PostMapping("/login")
+	public String login(
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			Model model) {
 
-        List<String> errorList = new ArrayList<>();
+		List<String> errorList = new ArrayList<>();
 
-        if (email.isEmpty()) {
-            errorList.add("メールを入力してください");
-        }
-        if (password.isEmpty()) {
-            errorList.add("パスワードを入力してください");
-        }
+		if (email.isEmpty()) {
+			errorList.add("メールを入力してください");
+		}
+		if (password.isEmpty()) {
+			errorList.add("パスワードを入力してください");
+		}
 
 		Customers customers = customersRepository.findByEmail(email);
 
@@ -178,108 +178,109 @@ public class AccountController {
 	}
 
 	@PostMapping("/mypage/edit")
-    public String infoEdit(
-            @RequestParam(name = "name", defaultValue = "") String name,
-            @RequestParam(name = "address", defaultValue = "") String address,
-            @RequestParam(name = "tel", defaultValue = "") String tel,
-            @RequestParam(name = "email", defaultValue = "") String email,
-            @RequestParam(name = "password", defaultValue = "") String password,
-            @RequestParam(name = "imgname", defaultValue = "") String image,
-            @RequestParam("file") MultipartFile file,
-            @RequestParam(name = "cardNo", defaultValue = "") Integer cardNo,
-            @RequestParam(name = "code", defaultValue = "") Integer code,
-            @RequestParam(name = "expiry", defaultValue = "") Integer expiry,
-            @RequestParam(name = "imgBtn", defaultValue = "") String imgBtn,
-            Model model) {
-        time();
+	public String infoEdit(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			@RequestParam(name = "imgname", defaultValue = "") String image,
+			@RequestParam("file") MultipartFile file,
+			@RequestParam(name = "cardNo", defaultValue = "") Integer cardNo,
+			@RequestParam(name = "code", defaultValue = "") Integer code,
+			@RequestParam(name = "expiry", defaultValue = "") Integer expiry,
+			@RequestParam(name = "imgBtn", defaultValue = "") String imgBtn,
+			Model model) {
+		time();
 
-        if (imgBtn.equals("")) {
-            List<String> errorList = new ArrayList<>();
-            
-            Customers existingCustomer = customersRepository.findByEmail(email);
+		if (imgBtn.equals("")) {
+			List<String> errorList = new ArrayList<>();
 
-            if (name.isEmpty()) {
-                errorList.add("お名前を入力してください");
-            }
-            if (email.isEmpty()) {
-                errorList.add("メールを入力してください");
-                
-    		if (existingCustomer != null) {
-    			errorList.add("このメールアドレスは既に登録されています");
-    		}
-            if (address.isEmpty()) {
-                errorList.add("住所を入力してください");
-            }
-            if (tel == null) {
-                errorList.add("電話番号を入力してください");
-            }
-            if (password.isEmpty()) {
-                errorList.add("パスワードを入力してください");
-            }else if (password.length() < 8) {
-    			errorList.add("パスワードは8文字以上で入力してください");
-    		} else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
-    			errorList.add("パスワードは半角英字と数字の両方を含めてください");
-    		}
-            if (!errorList.isEmpty()) {
-                Customers customers = customersRepository.findByName(account.getName());
-                customers.setName(name);
-                customers.setAddress(address);
-                customers.setTel(tel);
-                customers.setEmail(email);
-                customers.setPassword(password);
-                model.addAttribute("customers", customers);
-                model.addAttribute("errors", errorList);
-                return "edit";
+			Customers existingCustomer = customersRepository.findByEmail(email);
+			Customers customers = customersRepository.findByName(account.getName());
 
-            }
+			if (name.isEmpty()) {
+				errorList.add("お名前を入力してください");
+			}
+			if (email.isEmpty()) {
+				errorList.add("メールを入力してください");
+			}
+				if (customers.getEmail().equals(email)) {
 
-            Customers customers = new Customers();
-            customers = customersRepository.findById(account.getId()).get();
+				} else if (existingCustomer != null) {
+					errorList.add("このメールアドレスは既に登録されています");
+				}
+			
+			if (address.isEmpty()) {
+				errorList.add("住所を入力してください");
+			}
+			if (tel == null) {
+				errorList.add("電話番号を入力してください");
+			}
+			if (password.isEmpty()) {
+				errorList.add("パスワードを入力してください");
+			} else if (password.length() < 8) {
+				errorList.add("パスワードは8文字以上で入力してください");
+			} else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
+				errorList.add("パスワードは半角英字と数字の両方を含めてください");
+			}
+			if (!errorList.isEmpty()) {
+				customers.setName(name);
+				customers.setAddress(address);
+				customers.setTel(tel);
+				customers.setEmail(email);
+				customers.setPassword(password);
+				model.addAttribute("customers", customers);
+				model.addAttribute("errors", errorList);
+				return "edit";
 
-            try {
-                String filename = file.getOriginalFilename();
-                String filePath = "static/upload/" + filename;
-                byte[] content = file.getBytes();
-                Files.write(Paths.get(filePath), content);
+			}
 
-                String imageUrl = "/upload/" + filename;
-                model.addAttribute("imageUrl", imageUrl);
-                customers.setImage(imageUrl);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+			customers = new Customers();
+			customers = customersRepository.findById(account.getId()).get();
 
-            customersRepository.save(customers);
-            customers.setName(name);
-            customers.setAddress(address);
-            customers.setTel(tel);
-            customers.setEmail(email);
-            customers.setPassword(password);
-            customersRepository.save(customers);
+			try {
+				String filename = file.getOriginalFilename();
+				String filePath = "static/upload/" + filename;
+				byte[] content = file.getBytes();
+				Files.write(Paths.get(filePath), content);
 
-            account.setName(name);
-            return "redirect:/mypage";
+				String imageUrl = "/upload/" + filename;
+				model.addAttribute("imageUrl", imageUrl);
+				customers.setImage(imageUrl);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-        }
-        Customers customers = new Customers();
-        customers = customersRepository.findById(account.getId()).get();
-        try {
-            String filename = file.getOriginalFilename();
-            String filePath = "static/upload/" + filename;
-            byte[] content = file.getBytes();
-            Files.write(Paths.get(filePath), content);
+			customersRepository.save(customers);
+			customers.setName(name);
+			customers.setAddress(address);
+			customers.setTel(tel);
+			customers.setEmail(email);
+			customers.setPassword(password);
+			customersRepository.save(customers);
 
-            String imageUrl = "/upload/" + filename;
-            model.addAttribute("imageUrl", imageUrl);
-            customers.setImage(imageUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        model.addAttribute("customers", customers);
-        return "edit";
-        }
-        return "redirect:/mypage";
-    }
+			account.setName(name);
+			return "redirect:/mypage";
+
+		}
+		Customers customers = new Customers();
+		customers = customersRepository.findById(account.getId()).get();
+		try {
+			String filename = file.getOriginalFilename();
+			String filePath = "static/upload/" + filename;
+			byte[] content = file.getBytes();
+			Files.write(Paths.get(filePath), content);
+
+			String imageUrl = "/upload/" + filename;
+			model.addAttribute("imageUrl", imageUrl);
+			customers.setImage(imageUrl);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("customers", customers);
+		return "edit";
+	}
 
 	@GetMapping("yado/history")
 	public String history(Model model) {
