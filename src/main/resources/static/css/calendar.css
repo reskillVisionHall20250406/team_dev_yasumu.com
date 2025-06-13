@@ -5,14 +5,6 @@ body {
 	padding: 0;
 }
 
-header,
-footer {
-	background: #0066cc;
-	color: white;
-	padding: 1em;
-	text-align: center;
-}
-
 main {
 	padding: 2em;
 	max-width: 800px;
@@ -24,9 +16,7 @@ h2 {
 	color: #0066cc;
 }
 
-.calendar-section {
-	margin-bottom: 3em;
-}
+
 
 .month-selector {
 	text-align: center;
@@ -94,7 +84,7 @@ button.date-btn:disabled {
 }
 
 .confirm-area {
-	margin-top: 2em;
+	margin-top: -5%;
 	text-align: center;
 }
 
@@ -105,4 +95,34 @@ button.date-btn:disabled {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+.logo {
+	display: flex;
+	position: absolute;
+	top: 1%;
+	left: 1%;
+	z-index: 50;
+}
+
+.flex{
+	display: flex;
+}
+
+.container {
+	max-width: 450px;
+	margin: auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* 내부 요소를 가로 중앙 정렬 */
+}
+
+h2{
+	margin-top:-30px;
 }
