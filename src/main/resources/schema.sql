@@ -17,7 +17,7 @@ CREATE TABLE hotels (
     area_id INTEGER,
     name VARCHAR(255),
     address VARCHAR(255),
-    detail VARCHAR(255),
+    detail TEXT,
     image VARCHAR(255),
     image2 VARCHAR(255),
     image3 VARCHAR(255),

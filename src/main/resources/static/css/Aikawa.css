@@ -1221,7 +1221,7 @@ p {
 
 .textbox-2 {
 	width: 100%;
-	padding: 8px 10px;
+/*	padding: 8px;*/
 	border: 1px solid #d2d2d2;
 	border-radius: 3px;
 	background: #f7f7f7;
@@ -1325,4 +1325,31 @@ li.carousel-item:hover {
 
 .star-color3{
 	display: flex;
+}
+
+.button-03 {
+	display: block;
+	justify-content: center;
+	align-items: center;
+	width: 250px;
+	margin: 0 auto;
+	padding: .9em 2em;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 2px 3px rgb(0 0 0 / 25%), 0 2px 3px -2px rgb(0 0 0 / 15%);
+	background-color: #2589d0;
+	color: #fff;
+	font-weight: 600;
+	font-size: 1em;
+	margin-right: 0;
+}
+
+.button-03:hover {
+	background-color: #1579c0;
+}
+
+form.jjj{
+	margin-bottom: 20vh;
+	margin-left: 0;
+	padding-left: 0;
 }
