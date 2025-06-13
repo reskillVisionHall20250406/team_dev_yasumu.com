@@ -39,13 +39,13 @@ public class AccountController {
 	@Autowired
 	HotelsRepository hotelsRepository;
 
-	@Autowired
-	Account account;
+    @Autowired
+    Account account;
 
-	@GetMapping("/user/add")
-	public String create() {
-		return "user";
-	}
+    @GetMapping("/user/add")
+    public String create() {
+        return "user";
+    }
 
 	@PostMapping("/user/add")
 	public String add(
@@ -112,20 +112,20 @@ public class AccountController {
 		return "login";
 	}
 
-	@PostMapping("/login")
-	public String login(
-			@RequestParam(name = "email", defaultValue = "") String email,
-			@RequestParam(name = "password", defaultValue = "") String password,
-			Model model) {
+    @PostMapping("/login")
+    public String login(
+            @RequestParam(name = "email", defaultValue = "") String email,
+            @RequestParam(name = "password", defaultValue = "") String password,
+            Model model) {
 
-		List<String> errorList = new ArrayList<>();
+        List<String> errorList = new ArrayList<>();
 
-		if (email.isEmpty()) {
-			errorList.add("メールを入力してください");
-		}
-		if (password.isEmpty()) {
-			errorList.add("パスワードを入力してください");
-		}
+        if (email.isEmpty()) {
+            errorList.add("メールを入力してください");
+        }
+        if (password.isEmpty()) {
+            errorList.add("パスワードを入力してください");
+        }
 
 		Customers customers = customersRepository.findByEmail(email);
 

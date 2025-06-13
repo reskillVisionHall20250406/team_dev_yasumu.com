@@ -30,11 +30,11 @@
             <button type="button" onclick="togglePassword(event)" class="toggle-btn">🔒</button>
 
         </div>
-			<input type="text" name="cardNo" placeholder="クレジットカード情報登録" maxlength="16" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input type="text" name="code" placeholder="セキュリティコード" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
-			<input type="text" style="width: 80px;"  name="expiry" id="expiry-month"placeholder="月"  maxlength="2"  oninput="validateMonth(this)">
+			<input type="text" name="cardNo" placeholder="クレジットカード情報登録" maxlength="16" pattern="\d{16}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text" name="code" placeholder="セキュリティコード" maxlength="3" pattern="\d{3}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text" style="width: 80px;"  name="expiry" id="expiry-month"placeholder="月"  maxlength="2" pattern="\d{2}" oninput="validateMonth(this)">
 			<a>/</a>
-			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
+			<input type="text" style="width: 80px;" name="expiry" placeholder="年(下二桁)" maxlength="2" pattern="\d{2}" oninput="this.value=this.value.replace(/[^0-9]/g,'');"><br>
 			
 		    <input name="file" type="file" id="img" class="poi" th:value="${imageUrl}">
 	        <button name = "imgBtn" value="imgBtn">画像の表示</button><br>
