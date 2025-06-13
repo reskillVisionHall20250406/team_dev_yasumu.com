@@ -17,11 +17,7 @@
 <body>
 	<header th:replace="header">
 	</header>
-
-
-
 	<main>
-
 		<div class="relative">
 			<img src="image/1-10.png" width="100%" class="imgth">
 			<div class="boxer">
@@ -37,7 +33,6 @@
 							<option value="5">中国地方</option>
 							<option value="6">四国地方</option>
 							<option value="7">九州地方</option>
-
 						</select>
 					</div>
 					<div class="selectbox-3">
@@ -77,8 +72,6 @@
 		<div class="blank"></div>
 		<!--ログ表示-->
 		<h2 class="midashi">最近見た宿</h2>
-
-
 		<div class="containers">
 			<ul class="carousel">
 				<li th:each="hotel : ${@log.getHotels()}" class="carousel-item"><a

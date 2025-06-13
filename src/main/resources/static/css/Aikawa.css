@@ -1215,3 +1215,97 @@ p {
 .textbox-2::placeholder {
 	color: #999;
 }
+
+button.key2:hover {
+	background-color: rgb(192, 192, 192);
+	color: #535353;
+}
+
+li.carousel-item:hover {
+	/* ホバー時の状態 */
+	filter: brightness(0.8);
+	/* 暗くする */
+	transition: filter 0.3s ease;
+	/* アニメーション効果 */
+}
+
+.reviews-wrapper {
+
+	margin: 0 auto;
+	background-color: #f2f2f2;
+	/* グレー背景 */
+	padding: 1em;
+	border-radius: 5px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	/* ← ボックス間の余白 */
+}
+
+.box-017 {
+	background-color: #fff;
+	padding: 1em;
+	border-radius: 6px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.box-017>span {
+	display: block;
+	margin-bottom: 0.5em;
+	color: #333;
+}
+
+
+.box-015 {
+	position: relative;
+	max-width: 400px;
+	margin:0,auto;
+	margin-bottom: 5vh;
+	padding: 1em 2.5em 1em 1.5em;
+	border-radius: 3px;
+	box-shadow: 0 2px 3px rgb(0 0 0 / 20%);
+	background-color: #e0efff;
+	color: #4f4f4f;
+}
+
+.box-015::before,
+.box-015::after {
+	position: absolute;
+	content: '';
+}
+
+.box-015::before {
+	top: -15px;
+	right: 10px;
+	height: 50px;
+	width: 15px;
+	border: 3px solid #999;
+	border-radius: 10px;
+	box-shadow: 1px 1px 2px rgb(0 0 0 / 30%);
+	transform: rotate(10deg);
+}
+
+.box-015::after {
+	top: 0;
+	width: 10px;
+	right: 20px;
+	border: solid 5px #e0efff;
+}
+
+.im2 {
+	width: 70%;
+	max-width: 1140px;
+}
+
+.star-color{
+	color: gold;
+}
+
+.star-color2{
+	color: rgb(192, 192, 192);
+}
+
+.star-color3{
+	display: flex;
+}

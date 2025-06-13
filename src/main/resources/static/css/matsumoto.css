@@ -179,9 +179,9 @@ button:hover {
 	display: flex;
 	justify-content: center;
 	/* 水平方向の中央揃え */
-	align-items: center;
+	padding-top: 5vh;
 	/* 垂直方向の中央揃え */
-	height: 200px;
+	height: 350px;
 	/* 高さを指定（必要に応じて調整） */
 
 }
@@ -277,22 +277,50 @@ li {
 	color: #999;
 }
 
-.hoteldetail{
+.hoteldetail {
 	padding-left: 10vh;
 }
-h6,h3{
+
+h6,
+h3 {
 	margin: 0;
 	padding: 0;
 }
-.flex img{
+
+.flex img {
 	border-radius: 7px;
+
+	width: 270px;
+	height: 200px;
 }
 
-.hoteldetail2{
+.hoteldetail2 {
 	margin-top: 10vh;
 	text-align: right;
 	text-align: end;
 }
-.midashi{
+
+.midashi {
 	padding-left: 11%;
+}
+
+.date2:label {
+	position: relative;
+	display: inline-block;
+	width: 200px;
+	height: 36px;
+	border: 2px solid #ccc;
+	border-radius: 15px;
+}
+
+input[type="date"] {
+	position: relative;
+	padding: 0 10px;
+	width: 200px;
+	height: 36px;
+	border: 0;
+	background: transparent;
+	box-sizing: border-box;
+	font-size: 14px;
+	color: #999;
 }
