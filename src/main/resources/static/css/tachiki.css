@@ -710,8 +710,8 @@ label {
 .mypage-image{
 	width: 200px;
 	float: left;
+	padding-bottom: 20px;
 }
-
 .mypage-title {
 	text-align: center;
 }
