@@ -10,51 +10,52 @@
 <body>
 	<header th:replace="header3">
 	</header>
-	
 
-	
+
+
 	<div th:if="${#lists.isEmpty(hotel)}" class="login-container">
 		<h2 class="history-title">
-				<a>[[${@account.name}]]さん<br>
-					ご予約履歴</a><br>
-			</h2>
-				<div style="text-align: center; color: red;">
-					<p style="font-size: 20px;">予約した宿が見つかりませんでした</p>
-				</div>
+			<a>[[${@account.name}]]さん<br>
+				ご予約履歴</a><br>
+		</h2>
+		<div style="text-align: center; color: red;">
+			<p style="font-size: 20px;">予約した宿が見つかりませんでした</p>
+		</div>
 	</div>
 	<th:block th:unless="${#lists.isEmpty(hotel)}">
 		<h2 class="history-title">
-				<a>[[${@account.name}]]さん<br>
-					ご予約履歴</a><br>
-			</h2>
-	<main class="history-main1">
-		<th:block th:each="hotels:${hotel}" class="col">
-			<div class="bottom">
-				<a th:href="@{/hotelsdetail/{id}(id=${hotels.id})}" class="history-yado">
-					<div class="flex ">
-						<img th:src="${hotels.image}" height="120px" width="200px" class="history-image" alt="ホテル画像">
-						<div class="flex2">
-							<div th:text="宿泊施設名：+${hotels.name}" class="history-hotelName">
-							</div>
-							<div th:each="reservation:${reservations}">
-								<span th:if="${hotels.id} == ${reservation.hotelId}">
-									<div>
-										<div th:text="宿泊日：+${reservation.date}">
-										</div>
-								</span>
-							</div>
-							<div th:text="宿泊人数：+${hotels.capacity}+人"></div>
-							<div th:text="値段：+${hotels.price}+円">
+			<a>[[${@account.name}]]さん<br>
+				ご予約履歴</a><br>
+		</h2>
+		<main class="history-main1">
+			<th:block th:each="hotels:${hotel}" class="col">
+				<div class="bottom">
+					<a th:href="@{/hotelsdetail/{id}(id=${hotels.id})}" class="history-yado">
+						<div class="flex ">
+							<img th:src="${hotels.image}" height="120px" width="200px" class="history-image"
+								alt="ホテル画像">
+							<div class="flex2">
+								<div th:text="宿泊施設名：+${hotels.name}" class="history-hotelName">
+								</div>
+								<div th:each="reservation:${reservations}">
+									<span th:if="${hotels.id} == ${reservation.hotelId}">
+											<div th:text="宿泊日：+${reservation.date}">
+											</div>
+									</span>
+								</div>
+								<div th:text="宿泊人数：+${hotels.capacity}+人"></div>
+								<div th:text="値段：+${hotels.price}+円">
+								</div>
 							</div>
 						</div>
-					</div>
-			</div>
-	</main>
-	</th:block>
-	
-	<div style="text-align: center;">
-		<a href="/mypage">マイページへ</a>
-	</div>
+				</div>
+			</th:block>
+		</main>
+
+
+		<div style="text-align: center;">
+			<a href="/mypage">マイページへ</a>
+		</div>
 </body>
 
 </html>
