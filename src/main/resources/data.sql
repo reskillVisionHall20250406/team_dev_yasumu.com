@@ -7,7 +7,7 @@ INSERT INTO area(name) VALUES('四国地方');
 INSERT INTO area(name) VALUES('九州地方');
     
 INSERT INTO customers(name,address,tel,email,password,image,card_no,code,expiry)
-VALUES('ジョン・ヘスン','東京都新宿区','09012345678','jung@gmail.com','himitu123','/image/profile.png','0123456789012','123','0828');
+VALUES('ジョン・ヘスン','東京都新宿区','09012345678','jung@gmail.com','himitu123','/image/profile.png','01234567890123','123','0828');
 
 INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capacity, price) VALUES
 (2, 'サクラホテル東京', '東京都新宿区2-3', 

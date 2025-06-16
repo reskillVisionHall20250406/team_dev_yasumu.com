@@ -91,32 +91,40 @@ public class ReservationController {
 			@RequestParam("expiry") String expiry, Model model) {
 		Hotels hotels = hotelsRepository.findById(id).get();
 		Customers customer = customersRepository.findByEmail(account.getEmail());
-		List<String> errList = new ArrayList<>();
-		System.out.println(cardNo);
-		System.out.println(cardNo.length());
+		String err1 = "";
+		String err2 = "";
+		String err3 = "";
+		List<String> err = new ArrayList<>();
 		if (cardNo.equals("")) {
-			errList.add("クレジットカード番号を入力してください");
+			err1 = ("クレジットカード番号を入力してください");
+			err.add(err1);
 		} else if (cardNo.length() > 16 || cardNo.length() < 14) {
-			errList.add("クレジットカード番号は14～16桁で入力してください");
+			err1 = ("クレジットカード番号は14～16桁で入力してください");
+			err.add(err1);
 		}
 
-		if (code.equals("")) {
-			errList.add("セキュリティ番号を入力してください");
+		if (code.equals("") || code == null) {
+			err2 = ("セキュリティ番号を入力してください");
+			err.add(err2);
 		} else if (code.length() != 3) {
-			errList.add("セキュリティ番号は3桁で入力してください");
+			err2 = ("セキュリティ番号は3桁で入力してください");
+			err.add(err2);
 		}
 		String newString = "";
 		Integer newExpiry = 0;
 		if (expiry.equals("")) {
-			errList.add("有効期限を入力してください");
+			err3 = ("有効期限を入力してください");
+			err.add(err3);
 		} else if (!(expiry.equals(""))) {
 			if (expiry.length() < 4) {
-				errList.add("有効期限はMM(01～12)/YYの4桁で入力してください");
+				err3 = ("有効期限はMM(01～12)/YYの4桁で入力してください");
+				err.add(err3);
 			} else {
 				newString = expiry.substring(0, 2);
 				newExpiry = Integer.parseInt(newString);
 				if (newExpiry < 1 || newExpiry > 12) {
-					errList.add("有効期限はMM(01～12)/YYで入力してください");
+					err3 = ("有効期限はMM(01～12)/YYで入力してください");
+					err.add(err3);
 				}
 			}
 		}
@@ -124,21 +132,33 @@ public class ReservationController {
 		customer.setCardNo(cardNo);
 		customer.setCode(code);
 		customer.setExpiry(expiry);
-		if (errList.isEmpty()) {
 
+		if (err.isEmpty()) {
 			Reservation reservation = new Reservation(id, customer.getId(), orderedOn);
 			reservationRepository.save(reservation);
 			model.addAttribute("hotels", hotels);
 			model.addAttribute("reservation", reservation);
 
 			return "completed";
+
 		}
 
 		model.addAttribute("orderedOn", orderedOn);
 		model.addAttribute("hotels", hotels);
 		model.addAttribute("customers", customer);
 		model.addAttribute("account", account);
-		model.addAttribute("err", errList);
+		if (!(err1.equals(""))) {
+			model.addAttribute("err1", err1);
+		}
+
+		if (!(err2.equals(""))) {
+			model.addAttribute("err2", err2);
+		}
+
+		if (!(err3.equals(""))) {
+			model.addAttribute("err3", err3);
+		}
+
 		return "reservation";
 
 	}

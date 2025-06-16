@@ -82,6 +82,7 @@
 						<span th:text="${review.comment}"></span>
 					</div>
 				</div>
+				<span th:if="${account.name != null}">
 				<form th:action="@{/hotelsdetail/comment/{id}(id=${hotels.id})}" method="get" class="jjj">
 					<br>
 
@@ -100,6 +101,7 @@
 						<button type="submit" class="button-03">投稿する</button>
 					</label>
 				</form>
+				</span>
 			</div>
 		</div>
 	</main>
