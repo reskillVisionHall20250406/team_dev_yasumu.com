@@ -36,7 +36,7 @@
 				<br><br><br><br><br><br><br>
 				<hr><br>
 				<h3 th:text="${hotels.price}+円" class="oimo"></h3><br>
-				<form th:action="@{/reservation/{id}(id=${hotels.id})}" method="get">
+				<form th:action="@{/reservation/days/{id}(id=${hotels.id})}" method="get">
 					<button class="button-3">予約する</button>
 				</form>
 			</div>

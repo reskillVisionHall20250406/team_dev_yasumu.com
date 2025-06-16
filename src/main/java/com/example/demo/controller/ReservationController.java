@@ -11,9 +11,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Customers;
 import com.example.demo.entity.Hotels;
@@ -41,21 +43,30 @@ public class ReservationController {
 	@Autowired
 	ReservationRepository reservationRepository;
 
-	@GetMapping("/kari")
-	public String kari() {
+	@GetMapping("/reservation/days/{id}")
+	public String kari(@PathVariable("id") Integer id, Model model) {
+		Hotels hotels = hotelsRepository.findById(id).get();
+		model.addAttribute("hotels", hotels);
 		return "reservation_kari";
 	}
 
-	@PostMapping("/reservation/days")
-	public String kripost(@RequestParam("days") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate days) {
+	@PostMapping("/reservation/days/{id}")
+	public String kripost(
+			@PathVariable("id") Integer id,
+			@RequestParam("days") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate days,
+			RedirectAttributes redirectAttributes, Model model) {
 		// days に選択された LocalDate が入ります
-		// 例: モデルにセット or セッションに保存して /reservation/{id} にリダイレクトなど
-		session.setAttribute("selectedDate", days);
-		return "redirect:/reservation/" + session.getAttribute("id");
+		redirectAttributes.addFlashAttribute("selectedDate", days);
+
+		//		session.setAttribute("selectedDate", days);
+		//		model.addAttribute("orderedOn", days);
+
+		return "redirect:/reservation/" + id;
 	}
 
 	@GetMapping("/reservation/{id}")
 	public String reservation(
+			@ModelAttribute("selectedDate") LocalDate selectedDate,
 			@PathVariable("id") Integer id,
 			Model model) {
 
@@ -72,12 +83,12 @@ public class ReservationController {
 			card.add(customer.getCardNo());
 			card.add(customer.getCode());
 			card.add(customer.getExpiry());
-
 			model.addAttribute("hotels", hotels);
 			model.addAttribute("customers", customer);
 			model.addAttribute("account", account);
+			model.addAttribute("selectedDate", selectedDate);
 			//		@RequestParam("date") LocalDate date,
-			//		model.addAttribute("date", date);
+
 			return "reservation";
 		}
 	}
