@@ -226,7 +226,7 @@ public class AccountController {
 			List<String> errorList = new ArrayList<>();
 
 			Customers existingCustomer = customersRepository.findByEmail(email);
-			Customers customers = customersRepository.findByEmail(account.getName());
+			Customers customers = customersRepository.findByEmail(account.getEmail());
 
 			if (name.isEmpty()) {
 				errorList.add("お名前を入力してください");
