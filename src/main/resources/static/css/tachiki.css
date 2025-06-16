@@ -782,6 +782,7 @@ label {
 	font-size: 32px;
 	margin-bottom: 48px;
 	text-align: center;
+	margin-top: -48px;
 }
 
 .history-hotelName {
@@ -829,6 +830,9 @@ col{
 }
 .bottom{
 	margin-bottom: 30px;
+}
+@media screen and (max-width: 600px) {
+    /* スマートフォン向けのスタイル */
 }
 
 /* .nav_logo {
