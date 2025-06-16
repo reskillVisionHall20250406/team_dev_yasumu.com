@@ -128,8 +128,6 @@ public class HotelsController {
 		Hotels hotels = hotelsRepository.findById(id).get();
 		List<Review> reviews = reviewRepository.findByHotelId(id);
 
-		log.add(hotels);
-
 		model.addAttribute("account", account);
 		model.addAttribute("hotels", hotels);
 		model.addAttribute("reviews", reviews);
