@@ -689,6 +689,12 @@ label {
 /*	list-style: none;*/
 /*}*/
 
+/*header３*/
+.hover-header3{
+	list-style-type: none;
+	padding: 0px; text-align:
+	left; font-weight: bold;
+}
 
 /*マイページ画面*/
 .mypage-name {
