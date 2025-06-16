@@ -8,12 +8,12 @@
 </head>
 
 <body style="text-align: center;">
-	<header th:replace="header2"></header><br>
+	<header th:replace="header2"></header><br><br>
 	<h3>宿の予約が完了しました</h3><br>
 	<div class="login-container">
 		<div class="flex">
 			<img th:src="${hotels.image}" height="170px" alt="ホテル画像">
-			<div>
+			<div class="hello">
 				<div th:text="${hotels.name}"></div>
 				<div th:text="${hotels.address}"></div>
 				<div th:text="宿泊人数： + ${hotels.capacity} + 人"></div>
