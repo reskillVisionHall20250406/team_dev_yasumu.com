@@ -12,6 +12,13 @@ header button {
 	font-family: 'M PLUS 1p', sans-serif;
 }
 
+.hover-header3 {
+	list-style-type: none;
+	padding: 0px;
+	text-align: left;
+	font-weight: bold;
+}
+
 .logo {
 	position: absolute;
 	top: 1%;

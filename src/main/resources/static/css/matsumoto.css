@@ -364,3 +364,20 @@ input[type="date"] {
 .hello{
 	margin-left: 8vh;
 }
+
+/* .nav_logo {
+	position: absolute;
+	bottom: 30px;
+	left: 0;
+	width: 100%;
+	z-index: 2;
+}
+
+.nav_copyright {
+	position: fixed;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	z-index: 1; */
+/* } */
