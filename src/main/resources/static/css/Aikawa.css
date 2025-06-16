@@ -9,20 +9,20 @@ header button {
 }
 
 .nav_logo {
-  position: absolute;
-  bottom: 30px;
-  left: 0;
-  width: 100%;
-  z-index: 2;
+	position: absolute;
+	bottom: 30px;
+	left: 0;
+	width: 100%;
+	z-index: 2;
 }
 
 .nav_copyright {
-  position: fixed;
-  bottom: 10px; 
-  left: 0;
-  width: 100%;
-  text-align: center;
-  z-index: 1;
+	position: fixed;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	z-index: 1;
 }
 
 .logo {
@@ -687,6 +687,7 @@ h3 {
 	flex-wrap: wrap;
 	gap: .3em 2em;
 	border: none;
+	width: 80%;
 }
 
 .radio-1 label {
@@ -897,21 +898,6 @@ a:hover {
 
 .recommend {
 	width: 90%;
-	display: flex;
-	margin: auto;
-}
-
-.recommend2 {
-	width: 45%;
-	justify-content: space-between;
-}
-
-.recommend2 {
-	object-fit: fill;
-}
-
-.recommend {
-	width: 90%;
 	max-width: 1340px;
 	margin: 0 auto;
 	display: flex;
@@ -922,6 +908,8 @@ a:hover {
 }
 
 .recommend2 {
+	justify-content: space-between;
+	object-fit: fill;
 	height: 30vh;
 	width: 49%;
 	border-radius: 6px;
@@ -1221,7 +1209,7 @@ p {
 
 .textbox-2 {
 	width: 100%;
-/*	padding: 8px;*/
+	/*	padding: 8px;*/
 	border: 1px solid #d2d2d2;
 	border-radius: 3px;
 	background: #f7f7f7;
@@ -1277,7 +1265,7 @@ li.carousel-item:hover {
 .box-015 {
 	position: relative;
 	max-width: 400px;
-	margin:0,auto;
+	margin: 0, auto;
 	margin-bottom: 5vh;
 	padding: 1em 2.5em 1em 1.5em;
 	border-radius: 3px;
@@ -1316,15 +1304,15 @@ li.carousel-item:hover {
 	padding-left: 25px;
 }
 
-.star-color{
+.star-color {
 	color: gold;
 }
 
-.star-color2{
+.star-color2 {
 	color: rgb(192, 192, 192);
 }
 
-.star-color3{
+.star-color3 {
 	display: flex;
 }
 
@@ -1349,8 +1337,62 @@ li.carousel-item:hover {
 	background-color: #1579c0;
 }
 
-form.jjj{
+form.jjj {
 	margin-bottom: 20vh;
 	margin-left: 0;
 	padding-left: 0;
+}
+
+/* ================================
+   レスポンシブ対応（スマホ・タブレット）
+================================ */
+
+@media screen and (max-width: 768px) {
+	.search-form-3 {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.search-form-3 input[type="text"],
+	.search-form-3 select {
+		width: 100%;
+	}
+
+	.search-form-3 button {
+		width: 100%;
+		margin-top: 10px;
+	}
+
+	.recommend,
+	.recommend2 {
+		width: 100%;
+		height: auto;
+		margin-bottom: 20px;
+	}
+
+	.carousel {
+		width: 100%;
+	}
+
+	.tab-list {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.tab-list li {
+		width: 90%;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	.midashi {
+		font-size: 18px;
+		text-align: center;
+		padding-left: 0;
+	}
+
+	header {
+		font-size: 20px;
+		padding: 10px;
+	}
 }
