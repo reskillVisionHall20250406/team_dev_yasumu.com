@@ -7,6 +7,7 @@ import java.util.List;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,9 +46,12 @@ public class ReservationController {
 		return "reservation_kari";
 	}
 
-	@PostMapping("/kari")
-	public String kripost() {
-		return "reservation";
+	@PostMapping("/reservation/days")
+	public String kripost(@RequestParam("days") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate days) {
+		// days に選択された LocalDate が入ります
+		// 例: モデルにセット or セッションに保存して /reservation/{id} にリダイレクトなど
+		session.setAttribute("selectedDate", days);
+		return "redirect:/reservation/" + session.getAttribute("id");
 	}
 
 	@GetMapping("/reservation/{id}")

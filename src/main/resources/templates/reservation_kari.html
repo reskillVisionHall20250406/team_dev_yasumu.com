@@ -35,8 +35,12 @@
 				</table>
 			</div>
 			<div class="confirm-area">
-				<p id="selected-dates">選択された日付: なし</p>
-				<button onclick="confirmDate()">この日程で予約する</button>
+				<form action="/reservation/days" method="post">
+				  <input type="hidden" name="days" id="hidden-days">
+				  <p>選択された日付: <span id="selected-dates">未選択</span></p>
+				  <button type="submit">この日程で予約する</button>
+				</form>
+
 			</div>
 	</div>
 	</main>
@@ -133,7 +137,10 @@
 			selected = date;
 			selectedBtn = btn;
 			btn.classList.add("selected");
-			document.getElementById("selected-dates").textContent = `選択された日付: ${formatDate(date)}`;
+			document.getElementById("selected-dates").textContent = `${formatDate(date)}`;
+			const dateStr = formatDate(date);
+			 document.getElementById("selected-dates").textContent = dateStr;
+			 document.getElementById("hidden-days").value = dateStr;
 		}
 
 
@@ -151,17 +158,13 @@
 
 
 		function confirmDate() {
-			if (!selected) {
-				alert("チェックイン日を選択してください。");
-				return;
-			}
-
-
-
-			alert("登録しました");
-
-			postReservation(guestName, email, formatDate(selected));
+		  if (!selected) {
+		    alert("チェックイン日を選択してください。");
+		    return false;
+		  }
+		  return confirm("この日程で予約しますか？");
 		}
+
 
 		updateCalendar();
 	</script>
