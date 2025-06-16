@@ -222,7 +222,8 @@ li {
 }
 
 .login-container {
-	max-width: 1000px;
+	max-height: 250px;
+	max-width: 500px;
 	margin: 0 auto;
 	padding: 20px;
 	background-color: #fff;
@@ -307,11 +308,10 @@ h3 {
 	padding: 0;
 }
 
-.flex img {
-	border-radius: 7px;
-
-	width: 270px;
-	height: 200px;
+.image img {
+	display: flex;
+	width: 80px;
+	height: 80px;
 }
 
 .hoteldetail2 {
@@ -344,3 +344,4 @@ input[type="date"] {
 	font-size: 14px;
 	color: #999;
 }
+
