@@ -35,10 +35,10 @@
 				</table>
 			</div>
 			<div class="confirm-area">
-				<form action="/reservation/days" method="post">
+				<form th:action="@{/reservation/days/{id}(id=${hotels.id})}" method="post">
 				  <input type="hidden" name="days" id="hidden-days">
 				  <p>選択された日付: <span id="selected-dates">未選択</span></p>
-				  <button type="submit">この日程で予約する</button>
+				  <button type="submit" onclick=confirmDate()>この日程で予約する</button>
 				</form>
 
 			</div>
@@ -160,9 +160,8 @@
 		function confirmDate() {
 		  if (!selected) {
 		    alert("チェックイン日を選択してください。");
-		    return false;
+		    event.preventDefault();
 		  }
-		  return confirm("この日程で予約しますか？");
 		}
 
 

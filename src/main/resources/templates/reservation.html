@@ -17,7 +17,7 @@
 	<div class="center">
 		<h2 class="midashi">宿予約内容確認/クレジットカード情報・変更・登録</h2>
 		<div class="login-container">
-
+			
 			<div class="flex">
 				<img th:src="${hotels.image}" height="170px" alt="ホテル画像">
 				<div class="hoteldetail">
@@ -32,10 +32,8 @@
 			</div>
 
 			<div class="flex-item credit-form">
-
 				<div class="btn">
 					<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" method="post">
-
 						<label>
 							<span class="textbox-3-label">クレジットカード番号</span>
 							<div class="flexErr">
@@ -68,8 +66,8 @@
 							</div>
 						</label>
 						<br>
+						<input type="hidden" th:value="${selectedDate}" name="orderedOn">
 						<!--仮の日付選択-->
-						<label class="date2"><input type="date" name="orderedOn" th:value=${orderedOn} required></label>
 						<button>予約確定</button>
 
 					</form>
