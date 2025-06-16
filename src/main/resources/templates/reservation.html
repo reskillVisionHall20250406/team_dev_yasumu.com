@@ -57,12 +57,13 @@
 
 						<br>
 						<button>予約確定</button>
+						<ul th:if="${err}" class="err">
+											<li th:each="error : ${err}" th:text="${error}"></li>
+										</ul>
 					</form>
 
 				</div>
-				<ul th:if="${err}" class="err">
-					<li th:each="error : ${err}" th:text="${error}"></li>
-				</ul>
+				
 			</div>
 		</div>
 	</div>
