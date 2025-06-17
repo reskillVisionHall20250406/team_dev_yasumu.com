@@ -79,6 +79,7 @@
 						<div class="div4">
 							<img th:src="${hotel.image}" height="170px" width="100%" alt="ホテル画像">
 							<div class="popo">
+
 								<h3 th:text="${hotel.name}"></h3>
 								<div th:text="${hotel.address}"></div>
 							</div>
@@ -187,6 +188,20 @@
 							<div class="popo">
 								<h3 th:text="${hotel.name}"></h3>
 								<div th:text="${hotel.address}"></div>
+																<div class="star-rating2">
+																    <span th:text="${hotel.stars}">0.0</span>
+<!--																    <span class="stars" th:text="${hotel.starVisual}"></span>-->
+																</div>
+
+								<div class="star-rating" th:attr="data-stars=${hotel.stars}">
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+								</div>
+
+
 							</div>
 							<div class="popo2">
 								<div th:text="${hotel.capacity} + '名 税込　'"></div>
@@ -227,6 +242,22 @@
 
 	</main>
 
+	<script>
+		document.querySelectorAll('.star-rating').forEach(starRating => {
+			const stars = starRating.querySelectorAll('.star');
+			const rating = parseFloat(starRating.getAttribute('data-stars'));
+
+			stars.forEach((star, i) => {
+				star.classList.remove('filled', 'half');
+				if (rating >= i + 1) {
+					star.classList.add('filled');
+				} else if (rating > i && rating < i + 1) {
+					star.classList.add('half');
+				}
+			});
+		});
+
+	</script>
 </body>
 
 </html>

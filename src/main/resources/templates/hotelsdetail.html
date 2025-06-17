@@ -32,6 +32,16 @@
 				<h1 th:text="${hotels.name}" class="mi"></h1>
 				<div class="oimo3">
 					<h4 class="oimo2" th:text="${hotels.address}"></h4>
+					<div class="star-rating2">
+						<span th:text="${hotels.stars}">0.0</span>
+					</div>
+					<div class="star-rating" th:attr="data-stars=${hotels.stars}">
+						<span class="star"></span>
+						<span class="star"></span>
+						<span class="star"></span>
+						<span class="star"></span>
+						<span class="star"></span>
+					</div>
 				</div>
 				<br><br><br><br><br><br><br>
 				<hr><br>
@@ -83,30 +93,46 @@
 					</div>
 				</div>
 				<span th:if="${account.name != null}">
-				<form th:action="@{/hotelsdetail/comment/{id}(id=${hotels.id})}" method="get" class="jjj">
-					<br>
+					<form th:action="@{/hotelsdetail/comment/{id}(id=${hotels.id})}" method="get" class="jjj">
+						<br>
 
-					<div class="font">感想・評価を投稿する</div>
-					<br>
-					<div class="star-rating">
-						<input type="radio" id="star5" name="star" value="5"><label for="star5">★</label>
-						<input type="radio" id="star4" name="star" value="4"><label for="star4">★</label>
-						<input type="radio" id="star3" name="star" value="3"><label for="star3">★</label>
-						<input type="radio" id="star2" name="star" value="2"><label for="star2">★</label>
-						<input type="radio" id="star1" name="star" value="1" checked><label for="star1">★</label>
-					</div>
-					<br><br>
-					<label>
-						<span class="textbox-2-label"></span>
-						<textarea class="textbox-2" name="comment" rows="4" cols="50"
-							placeholder="レビューを入力してください"></textarea> <br><br>
-						<button type="submit" class="button-03">投稿する</button>
-					</label>
-				</form>
+						<div class="font">感想・評価を投稿する</div>
+						<br>
+						<div class="star-rating2">
+							<input type="radio" id="star5" name="star" value="5"><label for="star5">★</label>
+							<input type="radio" id="star4" name="star" value="4"><label for="star4">★</label>
+							<input type="radio" id="star3" name="star" value="3"><label for="star3">★</label>
+							<input type="radio" id="star2" name="star" value="2"><label for="star2">★</label>
+							<input type="radio" id="star1" name="star" value="1" checked><label for="star1">★</label>
+						</div>
+						<br><br>
+						<label>
+							<span class="textbox-2-label"></span>
+							<textarea class="textbox-2" name="comment" rows="4" cols="50"
+								placeholder="レビューを入力してください"></textarea> <br><br>
+							<button type="submit" class="button-03">投稿する</button>
+						</label>
+					</form>
 				</span>
 			</div>
 		</div>
 	</main>
+	<script>
+		document.querySelectorAll('.star-rating').forEach(starRating => {
+			const stars = starRating.querySelectorAll('.star');
+			const rating = parseFloat(starRating.getAttribute('data-stars'));
+
+			stars.forEach((star, i) => {
+				star.classList.remove('filled', 'half');
+				if (rating >= i + 1) {
+					star.classList.add('filled');
+				} else if (rating > i && rating < i + 1) {
+					star.classList.add('half');
+				}
+			});
+		});
+
+	</script>
 </body>
 
 </html>

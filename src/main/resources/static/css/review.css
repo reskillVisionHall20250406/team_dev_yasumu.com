@@ -1,23 +1,23 @@
 @charset "UTF-8";
 
 
-.star-rating {
+.star-rating2 {
 	direction: rtl;
 	display: inline-flex;
 	font-size: 2rem;
 	cursor: pointer;
 }
 
-.star-rating input {
+.star-rating2 input {
 	display: none;
 }
 
-.star-rating label {
+.star-rating2 label {
 	color: #ccc;
 }
 
-.star-rating input:checked~label,
-.star-rating label:hover,
-.star-rating label:hover~label {
+.star-rating2 input:checked~label,
+.star-rating2 label:hover,
+.star-rating2 label:hover~label {
 	color: gold;
 }
