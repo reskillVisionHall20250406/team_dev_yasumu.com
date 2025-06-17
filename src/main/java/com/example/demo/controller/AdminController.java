@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.Admin;
 import com.example.demo.entity.Hotels;
@@ -103,11 +106,22 @@ public class AdminController {
 		return "admin_home";
 	}
 
-	@GetMapping("/admin/edit/{id}")
+	@GetMapping("/admin/detail/{id}")
 	public String showDetail(@PathVariable("id") Integer id,
 			Model model) {
 
 		//hotelsテーブルをID(主キー)で検索
+		Hotels hotels = hotelsRepository.findById(id).get();
+		List<Review> reviews = reviewRepository.findByHotelId(id);
+
+		model.addAttribute("hotels", hotels);
+		model.addAttribute("reviews", reviews);
+		return "showHotels";
+	}
+
+	@GetMapping("/admin/edit/{id}")
+	public String returnEditDetail(@PathVariable("id") Integer id,
+			Model model) {
 		Hotels hotels = hotelsRepository.findById(id).get();
 		List<Review> reviews = reviewRepository.findByHotelId(id);
 
@@ -133,9 +147,13 @@ public class AdminController {
 			@RequestParam(name = "address", defaultValue = "") String address,
 			@RequestParam(name = "capacity", defaultValue = "") Integer capacity,
 			@RequestParam(name = "price", defaultValue = "") Integer price,
+			@RequestParam(name = "detail", defaultValue = "") String detail,
+			@RequestParam("file") MultipartFile file,
+			@RequestParam("file2") MultipartFile file2,
+			@RequestParam("file3") MultipartFile file3,
 			@PathVariable("id") Integer id,
 			Model model) {
-
+		Hotels hotels = hotelsRepository.findById(id).get();
 		List<String> err = new ArrayList<>();
 		if (name.equals("")) {
 			err.add("宿名を入力してください");
@@ -157,12 +175,42 @@ public class AdminController {
 			err.add("料金は１以上を入力してください");
 		}
 		if (err.isEmpty()) {
-			Hotels hotels = hotelsRepository.findById(id).get();
+			try {
+				String filename = file.getOriginalFilename();
+				String filePath = "static/upload/" + filename;
+				byte[] content = file.getBytes();
+				Files.write(Paths.get(filePath), content);
 
-			model.addAttribute("hotels", hotels);
-			return "hotelsEdit";
+				String filename2 = file2.getOriginalFilename();
+				String filePath2 = "static/upload/" + filename2;
+				byte[] content2 = file2.getBytes();
+				Files.write(Paths.get(filePath2), content2);
+
+				String filename3 = file3.getOriginalFilename();
+				String filePath3 = "static/upload/" + filename3;
+				byte[] content3 = file3.getBytes();
+				Files.write(Paths.get(filePath3), content3);
+
+				String imageUrl = "/upload/" + filename;
+				String imageUrl2 = "/upload/" + filename2;
+				String imageUrl3 = "/upload/" + filename3;
+				model.addAttribute("imageUrl", imageUrl);
+				model.addAttribute("imageUrl2", imageUrl2);
+				model.addAttribute("imageUrl3", imageUrl3);
+				hotels.setImage(imageUrl);
+				hotels.setImage2(imageUrl2);
+				hotels.setImage3(imageUrl3);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			hotels.setName(name);
+			hotels.setAddress(address);
+			hotels.setCapacity(capacity);
+			hotels.setDetail(detail);
+			hotelsRepository.save(hotels);
+			return "redirect:/admin/edit/" + id;
 		}
-		Hotels hotels = hotelsRepository.findById(id).get();
+
 		model.addAttribute("hotels", hotels);
 		model.addAttribute("errors", err);
 		return "hotelsEdit";
