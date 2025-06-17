@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "hotels")
@@ -23,9 +24,19 @@ public class Hotels {
 	private String image3;
 	private Integer capacity;
 	private Integer price;
-	private Double stars;
+	private double stars;
 	@Column(name = "admin_id")
 	private Integer adminId;
+	@Transient
+	private String starVisual;
+
+	public String getStarVisual() {
+		return starVisual;
+	}
+
+	public void setStarVisual(String starVisual) {
+		this.starVisual = starVisual;
+	}
 
 	Hotels() {
 	}
@@ -115,12 +126,12 @@ public class Hotels {
 		this.price = price;
 	}
 
-	public Double getStars() {
+	public double getStars() {
 		return stars;
 	}
 
-	public void setStars(Double stars) {
-		this.stars = stars;
+	public void setStars(double rounded) {
+		this.stars = rounded;
 	}
 
 	public Integer getAdminId() {
