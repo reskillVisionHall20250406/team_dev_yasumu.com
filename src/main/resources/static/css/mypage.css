@@ -133,7 +133,7 @@ header button {
 }
 
 #hmb span:nth-child(2) {
-	top: 48%;
+	top: 16%;
 }
 
 @media (max-width: 480px) {
@@ -793,7 +793,7 @@ label {
 		transform: translateY(-50% -50%);
 
 	}
-
+}
 	.hover-header3:hover {
 		color: #000000;
 	}
@@ -811,10 +811,10 @@ label {
 	}
 
 	/*マイページ画面*/
-	/*.mypage-name {*/
-	/*	text-align: center;*/
-	/*	font-size: 32px;*/
-	/*}*/
+	.mypage-name {
+		text-align: center;
+		font-size: 32px;
+	}
 
 	/*@media screen and(max-width:480px) {*/
 	.mypage-title {
