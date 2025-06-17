@@ -309,6 +309,8 @@ button:hover {
 
 body {
 	font-family: 'M PLUS 1p', sans-serif;
+	height: 100vh;
+    margin: 0;
 }
 
 .section {
@@ -618,6 +620,13 @@ label {
 .toggle-btn:active {
   background: transparent !important; /* hover, focus 시 배경색 제거 */
   box-shadow: none;                  /* 포커스 외곽선 제거 */
+}
+
+.loginbackgroundimg{
+	width: 35%;
+	position:absolute;
+	bottom: 10px;
+	right: 0;
 }
 
 /*여기까지 정해승 로그인 css*/
