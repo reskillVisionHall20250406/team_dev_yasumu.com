@@ -17,8 +17,8 @@
 <body>
 	<main>
 		<h2>登録宿一覧</h2><br><br>
+		<a href="/admin/register">ホテル登録</a>
 		<div class="aa">
-		
 			<div class="row">
 				<div class="col" th:each="hotel : ${hotels}">
 					<a th:href="@{/admin/detail/{id}(id=${hotel.id})}">
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</main>
 
 </body>

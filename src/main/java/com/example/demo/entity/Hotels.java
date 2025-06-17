@@ -38,21 +38,22 @@ public class Hotels {
 		this.starVisual = starVisual;
 	}
 
-	Hotels() {
+	public Hotels() {
 	}
 
-	//	Hotels(Integer areaId, String name, String detail, String address, String image, String image2, String image3,
-	//			Integer capacity, Integer price) {
-	//		this.areaId = areaId;
-	//		this.name = name;
-	//		this.detail = detail;
-	//		this.address = address;
-	//		this.image = image;
-	//		this.image2 = image2;
-	//		this.image3 = image3;
-	//		this.capacity = capacity;
-	//		this.price = price;
-	//	}
+	public Hotels(Integer areaId, String name, String detail, String address, String image, String image2,
+			String image3,
+			Integer capacity, Integer price) {
+		this.areaId = areaId;
+		this.name = name;
+		this.detail = detail;
+		this.address = address;
+		this.image = image;
+		this.image2 = image2;
+		this.image3 = image3;
+		this.capacity = capacity;
+		this.price = price;
+	}
 
 	public Integer getId() {
 		return id;

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>新規登録</title>
+	<link rel="stylesheet" type="text/css" href="/css/tachiki.css">
+</head>
+
+<body>
+	<span th:replace="header2">
+	</span>
+	<img class="loginbackgroundimg" src="/image/loginback.png" alt="background">
+	<div class="login-container">
+		<div class="form-group">
+			<h2>新規登録</h2>
+
+			</ul>
+
+			<form class="login_text" action="/hotels/add" method="post" enctype="multipart/form-data">
+				<input type="text" name="name" th:value="${name}" placeholder="*ホテル名"><br>
+				...
+				<input name="file" type="file" id="img" class="poi">
+				<input name="file2" type="file" id="img2" class="poi">
+				<input name="file3" type="file" id="img3" class="poi">
+
+				<input type="hidden" name="imgname" value="">
+				<input type="hidden" name="imgname2" value="">
+				<input type="hidden" name="imgname3" value="">
+				<a class="edit-commentt">*は必須項目です</a><br>
+
+				<button class="button-37">送信</button>
+
+				<ul th:if="${errors}" class="error">
+					<li th:each="error : ${errors}" th:text="${error}"></li>
+				</ul>
+			</form>
+
+			<br>
+			<a href="/home">管理者ホームへ</a>
+		</div>
+	</div>
+	<script>
+		const pwInput = document.getElementById("password");
+		const warning = document.getElementById("pw-warning");
+
+		function filterFullWidth(value) {
+			return value.replace(/[^\u0020-\u007E]/g, '');
+		}
+
+		pwInput.addEventListener("input", function () {
+			const original = this.value;
+			const filtered = filterFullWidth(original);
+			if (original !== filtered) {
+				this.value = filtered;
+				warning.textContent = "全角文字は使用できません。半角英数字のみ入力してください。";
+			} else {
+				warning.textContent = "";
+			}
+		});
+
+		function togglePassword(event) {
+			const pwField = document.getElementById("password");
+			const btn = event.target;
+
+			if (pwField.type === "password") {
+				pwField.type = "text";
+				btn.textContent = "🔓"; // 보이기 상태
+			} else {
+				pwField.type = "password";
+				btn.textContent = "🔒"; // 숨기기 상태
+			}
+		}
+
+
+		pwInput.addEventListener("compositionend", function () {
+			this.value = filterFullWidth(this.value);
+		});
+		function validateMonth(input) {
+			// 숫자 외 제거
+			input.value = input.value.replace(/[^0-9]/g, '');
+
+			// 1자리 숫자가 입력되면 자동으로 0을 앞에 붙여줌 (단, 2 이상 입력 시 적용)
+			if (input.value.length === 1 && parseInt(input.value, 10) > 1) {
+				input.value = '0' + input.value;
+			}
+
+			// 두 자리 숫자가 입력되었을 경우 유효성 검사
+			if (input.value.length === 2) {
+				const num = parseInt(input.value, 10);
+				if (num < 1 || num > 12) {
+					alert("1~12を入力してください。");
+					input.value = '';
+				}
+			}
+		}
+	</script>
+</body>
+
+</html>
