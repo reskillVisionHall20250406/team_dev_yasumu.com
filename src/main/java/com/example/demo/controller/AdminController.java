@@ -19,22 +19,14 @@ import com.example.demo.entity.Customers;
 import com.example.demo.entity.Hotels;
 import com.example.demo.entity.Reservation;
 import com.example.demo.model.Account;
-import com.example.demo.repository.CustomersRepository;
 import com.example.demo.repository.HotelsRepository;
-import com.example.demo.repository.ReservationRepository;
 
 @Controller
 //コントローラーが必須に必要
-public class AccountController {
+public class AdminController {
 
 	@Autowired
 	HttpSession session;
-
-	@Autowired
-	CustomersRepository customersRepository;
-
-	@Autowired
-	ReservationRepository reservationRepository;
 
 	@Autowired
 	HotelsRepository hotelsRepository;
@@ -42,95 +34,7 @@ public class AccountController {
 	@Autowired
 	Account account;
 
-	@GetMapping("/user/add")
-	public String create() {
-		return "user";
-	}
-
-	@PostMapping("/user/add")
-	public String add(
-			@RequestParam(name = "name", defaultValue = "") String name,
-			@RequestParam(name = "address", defaultValue = "") String address,
-			@RequestParam(name = "tel", defaultValue = "") String tel,
-			@RequestParam(name = "email", defaultValue = "") String email,
-			@RequestParam(name = "password", defaultValue = "") String password,
-			@RequestParam(name = "cardNo", defaultValue = "") String cardNo,
-			@RequestParam(name = "code", defaultValue = "") String code,
-			@RequestParam(name = "expiry", defaultValue = "") String expiry,
-			Model model) {
-		time();
-		String expirys = expiry.replace(",", "");
-		//        , 이라는 단어를 뒤에 공란으로 만들어주는 replace라는 메소드
-		List<String> errorList = new ArrayList<>();
-		//      여기 밑에줄에서 이메일을 DB에서 찾아와서 메일이 등록되이는지 확인된다 눌이 아닌 확인하도록 에러코드
-		Customers existingCustomer = customersRepository.findByEmail(email);
-
-		if (name.isEmpty()) {
-			errorList.add("お名前を入力してください");
-		}
-		if (email.isEmpty()) {
-			errorList.add("メールを入力してください");
-		} else if (existingCustomer != null) {
-			errorList.add("このメールアドレスは既に登録されています");
-		}
-		if (address.isEmpty()) {
-			errorList.add("住所を入力してください");
-		}
-		if (tel.isEmpty()) {
-			errorList.add("電話番号を入力してください");
-		}
-		if (password.isEmpty()) {
-			errorList.add("パスワードを入力してください");
-		} else if (password.length() < 8) {
-			errorList.add("パスワードは8文字以上で入力してください");
-		} else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
-			errorList.add("パスワードは半角英字と数字の両方を含めてください");
-		}
-		if (!(cardNo.equals("")) || !(code.equals("")) || !(expiry.equals(""))) {
-			System.out.println(cardNo);
-			System.out.println(code);
-			System.out.println(expiry);
-			if (cardNo.equals("")) {
-				errorList.add("クレジットカード番号を入力してください");
-			} else if (cardNo.length() > 16 || cardNo.length() < 14) {
-				errorList.add("クレジットカード番号は14～16桁で入力してください");
-			}
-			if (code.equals("")) {
-				errorList.add("セキュリティ番号を入力してください");
-			} else if (code.length() != 3) {
-				errorList.add("セキュリティ番号は3桁で入力してください");
-			}
-			String newString = "";
-			Integer newExpiry = 0;
-			if (expiry.equals("")) {
-				errorList.add("有効期限を入力してください");
-			} else if (!(expiry.equals(""))) {
-				if (expiry.length() < 4) {
-					errorList.add("有効期限はMM(01～12)/YYの4桁で入力してください");
-				} else {
-					newString = expiry.substring(0, 2);
-					newExpiry = Integer.parseInt(newString);
-					if (newExpiry < 1 || newExpiry > 12) {
-						errorList.add("有効期限はMM(01～12)/YYで入力してください");
-					}
-				}
-			}
-		}
-		if (!errorList.isEmpty()) {
-			model.addAttribute("errors", errorList);
-			model.addAttribute("name", name);
-			model.addAttribute("email", email);
-			model.addAttribute("address", address);
-			model.addAttribute("tel", tel);
-			return "user"; // ログインページにエラーを表示
-		}
-
-		Customers customers = new Customers(name, address, tel, email, password, cardNo, code, expirys);
-		customersRepository.save(customers);
-		return "redirect:/login";
-	}
-
-	@GetMapping({ "/", "/logout" })
+	@GetMapping("/admin")
 	public String index() {
 		session.invalidate();
 		return "login";
@@ -226,7 +130,7 @@ public class AccountController {
 			List<String> errorList = new ArrayList<>();
 
 			Customers existingCustomer = customersRepository.findByEmail(email);
-			Customers customers = customersRepository.findByEmail(account.getEmail());
+			Customers customers = customersRepository.findByEmail(account.getName());
 
 			if (name.isEmpty()) {
 				errorList.add("お名前を入力してください");

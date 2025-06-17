@@ -23,23 +23,26 @@ public class Hotels {
 	private String image3;
 	private Integer capacity;
 	private Integer price;
+	private Double stars;
+	@Column(name = "admin_id")
+	private Integer adminId;
 
 	Hotels() {
 	}
 
-	Hotels(Integer areaId, String name, String detail, String address, String image, String image2, String image3,
-			Integer capacity, Integer price) {
-		this.areaId = areaId;
-		this.name = name;
-		this.detail = detail;
-		this.address = address;
-		this.image = image;
-		this.image2 = image2;
-		this.image3 = image3;
-		this.capacity = capacity;
-		this.price = price;
-	}
-	
+	//	Hotels(Integer areaId, String name, String detail, String address, String image, String image2, String image3,
+	//			Integer capacity, Integer price) {
+	//		this.areaId = areaId;
+	//		this.name = name;
+	//		this.detail = detail;
+	//		this.address = address;
+	//		this.image = image;
+	//		this.image2 = image2;
+	//		this.image3 = image3;
+	//		this.capacity = capacity;
+	//		this.price = price;
+	//	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -112,4 +115,19 @@ public class Hotels {
 		this.price = price;
 	}
 
+	public Double getStars() {
+		return stars;
+	}
+
+	public void setStars(Double stars) {
+		this.stars = stars;
+	}
+
+	public Integer getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(Integer adminId) {
+		this.adminId = adminId;
+	}
 }
