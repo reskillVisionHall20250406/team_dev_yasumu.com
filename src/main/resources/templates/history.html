@@ -18,8 +18,8 @@
 			<a>[[${@account.name}]]さん<br>
 				ご予約履歴</a><br>
 		</h2>
-		<div style="text-align: center; color: red;">
-			<p style="font-size: 20px;">予約した宿が見つかりませんでした</p>
+		<div>
+			<p class="history-error">予約した宿が見つかりませんでした</p>
 		</div>
 	</div>
 	<th:block th:unless="${#lists.isEmpty(hotel)}">
@@ -53,7 +53,7 @@
 		</main>
 
 
-		<div style="text-align: center;">
+		<div class="history-link">
 			<a href="/mypage">マイページへ</a>
 		</div>
 </body>

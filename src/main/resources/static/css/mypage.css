@@ -16,6 +16,13 @@ header button {
 	z-index: 50;
 }
 
+@media (max-width: 480px) {
+	.logo {
+		width: 96px;
+		height: 96px;
+	}
+}
+
 .top-banner {
 	display: flex;
 	flex-wrap: wrap;
@@ -90,8 +97,9 @@ header button {
 }
 
 #hmb {
-	width: 32px;
+	width: 56px;
 	height: 28px;
+	top: 1%;
 	cursor: pointer;
 	position: relative;
 	z-index: 30;
@@ -103,8 +111,9 @@ header button {
 }
 
 #hmb span {
-	width: 32px;
-	height: 3px;
+	width: 48px;
+	height: 8px;
+	margin-right: 10px;
 	display: block;
 	background-color: #000000;
 	border-radius: 2px;
@@ -113,17 +122,36 @@ header button {
 }
 
 #hmb span:first-child {
-	top: 0;
+	top: -48%;
 }
 
-
+@media (max-width: 480px) {
+	#hmb span:first-child {
+		top: -32%;
+		height: 10px;
+	}
+}
 
 #hmb span:nth-child(2) {
-	top: 12px;
+	top: 48%;
+}
+
+@media (max-width: 480px) {
+	#hmb span:nth-child(2) {
+		top: 24%;
+		height: 10px;
+	}
 }
 
 #hmb span:last-child {
-	top: 24px;
+	top: 72%;
+}
+
+@media (max-width: 480px) {
+	#hmb span:last-child {
+		top: 72%;
+		height: 10px;
+	}
 }
 
 nav {
@@ -145,6 +173,25 @@ nav {
 	transition-duration: .2s;
 }
 
+@media (max-width: 480px) {
+	nav {
+		position: fixed;
+		top: 0;
+		right: 0;
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		padding: 20px;
+		background-color: rgb(255, 96, 96);
+		z-index: 20;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateX(100%);
+		transition-property: all;
+		transition-duration: .2s;
+	}
+}
+
 nav ul li a {
 	/*background-color: rgb(255, 255, 255);*/
 	color: #fff;
@@ -156,15 +203,24 @@ nav ul li a {
 .active #hmb span:first-child {
 	top: 12px;
 	transform: rotate(45deg);
+	height: 10px;
 }
+
+/*@media (max-width: 480px) {*/
+/*	.active #hmb span:first-child{*/
+/*		top: 12px;*/
+/*		transform: rotate(45deg);*/
+/*	}*/
 
 .active #hmb span:nth-child(2) {
 	opacity: 0;
+	height: 10px;
 }
 
 .active #hmb span:last-child {
 	top: 12px;
 	transform: rotate(-45deg);
+	height: 10px;
 }
 
 .active nav {
@@ -223,6 +279,20 @@ footer {
 	/* 内側余白(上) */
 	padding-bottom: 16px;
 	/* 内側余白(下) */
+}
+
+@media (max-width: 480px) {
+
+	nav,
+	footer {
+		background-color: rgb(0, 64, 128);
+		text-align: center;
+		color: #ffffff;
+		padding-top: 16px;
+		padding-bottom: 16px;
+		height: 100%;
+		max-width: 100%;
+	}
 }
 
 /* ヘッダー、ナビゲーション内リンク */
@@ -710,171 +780,240 @@ label {
 	text-align: left;
 	font-weight: bold;
 }
-.hover-header3:hover{
-	color: #000000;
-}
 
-/*マイページ画面*/
-.mypage-name {
-	text-align: center;
-}
+@media (max-width: 480px) {
+	.hover-header3 {
+		list-style-type: none;
+		padding: 0px;
+		text-align: center;
+		font-weight: bold;
+		position: absolute;
+		top: 50%;
+		left: 10%;
+		transform: translateY(-50% -50%);
 
-.mypage-title {
-	text-align: center;
-	margin-bottom: 20px;
-}
+	}
 
-.mypage-wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	/* 수직 중앙 정렬 */
-	gap: 30px;
-	flex-wrap: wrap;
-	margin: 0 auto;
-	padding: 20px;
-	height: 300px;
-	/* 필요시 명시적으로 높이 지정 */
-	max-width: 900px;
-}
+	.hover-header3:hover {
+		color: #000000;
+	}
 
-.mypage-form {
-	width: 300px;
-	height: 300px;
-	overflow: auto;
-	background-color: #fff;
-	padding: 15px;
-	margin-left: 13%;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: 10px;
-	justify-content: space-evenly;
-	/* 항목 간 균등 간격 */
-}
+	.header3-text {
+		text-decoration: none;
+		color: white;
+	}
 
-.mypage-div {
-	width: 200px;
-	height: 200px;
-	background-color: #fff;
-	padding: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: 295px;
-}
+	@media (max-width: 480px) {
+		.header3-text {
+			font-size: 56px;
+			text-align: center;
+		}
+	}
+
+	/*マイページ画面*/
+	/*.mypage-name {*/
+	/*	text-align: center;*/
+	/*	font-size: 32px;*/
+	/*}*/
+
+	/*@media screen and(max-width:480px) {*/
+	.mypage-title {
+		text-align: center;
+		margin-bottom: 20px;
+	}
 
 
-.mypage-image {
-	width: 200px;
-	height: 200px;
-	object-fit: cover;
-	border-radius: 166px;
-}
-
-.mypage-name {
-	text-align: center;
-	font-weight: bold;
-	font-size: 1.2em;
-	margin-bottom: 10px;
-}
-
-.mypage-class {
-	text-align: center;
-	font-size: 0.9em;
-	margin-bottom: 10px;
-}
-
-.mypage-button {
-	background-color: #007bff;
-	color: #fff;
-	width: 15em;
-	padding: 10px;
-	margin-top: 15px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-/* 반응형 대응 */
-@media (max-width: 768px) {
 	.mypage-wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		/* 수직 중앙 정렬 */
+		gap: 30px;
+		flex-wrap: wrap;
+		margin: 0 auto;
+		padding: 20px;
+		height: 300px;
+		/* 필요시 명시적으로 높이 지정 */
+		max-width: 700px;
+	}
+
+	/*@media (max-width: 480px) {*/
+	.mypage-form {
+		width: 400px;
+		height: 300px;
+		overflow: auto;
+		background-color: #fff;
+		padding: 15px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		display: flex;
 		flex-direction: column;
 		align-items: center;
+		border-radius: 10px;
+		justify-content: space-evenly;
+		/* 항목 간 균등 간격 */
 	}
-}
 
-/*会員情報登録変更画面*/
-.edit-main {
-	max-width: 400px;
-	margin: 0 auto;
-	padding: 20px;
-	background-color: #fff;
-	border-radius: 5px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	/* 내부 요소를 가로 중앙 정렬 */
-}
+	.mypage-div {
+		width: 200px;
+		height: 200px;
+		background-color: #fff;
+		padding: 20px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		border-radius: 295px;
+	}
 
 
+	.mypage-image {
+		width: 200px;
+		height: 200px;
+		object-fit: cover;
+		border-radius: 166px;
+	}
 
-.edit-h1 {
-	text-align: center;
-}
+	.mypage-name {
+		text-align: center;
+		font-weight: bold;
+		font-size: 32px;
+		margin-bottom: 10px;
+	}
+
+	.mypage-class {
+		text-align: center;
+		font-size: 1.4rem;
+		margin-bottom: 10px;
+	}
+
+
+	.mypage-button {
+		background-color: #007bff;
+		color: #fff;
+		width: 15em;
+		padding: 10px;
+		margin-top: 15px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	.mypage-link {
+		text-align: center;
+		margin-top: 40px;
+		font-size: 20px;
+	}
+
+	@media (max-width: 480px) {
+		.mypage-title {
+			text-align: center;
+			font-size: 3rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.mypage-name {
+			text-align: center;
+			font-size: 40px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.mypage-class {
+			text-align: center;
+			font-size: 23px;
+		}
+	}
+
+
+	@media (max-width: 480px) {
+		.mypage-link {
+			font-size: 32px;
+			text-align: center;
+		}
+	}
+
+
+	/* 반응형 대응 */
+	@media (max-width: 768px) {
+		.mypage-wrapper {
+			flex-direction: column;
+			align-items: center;
+			flex-wrap: nowrap;
+			height: auto;
+		}
+	}
+
+	/*会員情報登録変更画面*/
+	.edit-main {
+		max-width: 400px;
+		margin: 0 auto;
+		padding: 20px;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		/* 내부 요소를 가로 중앙 정렬 */
+	}
 
 
 
-.edit-commentt {
-	color: red;
-}
+	.edit-h1 {
+		text-align: center;
+	}
 
-.edit-link {
-	text-align: center;
-}
 
-.edit-button {
-	background-color: #007bff;
-	width: 10em;
-	display: block;
-	margin: 0 auto;
-}
 
-/*宿予約履歴画面*/
-.history-image {
-	text-align: left;
-	margin-right: 16px;
+	.edit-commentt {
+		color: red;
+	}
 
-}
+	.edit-link {
+		text-align: center;
+	}
 
-.history-title {
-	font-size: 32px;
-	margin-bottom: 24px;
-	text-align: center;
-}
+	.edit-button {
+		background-color: #007bff;
+		width: 10em;
+		display: block;
+		margin: 0 auto;
+	}
 
-.history-hotelName {
-	font-size: 24px;
-	padding-bottom: 5px;
-}
+	/*宿予約履歴画面*/
+	.history-image {
+		text-align: left;
+		margin-right: 16px;
 
-.history-main1 {
-	width: 80%;
-	margin: 0 auto;
-}
+	}
 
-.flex {
-	display: flex;
-	border-bottom: #EFF0F7 15px solid;
-	padding: 16px;
-}
+	.history-title {
+		font-size: 32px;
+		margin-bottom: 48px;
+		text-align: center;
+		margin-top: -16px;
+	}
 
-body,
-header,
-footer {
-	width: 100%;
-}
+	.history-hotelName {
+		font-size: 24px;
+		padding-bottom: 5px;
+	}
+
+	.history-main1 {
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.flex {
+		display: flex;
+		border-bottom: #EFF0F7 15px solid;
+		padding: 16px;
+	}
+
+	body,
+	header,
+	footer {
+		width: 100%;
+	}
