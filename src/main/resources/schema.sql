@@ -7,12 +7,14 @@ DROP TABLE IF EXISTS area;
 DROP TABLE IF EXISTS admins;
 
 --管理者テーブル
-CREATE TABLE admins(
-	id SERIAL PRIMARY KEY,
-	name VARCHAR(255),
-	email VARCHAR(256) UNIQUE,
-	password VARCHAR(255),
+CREATE TABLE admins (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255)
 );
+
+
 
 -- エリアテーブル
 CREATE TABLE area (
@@ -32,7 +34,8 @@ CREATE TABLE hotels (
     image3 VARCHAR(255),
     capacity INTEGER,
     price INTEGER,
-   	admin_id INTEGER REFERENCES admins(id)
+    admin_id INTEGER REFERENCES admins(id),
+    stars FLOAT
 );
 
 -- 顧客テーブル
