@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ログイン</title>
+	<link rel="stylesheet" type="text/css" href="/css/Jung.css">
+</head>
+
+<body>
+	<span th:replace="header2">
+	</span>
+	<div class="login-container">
+		<div class="form-group">
+
+			<h2>ログイン</h2>
+
+
+			<form class="login_text" action="/admin" method="post">
+				<div class="form-group">
+					<input type="text" name="email" th:value="${email}" placeholder="メールアドレス">
+				</div>
+
+				<div class="form-group" style="position: relative;">
+					<input type="password" id="password" name="password" placeholder="パスワード">
+
+					<!--  비밀번호 표시 버튼  -->
+					<button type="button" onclick="togglePassword()" class="toggle-btn">🔒</button>
+				</div>
+
+				<button class="login_button">ログイン</button>
+			</form>
+			<ul th:if="${errors}" class="error">
+				<li th:each="error : ${errors}" th:text="${error}"></li>
+			</ul>
+		</div>
+	</div>
+	<script>
+		function togglePassword() {
+			const pwField = document.getElementById("password");
+			const btn = event.target;
+
+			if (pwField.type === "password") {
+				pwField.type = "text";
+				btn.textContent = "🔓";
+			} else {
+				pwField.type = "password";
+				btn.textContent = "🔒";
+			}
+		}
+	</script>
+</body>
+
+</html>
