@@ -4,6 +4,15 @@ DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS hotels;
 DROP TABLE IF EXISTS area;
+DROP TABLE IF EXISTS admins;
+
+--管理者テーブル
+CREATE TABLE admins(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(255),
+	email VARCHAR(256) UNIQUE,
+	password VARCHAR(255),
+);
 
 -- エリアテーブル
 CREATE TABLE area (
@@ -22,7 +31,8 @@ CREATE TABLE hotels (
     image2 VARCHAR(255),
     image3 VARCHAR(255),
     capacity INTEGER,
-    price INTEGER
+    price INTEGER,
+   	admin_id INTEGER REFERENCES admins(id)
 );
 
 -- 顧客テーブル
@@ -44,6 +54,9 @@ CREATE TABLE reservation (
     id SERIAL PRIMARY KEY,
     hotel_id INTEGER REFERENCES hotels(id),
     customer_id INTEGER REFERENCES customers(id),
+    name VARCHAR(255),
+    address VARCHAR(255),
+    image VARCHAR(255),
     date DATE DEFAULT CURRENT_DATE
 );
 
@@ -53,5 +66,4 @@ CREATE TABLE review (
 	    star INTEGER,
 	    comment VARCHAR(255),
 	    hotel_id INTEGER REFERENCES hotels(id)
-
 );
