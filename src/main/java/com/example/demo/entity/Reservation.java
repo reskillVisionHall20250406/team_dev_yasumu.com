@@ -23,6 +23,10 @@ public class Reservation {
 	private Integer customerId;
 	private LocalDate date;
 
+	private String name;
+	private String address;
+	private String image;
+
 	Reservation() {
 
 	}
@@ -31,6 +35,16 @@ public class Reservation {
 		this.hotelId = hotelId;
 		this.customerId = customerId;
 		this.date = orderedOn;
+	}
+
+	public Reservation(Integer hotelId, Integer customerId, LocalDate orderedOn, String name, String address,
+			String image) {
+		this.hotelId = hotelId;
+		this.customerId = customerId;
+		this.date = orderedOn;
+		this.name = name;
+		this.address = address;
+		this.image = image;
 	}
 
 	public Integer getId() {
@@ -60,4 +74,29 @@ public class Reservation {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 }
