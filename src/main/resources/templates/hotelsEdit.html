@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>会員情報変更</title>
+	<link rel="stylesheet" type="text/css" href="/css/tachiki.css">
+</head>
+
+<body>
+
+	<div class="login-container">
+		<div class="form-group">
+        <h2 style="text-align: center;">会員情報変更</h2>
+		
+		<img class="mypage-image"
+		     th:if="${hotels.image != null and !#strings.isEmpty(hotels.image) and hotels.image != 'null'}"
+		     th:src="@{${hotels.image}}"
+		     alt="プロフィール画像" />
+		<form th:action="@{/admin/edit/hotels/{id}(id=${hotels.id})}" class="edit-form" method="post" enctype="multipart/form-data">
+				宿名：<input type="text" name="name" th:value="${hotels.name}" placeholder="宿名">
+				住所：<input type="text" name="address" th:value="${hotels.address}" placeholder="住所">
+				宿泊人数：<input type="text" name="capacity" th:value="${hotels.capacity}" placeholder="宿泊人数">
+				料金：<input type="text" name="price" th:value="${hotels.price}" placeholder="料金">
+
+		    画像（３枚まで）：<input name="file" type="file" id="img" class="poi" th:value="${imageUrl1}">
+		    <input name="file" type="file" id="img" class="poi" th:value="${imageUrl1}">
+		    <input name="file" type="file" id="img" class="poi" th:value="${imageUrl1}">
+
+			<input type="hidden" name="imgname" value="" id="imgname">
+			<input type="hidden" name="imgname2" value="" id="imgname2">
+			<input type="hidden" name="imgname3" value="" id="imgname3">
+			<button class="button-37">送信</button>
+			
+			
+		<ul th:if="${errors}" class="error">
+		<li th:each="error : ${errors}" th:text="${error}" class="error"></li>
+		</ul>
+		</form>
+			<div>
+		<a href="/home">宿一覧へ</a>
+	</div>
+</div>
+
+	<script>
+		document.getElementById('img').addEventListener('change', function (event) {
+			const file = event.target.files[0]; // 最初のファイルを取得
+			if (file) {
+				document.getElementById('imgname').value = `/image/${file.name}`;
+			} else {
+				document.getElementById('imgname').value = 'ファイルが選択されていません';
+			}
+		});
+	</script>
+
+</body>
+
+</html>
