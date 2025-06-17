@@ -215,4 +215,100 @@ public class AdminController {
 		model.addAttribute("errors", err);
 		return "hotelsEdit";
 	}
+
+	@GetMapping("/admin/register")
+	public String showAdminRegister() {
+
+		return "admin_register";
+	}
+
+	@PostMapping("/hotels/add")
+	public String add(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "areaId", defaultValue = "") Integer areaId,
+			@RequestParam(name = "detail", defaultValue = "") String detail,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam("file") MultipartFile file,
+			@RequestParam("file2") MultipartFile file2,
+			@RequestParam("file3") MultipartFile file3,
+			@RequestParam(name = "capacity", defaultValue = "") Integer capacity,
+			@RequestParam(name = "price", defaultValue = "") Integer price,
+			Model model) {
+
+		List<String> errorList = new ArrayList<>();
+		//      여기 밑에줄에서 이메일을 DB에서 찾아와서 메일이 등록되이는지 확인된다 눌이 아닌 확인하도록 에러코드
+		Hotels existingHotel = hotelsRepository.findByNameAndAddress(name, address);
+
+		if (name.isEmpty()) {
+			errorList.add("お名前を入力してください");
+		}
+		if (detail.isEmpty()) {
+			errorList.add("説明文を入力してください");
+		} else if (existingHotel != null) {
+			errorList.add("このホテルは既に登録されています");
+		}
+		if (address.isEmpty()) {
+			errorList.add("住所を入力してください");
+		}
+		if (file.isEmpty()) {
+			errorList.add("画像を入力してください");
+		}
+		if (file2.isEmpty()) {
+			errorList.add("サブ画像を入力してください");
+		}
+		if (file3.isEmpty()) {
+			errorList.add("サブ画像2を入力してください");
+		}
+		if (capacity.equals("")) {
+			errorList.add("宿泊人数を入力してください");
+		}
+		if (price.equals("")) {
+			errorList.add("価格を入力してください");
+		}
+
+		Hotels hotels = new Hotels();
+		if (!errorList.isEmpty()) {
+			model.addAttribute("errors", errorList);
+			model.addAttribute("name", name);
+			model.addAttribute("detail", detail);
+			model.addAttribute("address", address);
+			try {
+				String filename = file.getOriginalFilename();
+				String filePath = "static/upload/" + filename;
+				byte[] content = file.getBytes();
+				Files.write(Paths.get(filePath), content);
+
+				String filename2 = file2.getOriginalFilename();
+				String filePath2 = "static/upload/" + filename2;
+				byte[] content2 = file2.getBytes();
+				Files.write(Paths.get(filePath2), content2);
+
+				String filename3 = file3.getOriginalFilename();
+				String filePath3 = "static/upload/" + filename3;
+				byte[] content3 = file3.getBytes();
+				Files.write(Paths.get(filePath3), content3);
+
+				String imageUrl = "/upload/" + filename;
+				String imageUrl2 = "/upload/" + filename2;
+				String imageUrl3 = "/upload/" + filename3;
+				model.addAttribute("imageUrl", imageUrl);
+				model.addAttribute("imageUrl2", imageUrl2);
+				model.addAttribute("imageUrl3", imageUrl3);
+				hotels.setImage(imageUrl);
+				hotels.setImage2(imageUrl2);
+				hotels.setImage3(imageUrl3);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			hotels.setName(name);
+			hotels.setAddress(address);
+			hotels.setCapacity(capacity);
+			hotels.setDetail(detail);
+			hotelsRepository.save(hotels);
+			return "redirect:/hotels";
+		}
+		return "admin_register"; // ログインページにエラーを表示
+
+	}
+
 }

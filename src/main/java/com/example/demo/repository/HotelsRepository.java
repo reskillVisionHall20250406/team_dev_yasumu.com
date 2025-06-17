@@ -47,4 +47,7 @@ public interface HotelsRepository extends JpaRepository<Hotels, Integer> {
 
 	List<Hotels> findByAdminId(Integer id);
 
+	Hotels findByNameAndAddress(String name, String address);
+
+
 }
