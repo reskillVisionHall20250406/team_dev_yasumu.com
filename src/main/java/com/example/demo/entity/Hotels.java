@@ -15,6 +15,16 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToMany; 
+import jakarta.persistence.JoinTable;  
+import jakarta.persistence.JoinColumn; 
+
+import java.util.HashSet; 
+import java.util.Set;     
+// import java.time.LocalDateTime; 
+// import java.math.BigDecimal;
+// import jakarta.persistence.PrePersist; 
+// import jakarta.persistence.PreUpdate; 
 
 @Entity
 @Table(name = "hotels")

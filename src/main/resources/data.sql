@@ -46,6 +46,8 @@ INSERT INTO tags (name) VALUES
 ('オーシャンビュー');     
 
 
+
+
 --hotelsテーブル
 INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capacity, price,admin_id,stars) VALUES
 (2, 'サクラホテル東京', '東京都新宿区2-3', 
