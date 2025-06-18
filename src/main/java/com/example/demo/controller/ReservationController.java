@@ -55,11 +55,7 @@ public class ReservationController {
 			@PathVariable("id") Integer id,
 			@RequestParam("days") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate days,
 			RedirectAttributes redirectAttributes, Model model) {
-		// days に選択された LocalDate が入ります
 		redirectAttributes.addFlashAttribute("selectedDate", days);
-
-		//		session.setAttribute("selectedDate", days);
-		//		model.addAttribute("orderedOn", days);
 
 		return "redirect:/reservation/" + id;
 	}
