@@ -1,149 +1,181 @@
-package com.example.demo.entity;
+// Hotels.java
+package com.example.demo.entity; // Adjust package as needed
+
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "hotels")
 public class Hotels {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@Column(name = "area_id")
-	private Integer areaId;
-	private String name;
-	private String detail;
-	private String address;
-	private String image;
-	private String image2;
-	private String image3;
-	private Integer capacity;
-	private Integer price;
-	private double stars;
-	@Column(name = "admin_id")
-	private Integer adminId;
-	@Transient
-	private String starVisual;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	public String getStarVisual() {
-		return starVisual;
-	}
+    @Transient
+    private Integer areaId;
 
-	public void setStarVisual(String starVisual) {
-		this.starVisual = starVisual;
-	}
+    @ManyToOne
+    @JoinColumn(name = "area_id", referencedColumnName = "id")
+    private Area area;
 
-	public Hotels() {
-	}
+    private String name;
+    private String detail;
+    private String address;
+    private String image;
+    private String image2;
+    private String image3;
+    private Integer capacity;
+    private Integer price;
+    private double stars;
 
-	public Hotels(Integer areaId, String name, String detail, String address, String image, String image2,
-			String image3,
-			Integer capacity, Integer price) {
-		this.areaId = areaId;
-		this.name = name;
-		this.detail = detail;
-		this.address = address;
-		this.image = image;
-		this.image2 = image2;
-		this.image3 = image3;
-		this.capacity = capacity;
-		this.price = price;
-	}
+    @Column(name = "admin_id")
+    private Integer adminId;
 
-	public Integer getId() {
-		return id;
-	}
+    @Transient
+    private String starVisual;
 
-	public Integer getAreaId() {
-		return areaId;
-	}
+    // Many-to-Many relationship with Tags
+    @ManyToMany
+    @JoinTable(
+        name = "hotel_tags", // The name of your join table
+        joinColumns = @JoinColumn(name = "hotel_id"), // Column in hotel_tags that references hotels.id
+        // 🔽 This is the crucial line to fix! 🔽
+        inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id") // Column in hotel_tags that references tags.id
+        // 🔼 Make sure 'referencedColumnName' matches the actual PK column name in your 'tags' table 🔼
+    )
+    private Set<Tags> tags = new HashSet<>();
 
-	public String getName() {
-		return name;
-	}
+    // ... (rest of your Hotels entity: constructors, getters, setters) ...
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getStarVisual() {
+        return starVisual;
+    }
 
-	public String getDetail() {
-		return detail;
-	}
+    public void setStarVisual(String starVisual) {
+        this.starVisual = starVisual;
+    }
 
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public Integer getAreaId() {
+        return areaId;
+    }
 
-	public String getImage() {
-		return image;
-	}
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
+    }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+    public Area getArea() {
+        return area;
+    }
 
-	public String getImage2() {
-		return image2;
-	}
+    public void setArea(Area area) {
+        this.area = area;
+    }
 
-	public void setImage2(String image2) {
-		this.image2 = image2;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getImage3() {
-		return image3;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setImage3(String image3) {
-		this.image3 = image3;
-	}
+    public String getDetail() {
+        return detail;
+    }
 
-	public Integer getCapacity() {
-		return capacity;
-	}
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
 
-	public void setCapacity(Integer capacity) {
-		this.capacity = capacity;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public Integer getPrice() {
-		return price;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public double getStars() {
-		return stars;
-	}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-	public void setStars(double rounded) {
-		this.stars = rounded;
-	}
+    public String getImage2() {
+        return image2;
+    }
 
-	public Integer getAdminId() {
-		return adminId;
-	}
+    public void setImage2(String image2) {
+        this.image2 = image2;
+    }
 
-	public void setAdminId(Integer adminId) {
-		this.adminId = adminId;
-	}
+    public String getImage3() {
+        return image3;
+    }
 
-	public void setAreaId(Integer areaId) {
-		this.areaId = areaId;
-	}
+    public void setImage3(String image3) {
+        this.image3 = image3;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public double getStars() {
+        return stars;
+    }
+
+    public void setStars(double rounded) {
+        this.stars = rounded;
+    }
+
+    public Integer getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
+    }
+
+    public Set<Tags> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tags> tags) {
+        this.tags = tags;
+    }
 }

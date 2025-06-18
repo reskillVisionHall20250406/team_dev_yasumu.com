@@ -21,6 +21,31 @@ INSERT INTO admins(name, email, password) VALUES
 INSERT INTO customers(name,address,tel,email,password,image,card_no,code,expiry)
 VALUES('ジョン・ヘスン','東京都新宿区','09012345678','jung@gmail.com','himitu123','/image/profile.png','01234567890123','123','0828');
 
+-- tagsテーブル
+INSERT INTO tags (name) VALUES
+('無料Wi-Fi'),         
+('レストランあり'),       
+('駐車場あり'),         
+('禁煙ルームあり'),       
+('ランドリーサービス'),   
+('フィットネスセンター'),   
+('24時間フロント'),     
+('バリアフリー'),        
+('ビジネス向け'),       
+('ファミリー向け'),       
+('ペット同伴可'),        
+('温泉あり'),           
+('朝食付き'),           
+('夜景が綺麗'),         
+('駅近'),             
+('静かな環境'),         
+('繁華街に近い'),        
+('空港送迎'),         
+('会議室あり'),       
+('プールあり'),         
+('オーシャンビュー');     
+
+
 --hotelsテーブル
 INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capacity, price,admin_id,stars) VALUES
 (2, 'サクラホテル東京', '東京都新宿区2-3', 
@@ -127,3 +152,183 @@ INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capaci
 (1, '仙台パークホテル', '宮城県仙台市宮城野区23-25', 
 '仙台パークホテルは、市内中心部に位置し、アクセスの良さが魅力のホテルです。快適な客室はモダンで清潔感があり、ビジネスや観光の拠点に最適です。館内にはレストランやフィットネス施設があり、無料Wi-Fiも完備。スタッフは丁寧で親切な対応を提供し、訪れるゲストに快適な滞在を約束します。周辺にはショッピングエリアや観光スポットが充実し、多彩なニーズに応えられるホテルです。安心して利用できる環境が整っています。', 
 '/image/1-67.jpg', '/image/1-68.jpg', '/image/1-69.jpg', 2, 8500,4,0.0);
+
+
+-- hotel_tagsテーブル (ホテルとタグの関連付け)
+
+-- サクラホテル東京 (hotel_id: 1)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(1, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(1, (SELECT id FROM tags WHERE name = 'ランドリーサービス')),
+(1, (SELECT id FROM tags WHERE name = '24時間フロント')),
+(1, (SELECT id FROM tags WHERE name = '駅近')),
+(1, (SELECT id FROM tags WHERE name = '繁華街に近い')),
+(1, (SELECT id FROM tags WHERE name = 'ビジネス向け'));
+
+-- 札幌スノーホテル (hotel_id: 2)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(2, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(2, (SELECT id FROM tags WHERE name = '24時間フロント')),
+(2, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(2, (SELECT id FROM tags WHERE name = 'ファミリー向け')); 
+
+-- 横浜グリーンイン (hotel_id: 3)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(3, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(3, (SELECT id FROM tags WHERE name = '静かな環境')),
+(3, (SELECT id FROM tags WHERE name = 'ファミリー向け')); 
+
+-- 仙台グリーンホテル (hotel_id: 4)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(4, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(4, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(4, (SELECT id FROM tags WHERE name = 'ビジネス向け')); 
+
+-- ホテルニューショーヘイ (hotel_id: 5)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(5, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(5, (SELECT id FROM tags WHERE name = 'ランドリーサービス')),
+(5, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(5, (SELECT id FROM tags WHERE name = '24時間フロント')),
+(5, (SELECT id FROM tags WHERE name = '駅近')),
+(5, (SELECT id FROM tags WHERE name = 'ビジネス向け'));
+
+
+-- 横浜ベイホテル (hotel_id: 6)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(6, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(6, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(6, (SELECT id FROM tags WHERE name = '夜景が綺麗')),
+(6, (SELECT id FROM tags WHERE name = 'オーシャンビュー')); 
+
+-- 名古屋グランドホテル (hotel_id: 7)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(7, (SELECT id FROM tags WHERE name = '無料Wi-Fi')), 
+(7, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(7, (SELECT id FROM tags WHERE name = '会議室あり')),
+(7, (SELECT id FROM tags WHERE name = 'ビジネス向け')); 
+
+-- 福岡グランドホテル (hotel_id: 8)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(8, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(8, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(8, (SELECT id FROM tags WHERE name = '会議室あり')),
+(8, (SELECT id FROM tags WHERE name = 'ビジネス向け')), 
+(8, (SELECT id FROM tags WHERE name = 'ファミリー向け')); 
+
+-- 梅田スカイホテル (hotel_id: 9)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(9, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(9, (SELECT id FROM tags WHERE name = '駅近')),
+(9, (SELECT id FROM tags WHERE name = '夜景が綺麗')); 
+
+-- 京都ホテルローズ (hotel_id: 10)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(10, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(10, (SELECT id FROM tags WHERE name = '朝食付き')),
+(10, (SELECT id FROM tags WHERE name = 'ビジネス向け')); 
+
+-- 札幌パークホテル (hotel_id: 11)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(11, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(11, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(11, (SELECT id FROM tags WHERE name = '静かな環境')),
+(11, (SELECT id FROM tags WHERE name = 'ファミリー向け')); 
+
+-- 名古屋セントラルホテル (hotel_id: 12)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(12, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(12, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(12, (SELECT id FROM tags WHERE name = '会議室あり')),
+(12, (SELECT id FROM tags WHERE name = 'ビジネス向け')), 
+(12, (SELECT id FROM tags WHERE name = '駅近'));
+
+-- 福岡リバーサイドホテル (hotel_id: 13)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(13, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(13, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(13, (SELECT id FROM tags WHERE name = 'フィットネスセンター')),
+(13, (SELECT id FROM tags WHERE name = '24時間フロント')),
+(13, (SELECT id FROM tags WHERE name = '静かな環境')); 
+
+-- 仙台グランドホテル (hotel_id: 14)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(14, (SELECT id FROM tags WHERE name = '無料Wi-Fi')), 
+(14, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(14, (SELECT id FROM tags WHERE name = '会議室あり')),
+(14, (SELECT id FROM tags WHERE name = 'フィットネスセンター')),
+(14, (SELECT id FROM tags WHERE name = 'ビジネス向け')); 
+
+-- グランド東京ホテル (hotel_id: 15)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(15, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(15, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(15, (SELECT id FROM tags WHERE name = '会議室あり')),
+(15, (SELECT id FROM tags WHERE name = 'フィットネスセンター')),
+(15, (SELECT id FROM tags WHERE name = '24時間フロント')),
+(15, (SELECT id FROM tags WHERE name = 'ビジネス向け'));
+
+-- 京都和風旅館さくら (hotel_id: 16)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(16, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(16, (SELECT id FROM tags WHERE name = '温泉あり')),
+(16, (SELECT id FROM tags WHERE name = '静かな環境'));
+
+-- 京都グランドホテル (hotel_id: 17)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(17, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(17, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(17, (SELECT id FROM tags WHERE name = '会議室あり')),
+(17, (SELECT id FROM tags WHERE name = 'ビジネス向け')); 
+
+-- 大阪グリーンホテル (hotel_id: 18)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(18, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(18, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(18, (SELECT id FROM tags WHERE name = '駅近')), 
+(18, (SELECT id FROM tags WHERE name = '繁華街に近い')); 
+
+-- 札幌グリーンイン (hotel_id: 19)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(19, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(19, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(19, (SELECT id FROM tags WHERE name = '静かな環境')); 
+
+-- 名古屋パークイン (hotel_id: 20)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(20, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(20, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(20, (SELECT id FROM tags WHERE name = '会議室あり')),
+(20, (SELECT id FROM tags WHERE name = '静かな環境')); 
+
+-- なんばシティホテル (hotel_id: 21)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(21, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(21, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(21, (SELECT id FROM tags WHERE name = '会議室あり')),
+(21, (SELECT id FROM tags WHERE name = '駅近')), 
+(21, (SELECT id FROM tags WHERE name = '繁華街に近い')); 
+
+-- 横浜グランドホテル (hotel_id: 22)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(22, (SELECT id FROM tags WHERE name = '無料Wi-Fi')), 
+(22, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(22, (SELECT id FROM tags WHERE name = '会議室あり')),
+(22, (SELECT id FROM tags WHERE name = 'フィットネスセンター')),
+(22, (SELECT id FROM tags WHERE name = 'ビジネス向け')); 
+
+-- 福岡キャナルホテル (hotel_id: 23)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(23, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(23, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(23, (SELECT id FROM tags WHERE name = '会議室あり')),
+(23, (SELECT id FROM tags WHERE name = 'フィットネスセンター')),
+(23, (SELECT id FROM tags WHERE name = '24時間フロント')),
+(23, (SELECT id FROM tags WHERE name = '駅近')); 
+
+-- 仙台パークホテル (hotel_id: 24)
+INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
+(24, (SELECT id FROM tags WHERE name = '無料Wi-Fi')),
+(24, (SELECT id FROM tags WHERE name = 'レストランあり')),
+(24, (SELECT id FROM tags WHERE name = 'フィットネスセンター')),
+(24, (SELECT id FROM tags WHERE name = '駅近')); 

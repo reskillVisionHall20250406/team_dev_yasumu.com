@@ -1,10 +1,12 @@
 -- 各種テーブル削除
-DROP TABLE IF EXISTS reservation;
-DROP TABLE IF EXISTS customers;
-DROP TABLE IF EXISTS review;
-DROP TABLE IF EXISTS hotels;
-DROP TABLE IF EXISTS area;
-DROP TABLE IF EXISTS admins;
+DROP TABLE IF EXISTS reservation CASCADE;
+DROP TABLE IF EXISTS review CASCADE;
+DROP TABLE IF EXISTS hotel_tags CASCADE;
+DROP TABLE IF EXISTS hotels CASCADE;
+DROP TABLE IF EXISTS tags CASCADE;
+DROP TABLE IF EXISTS customers CASCADE;
+DROP TABLE IF EXISTS area CASCADE;
+DROP TABLE IF EXISTS admins CASCADE;      
 
 --管理者テーブル
 CREATE TABLE admins (
@@ -13,7 +15,6 @@ CREATE TABLE admins (
     email VARCHAR(255) UNIQUE,
     password VARCHAR(255)
 );
-
 
 
 -- エリアテーブル
@@ -36,6 +37,8 @@ CREATE TABLE hotels (
     price INTEGER,
     admin_id INTEGER REFERENCES admins(id),
     stars FLOAT
+    -- created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -- updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- 顧客テーブル
@@ -69,4 +72,15 @@ CREATE TABLE review (
 	    star INTEGER,
 	    comment VARCHAR(255),
 	    hotel_id INTEGER REFERENCES hotels(id)
+);
+
+CREATE TABLE tags (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE hotel_tags (
+    hotel_id INTEGER NOT NULL,
+    tag_id INTEGER NOT NULL,
+    PRIMARY KEY (hotel_id, tag_id)
 );
