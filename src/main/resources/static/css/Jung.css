@@ -17,6 +17,16 @@ header button {
 	z-index: 50;
 }
 
+.header2-img {
+	width: 8%;
+}
+
+@media (max-width: 480px) {
+	.header2-img {
+		width: 16%;
+	}
+}
+
 .top-banner {
 	display: flex;
 	flex-wrap: wrap;
@@ -555,9 +565,34 @@ ul.ioio {
 	top: 50%;
 	left: 50%;
 	transform: translateY(-50%)translateX(-50%);
-	/* 폼 중앙에 오게 하는 것들 포지션, 탑, 레프트, 트렌스폼 */
+}
 
-	/* 내부 요소를 가로 중앙 정렬 */
+@media (max-width: 480px) {
+	.login-container {
+		width: 800px;
+		margin: 0 auto;
+		padding: 20px;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+		position: absolute;
+		top: 32%;
+		left: 50%;
+		transform: translateY(-50%)translateX(-50%);
+
+	}
+}
+
+/* 폼 중앙에 오게 하는 것들 포지션, 탑, 레프트, 트렌스폼 */
+
+/* 내부 요소를 가로 중앙 정렬 */
+
+@media (max-width: 480px) {
+	.login-h2 {
+		text-align: center;
+		font-size: 24px;
+	}
 }
 
 .form-group {
@@ -581,6 +616,17 @@ label {
 	/* padding 포함한 전체 너비 계산 */
 }
 
+@media (max-width: 480px) {
+	.login_text input {
+		width: 100%;
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		box-sizing: border-box;
+		font-size: 24px;
+	}
+}
+
 .login_button {
 	width: 100%;
 	padding: 10px;
@@ -589,7 +635,20 @@ label {
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
+}
 
+@media (max-width: 480px) {
+	.login_button {
+		width: 24%;
+		padding: 10px;
+		background-color: #007bff;
+		color: #fff;
+		border: none;
+		border-radius: 3px;
+		cursor: pointer;
+		margin-left: 304px;
+		margin-top: 24px;
+	}
 }
 
 .error {
@@ -634,103 +693,123 @@ label {
 	right: 0;
 }
 
-/*여기까지 정해승 로그인 css*/
-.relative {
-	width: 100%;
-	aspect-ratio: 16 / 9;
-	overflow: hidden;
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.imgth {
-	width: 100%;
-	height: 100%;
-	object-fit: contain;
-	z-index: 0;
-}
-
-.boxer {
-	z-index: 100;
-	box-shadow: 0 0 8px gray;
-	border-radius: 20px;
-	background-color: rgb(255, 255, 255);
-	width: 70%;
-	/* 必ず明示的な幅を指定 */
-	max-width: 900px;
-	/* 任意：画面が広すぎる時の制限 */
-	height: 20%;
-	position: absolute;
-	/* 親.relativeを基準に中央配置 */
-	top: 85%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	display: flex;
-	/* 中のテキストを中央寄せしたい場合 */
-	justify-content: center;
-	align-items: center;
-}
-
-body,
-header,
-footer {
-	width: 100%;
-}
-
-.radio-1 {
-	display: flex;
-	flex-wrap: wrap;
-	gap: .3em 2em;
-	border: none;
-}
-
-.radio-1 label {
-	display: flex;
-	align-items: center;
-	gap: 0 .5em;
-	position: relative;
-	cursor: pointer;
-}
-
-.radio-1 label::before,
-.radio-1 label:has(:checked)::after {
-	border-radius: 50%;
-	content: '';
-}
-
-.radio-1 label::before {
-	width: 18px;
-	height: 18px;
-	background-color: #e6edf3;
-}
-
-.radio-1 label:has(:checked)::after {
-	position: absolute;
-	top: 50%;
-	left: 9px;
-	transform: translate(-50%, -50%);
-	width: 10px;
-	height: 10px;
-	background-color: rgb(0, 128, 192);
-	animation: anim-radio-1 .3s linear;
-}
-
-@keyframes anim-radio-1 {
-	0% {
-		box-shadow: 0 0 0 1px transparent;
-	}
-
-	50% {
-		box-shadow: 0 0 0 10px #f2f2f233;
-	}
-
-	100% {
-		box-shadow: 0 0 0 10px transparent;
+@media (max-width: 480px) {
+	.loginbackgroundimg {
+		width: 100%;
+		position: absolute;
+		bottom: 482px;
+		right: 0
 	}
 }
 
-.radio-1 input {
-	display: none;
+@media (max-width: 480px) {
+	.login-commentt {
+		font-size: 24px;
+	}
 }
+	@media (max-width: 480px) {
+		.login-link {
+			font-size: 24px;
+		}
+	}
+
+	/*여기까지 정해승 로그인 css*/
+	.relative {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.imgth {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		z-index: 0;
+	}
+
+	.boxer {
+		z-index: 100;
+		box-shadow: 0 0 8px gray;
+		border-radius: 20px;
+		background-color: rgb(255, 255, 255);
+		width: 70%;
+		/* 必ず明示的な幅を指定 */
+		max-width: 900px;
+		/* 任意：画面が広すぎる時の制限 */
+		height: 20%;
+		position: absolute;
+		/* 親.relativeを基準に中央配置 */
+		top: 85%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: flex;
+		/* 中のテキストを中央寄せしたい場合 */
+		justify-content: center;
+		align-items: center;
+	}
+
+	body,
+	header,
+	footer {
+		width: 100%;
+	}
+
+	.radio-1 {
+		display: flex;
+		flex-wrap: wrap;
+		gap: .3em 2em;
+		border: none;
+	}
+
+	.radio-1 label {
+		display: flex;
+		align-items: center;
+		gap: 0 .5em;
+		position: relative;
+		cursor: pointer;
+	}
+
+	.radio-1 label::before,
+	.radio-1 label:has(:checked)::after {
+		border-radius: 50%;
+		content: '';
+	}
+
+	.radio-1 label::before {
+		width: 18px;
+		height: 18px;
+		background-color: #e6edf3;
+	}
+
+	.radio-1 label:has(:checked)::after {
+		position: absolute;
+		top: 50%;
+		left: 9px;
+		transform: translate(-50%, -50%);
+		width: 10px;
+		height: 10px;
+		background-color: rgb(0, 128, 192);
+		animation: anim-radio-1 .3s linear;
+	}
+
+	@keyframes anim-radio-1 {
+		0% {
+			box-shadow: 0 0 0 1px transparent;
+		}
+
+		50% {
+			box-shadow: 0 0 0 10px #f2f2f233;
+		}
+
+		100% {
+			box-shadow: 0 0 0 10px transparent;
+		}
+	}
+
+	.radio-1 input {
+		display: none;
+	}
