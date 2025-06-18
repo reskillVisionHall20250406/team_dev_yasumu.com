@@ -61,7 +61,7 @@ public class ReservationController {
 			@RequestParam("days") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate days,
 			RedirectAttributes redirectAttributes, Model model) {
 		redirectAttributes.addFlashAttribute("selectedDate", days);
-
+		session.setAttribute("date", days);
 		return "redirect:/reservation/" + id;
 	}
 
@@ -74,8 +74,6 @@ public class ReservationController {
 		Hotels hotels = hotelsRepository.findById(id).get();//クリックされた宿のIDから宿情報を取得
 
 		Customers customer = customersRepository.findByEmail(account.getEmail());
-
-		session.setAttribute("date", selectedDate);
 
 		//ログインされているアカウントからクレジットカードの情報を取得
 		List<String> card = new ArrayList<>();
@@ -143,7 +141,8 @@ public class ReservationController {
 		LocalDate date = (LocalDate) session.getAttribute("date");
 		if (err.isEmpty()) {
 
-			Reservation reservation = new Reservation(id, customer.getId(), date);
+			Reservation reservation = new Reservation(id, customer.getId(), date, hotels.getName(), hotels.getAddress(),
+					hotels.getImage(), hotels.getCapacity(), hotels.getPrice());
 			reservationRepository.save(reservation);
 			model.addAttribute("hotels", hotels);
 			model.addAttribute("reservation", reservation);

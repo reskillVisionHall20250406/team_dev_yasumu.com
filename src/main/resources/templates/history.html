@@ -13,7 +13,7 @@
 
 
 
-	<div th:if="${#lists.isEmpty(hotel)}" class="login-container">
+	<div th:if="${#lists.isEmpty(reservations)}" class="login-container">
 		<h2 class="history-title">
 			<a>[[${@account.name}]]さん<br>
 				ご予約履歴</a><br>
@@ -22,36 +22,35 @@
 			<p class="history-error">予約した宿が見つかりませんでした</p>
 		</div>
 	</div>
-	<th:block th:unless="${#lists.isEmpty(hotel)}">
+	<th:block th:unless="${#lists.isEmpty(reservations)}">
 		<h2 class="history-title">
 			<a>[[${@account.name}]]さん<br>
 				ご予約履歴</a><br>
 		</h2>
 		<main class="history-main1">
-			<th:block th:each="hotels:${hotel}" class="col">
+			<th:block th:each="reservation:${reservations}" class="col">
 				<div class="bottom">
-					<a th:href="@{/hotelsdetail/{id}(id=${hotels.id})}" class="history-yado">
+					<a th:href="@{/hotelsdetail/{id}(id=${reservation.id})}" class="history-yado">
 						<div class="flex ">
-							<img th:src="${hotels.image}" height="120px" width="200px" class="history-image"
+							<img th:src="${reservation.image}" height="120px" width="200px" class="history-image"
 								alt="ホテル画像">
 							<div class="flex2">
-								<div th:text="宿泊施設名：+${hotels.name}" class="history-hotelName">
+								<div th:text="宿泊施設名：+${reservation.name}" class="history-hotelName">
 								</div>
-								<div th:each="reservation:${reservations}">
-									<span th:if="${hotels.id} == ${reservation.hotelId}">
-											<div th:text="宿泊日：+${reservation.date}" class="history-sub">
-											</div>
-									</span>
-								</div>
-								<div th:text="宿泊人数：+${hotels.capacity}+人" class="history-sub"></div>
-								<div th:text="値段：+${hotels.price}+円" class="history-sub">
-								</div>
+								
+								<div th:text="宿泊日：+${reservation.date}" class="history-sub"></div>
+								
+							
+							<div th:text="宿泊人数：+${reservation.capacity}+人" class="history-sub"></div>
+							<div th:text="値段：+${reservation.price}+円" class="history-sub">
 							</div>
 						</div>
 				</div>
+				</a>
+				</div>
 			</th:block>
 		</main>
-
+		</th:block>
 
 		<div class="history-link">
 			<a href="/mypage">マイページへ</a>

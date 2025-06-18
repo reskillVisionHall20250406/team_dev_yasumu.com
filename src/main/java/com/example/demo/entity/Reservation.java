@@ -26,25 +26,29 @@ public class Reservation {
 	private String name;
 	private String address;
 	private String image;
+	private Integer capacity;
+	private Integer price;
 
 	Reservation() {
 
 	}
 
-	public Reservation(Integer hotelId, Integer customerId, LocalDate orderedOn) {
-		this.hotelId = hotelId;
-		this.customerId = customerId;
-		this.date = orderedOn;
-	}
+	//	public Reservation(Integer hotelId, Integer customerId, LocalDate orderedOn) {
+	//		this.hotelId = hotelId;
+	//		this.customerId = customerId;
+	//		this.date = orderedOn;
+	//	}
 
 	public Reservation(Integer hotelId, Integer customerId, LocalDate orderedOn, String name, String address,
-			String image) {
+			String image, Integer capacity, Integer price) {
 		this.hotelId = hotelId;
 		this.customerId = customerId;
 		this.date = orderedOn;
 		this.name = name;
 		this.address = address;
 		this.image = image;
+		this.capacity = capacity;
+		this.price = price;
 	}
 
 	public Integer getId() {
@@ -99,4 +103,19 @@ public class Reservation {
 		this.image = image;
 	}
 
+	public Integer getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
 }
