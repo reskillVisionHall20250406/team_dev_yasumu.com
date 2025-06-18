@@ -16,7 +16,15 @@ h2 {
 	color: #0066cc;
 }
 
+.header2-img {
+	width: 100%;
+}
 
+@media (max-width: 480px) {
+	.header2-img {
+		width: 256%;
+	}
+}
 
 .month-selector {
 	text-align: center;
@@ -43,7 +51,7 @@ th,
 td {
 	width: 14.28%;
 	text-align: center;
-/*	padding: 0.5em;*/
+	/*	padding: 0.5em;*/
 }
 
 button.date-btn {
@@ -51,7 +59,7 @@ button.date-btn {
 	padding: 1em;
 	background: #ffffff;
 	border: 1px solid #ccc;
-/*	border-radius: 5px;*/
+	/*	border-radius: 5px;*/
 	cursor: pointer;
 }
 
@@ -97,16 +105,28 @@ button.date-btn:disabled {
 	cursor: pointer;
 }
 
-.logo {
-	display: flex;
-	position: absolute;
-	top: 1%;
-	left: 1%;
-	z-index: 50;
+@media (max-width: 480px) {
+	.calendar-section {
+		margin-top: 98px;
+	}
 }
 
-.flex{
-	display: flex;
+.logo {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	z-index: 50;
+	width: 5%;
+}
+
+@media (max-width: 480px) {
+	.logo {
+		position: absolute;
+		top: 0%;
+		left: 0%;
+		z-index: 50;
+		width: 5%;
+	}
 }
 
 .container {
@@ -117,13 +137,31 @@ button.date-btn:disabled {
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* 내부 요소를 가로 중앙 정렬 */
 }
 
-h2{
-	margin-top:-30px;
+@media (max-width: 480px) {
+	.container {
+		max-width: 450px;
+		margin: auto;
+		margin-top: 50px;
+		padding: 20px;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 0px;
+	}
+}
+
+.flex {
+	display: flex;
+}
+
+h2 {
+	margin-top: -30px;
 }

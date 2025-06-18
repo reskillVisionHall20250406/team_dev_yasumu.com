@@ -14,7 +14,7 @@
 	<div class="login-container">
 		<div class="form-group">
 
-			<h2>ログイン</h2>
+			<h2 class="login-h2">ログイン</h2>
 
 
 			<form class="login_text" action="/login" method="post">
@@ -34,8 +34,8 @@
 			<ul th:if="${errors}" class="error">
 				<li th:each="error : ${errors}" th:text="${error}"></li>
 			</ul>
-			<p>アカウントをお持ちではありませんか？</p>
-			<a href='/user/add' ;>ユーザー新規登録</a><br /><br />
+			<p class="login-commentt">アカウントをお持ちではありませんか？</p>
+			<a href='/user/add' class="login-link">ユーザー新規登録</a><br /><br />
 		</div>
 	</div>
 	<script>
