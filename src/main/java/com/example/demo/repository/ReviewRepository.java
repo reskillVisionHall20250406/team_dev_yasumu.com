@@ -8,4 +8,6 @@ import com.example.demo.entity.Review;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	List<Review> findByHotelId(Integer hotelId);
+
+	void deleteByHotelId(Integer id);
 }

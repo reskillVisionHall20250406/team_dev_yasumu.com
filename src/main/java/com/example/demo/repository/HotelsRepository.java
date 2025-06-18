@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.entity.Hotels;
 
@@ -49,5 +50,7 @@ public interface HotelsRepository extends JpaRepository<Hotels, Integer> {
 
 	Hotels findByNameAndAddress(String name, String address);
 
+	@Query("SELECT h FROM Hotels h ORDER BY h.stars DESC")
+	List<Hotels> findTop2OrderByStarsDescJPQL(Pageable pageable);
 
 }

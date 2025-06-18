@@ -21,7 +21,7 @@ import com.example.demo.entity.Admin;
 import com.example.demo.entity.Area; // Area 엔티티 import 추가
 import com.example.demo.entity.Hotels;
 import com.example.demo.entity.Review;
-import com.example.demo.model.Account;
+import com.example.demo.model.AdminAccount;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.AreaRepository;
 import com.example.demo.repository.HotelsRepository;
@@ -45,8 +45,8 @@ public class AdminController {
     @Autowired
     AdminRepository adminRepository;
 
-    @Autowired
-    Account account;
+	@Autowired
+	AdminAccount adminAccount;
 
     @GetMapping("/admin")
     public String index() {
@@ -85,9 +85,9 @@ public class AdminController {
             return "adminLogin"; // ログインページにエラーを表示
         }
 
-        account.setEmail(admin.getEmail());
-        account.setName(admin.getName());
-        account.setId(admin.getId());
+		adminAccount.setEmail(admin.getEmail());
+		adminAccount.setName(admin.getName());
+		adminAccount.setId(admin.getId());
 
         return "redirect:/home";
     }
@@ -95,10 +95,10 @@ public class AdminController {
     @GetMapping("/home")
     public String index(Model model) {
 
-        List<Hotels> hotelsPage = hotelsRepository.findByAdminId(account.getId());
+		List<Hotels> hotelsPage = hotelsRepository.findByAdminId(adminAccount.getId());
 
-        model.addAttribute("hotels", hotelsPage);
-        model.addAttribute("account", account);
+		model.addAttribute("hotels", hotelsPage);
+		model.addAttribute("account", adminAccount);
 
         return "admin_home";
     }
@@ -310,42 +310,34 @@ public class AdminController {
             byte[] content3 = file3.getBytes();
             Files.write(Paths.get(filePath3), content3);
 
-            String imageUrl = "/upload/" + filename;
-            String imageUrl2 = "/upload/" + filename2;
-            String imageUrl3 = "/upload/" + filename3;
+			String imageUrl = "/upload/" + filename;
+			String imageUrl2 = "/upload/" + filename2;
+			String imageUrl3 = "/upload/" + filename3;
+			model.addAttribute("imageUrl", imageUrl);
+			model.addAttribute("imageUrl2", imageUrl2);
+			model.addAttribute("imageUrl3", imageUrl3);
+			hotels.setImage(imageUrl);
+			hotels.setImage2(imageUrl2);
+			hotels.setImage3(imageUrl3);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		hotels.setName(name);
+		hotels.setAddress(address);
+		hotels.setCapacity(capacity);
+		hotels.setPrice(price);
+		hotels.setDetail(detail);
+		hotels.setAreaId(areaId);
+		hotelsRepository.save(hotels);
+		return "redirect:/home";
+	}
 
-            // 이 부분은 뷰로만 전달하고 Hotels 객체에 설정할 필요는 없습니다.
-            // model.addAttribute("imageUrl", imageUrl);
-            // model.addAttribute("imageUrl2", imageUrl2);
-            // model.addAttribute("imageUrl3", imageUrl3);
-
-            hotels.setImage(imageUrl);
-            hotels.setImage2(imageUrl2);
-            hotels.setImage3(imageUrl3);
-        } catch (Exception e) {
-            e.printStackTrace();
-            errorList.add("画像のアップロード中にエラーが発生しました"); // 이미지 업로드 에러 처리
-            model.addAttribute("errors", errorList);
-            model.addAttribute("name", name);
-            model.addAttribute("detail", detail);
-            model.addAttribute("address", address);
-            List<Area> areas = areaRepository.findAll(); // 에러 발생 시 지역 목록도 다시 추가
-            model.addAttribute("areas", areas);
-            return "admin_register";
-        }
-
-        hotels.setName(name);
-        hotels.setAddress(address);
-        hotels.setCapacity(capacity);
-        hotels.setPrice(price);
-        hotels.setDetail(detail);
-
-        // areaId를 사용하여 Area 엔티티를 찾아 Hotels 객체에 설정합니다.
-        hotels.setArea(areaOpt.get()); // Optional에서 Area 객체를 가져와 설정
-
-        hotelsRepository.save(hotels);
-        return "redirect:/home";
-
-    }
+	@PostMapping("/admin/delete/{id}")
+	public String deleteHotels(@PathVariable("id") Integer id) {
+		Hotels deleteHotel = hotelsRepository.findById(id).get();
+		reviewRepository.deleteByHotelId(id);
+		hotelsRepository.delete(deleteHotel);
+		return "redirect:/home";
+	}
 
 }

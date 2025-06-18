@@ -45,9 +45,14 @@ public class ReservationController {
 
 	@GetMapping("/reservation/days/{id}")
 	public String kari(@PathVariable("id") Integer id, Model model) {
+		if (account.getName() == null) {
+			session.setAttribute("reservationLogin", "/hotelsdetail/");
+			session.setAttribute("id", id);
+			return "redirect:/login";
+		}
 		Hotels hotels = hotelsRepository.findById(id).get();
 		model.addAttribute("hotels", hotels);
-		return "reservation_kari";
+		return "reservation_days";
 	}
 
 	@PostMapping("/reservation/days/{id}")
@@ -66,33 +71,29 @@ public class ReservationController {
 			@PathVariable("id") Integer id,
 			Model model) {
 
-		if (account.getEmail() == null) {
-			session.setAttribute("reservationLogin", "/reservation/");
-			session.setAttribute("id", id);
-			return "redirect:/login";
-		} else {
-			Hotels hotels = hotelsRepository.findById(id).get();//クリックされた宿のIDから宿情報を取得
+		Hotels hotels = hotelsRepository.findById(id).get();//クリックされた宿のIDから宿情報を取得
 
-			Customers customer = customersRepository.findByEmail(account.getEmail());
-			//ログインされているアカウントからクレジットカードの情報を取得
-			List<String> card = new ArrayList<>();
-			card.add(customer.getCardNo());
-			card.add(customer.getCode());
-			card.add(customer.getExpiry());
-			model.addAttribute("hotels", hotels);
-			model.addAttribute("customers", customer);
-			model.addAttribute("account", account);
-			model.addAttribute("selectedDate", selectedDate);
-			//		@RequestParam("date") LocalDate date,
+		Customers customer = customersRepository.findByEmail(account.getEmail());
 
-			return "reservation";
-		}
+		session.setAttribute("date", selectedDate);
+
+		//ログインされているアカウントからクレジットカードの情報を取得
+		List<String> card = new ArrayList<>();
+		card.add(customer.getCardNo());
+		card.add(customer.getCode());
+		card.add(customer.getExpiry());
+		model.addAttribute("hotels", hotels);
+		model.addAttribute("customers", customer);
+		model.addAttribute("account", account);
+		model.addAttribute("selectedDate", selectedDate);
+		//		@RequestParam("date") LocalDate date,
+
+		return "reservation";
 	}
 
 	@PostMapping("/reservation/approval/{id}")
 	public String approval(
 			@PathVariable("id") Integer id,
-			@RequestParam("orderedOn") LocalDate orderedOn,
 			@RequestParam("cardno") String cardNo,
 			@RequestParam("code") String code,
 			@RequestParam("expiry") String expiry, Model model) {
@@ -139,18 +140,20 @@ public class ReservationController {
 		customer.setCardNo(cardNo);
 		customer.setCode(code);
 		customer.setExpiry(expiry);
-
+		LocalDate date = (LocalDate) session.getAttribute("date");
 		if (err.isEmpty()) {
-			Reservation reservation = new Reservation(id, customer.getId(), orderedOn);
+
+			Reservation reservation = new Reservation(id, customer.getId(), date);
 			reservationRepository.save(reservation);
 			model.addAttribute("hotels", hotels);
 			model.addAttribute("reservation", reservation);
+			model.addAttribute("selectedDate", date);
 
 			return "completed";
 
 		}
 
-		model.addAttribute("orderedOn", orderedOn);
+		model.addAttribute("orderedOn", date);
 		model.addAttribute("hotels", hotels);
 		model.addAttribute("customers", customer);
 		model.addAttribute("account", account);
