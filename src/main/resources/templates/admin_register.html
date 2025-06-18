@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>新規登録</title>
-	<link rel="stylesheet" type="text/css" href="/css/tachiki.css">
+	<link rel="stylesheet" type="text/css" href="/css/Jung.css">
 </head>
 
 <body>
@@ -19,7 +19,40 @@
 
 			<form class="login_text" action="/hotels/add" method="post" enctype="multipart/form-data">
 				<input type="text" name="name" th:value="${name}" placeholder="*ホテル名"><br>
-				...
+				<fieldset class="radio-1">
+					<label>
+						<input type="radio" name="areaId" value="1" checked />
+						東北
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="2" />
+						関東
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="3" />
+						中部
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="4" />
+						近畿
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="5" />
+						中国
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="6" />
+						四国
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="7" />
+						九州
+					</label>
+				</fieldset>
+				<input type="text" name="detail" placeholder="*ホテル詳細"><br>
+				<input type="text" name="address" placeholder="*住所"><br>
+				<input type="number" name="capacity" placeholder="*宿泊人数"><br>
+				<input type="number" name="price" placeholder="*価格"><br>
 				<input name="file" type="file" id="img" class="poi">
 				<input name="file2" type="file" id="img2" class="poi">
 				<input name="file3" type="file" id="img3" class="poi">

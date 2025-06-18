@@ -6,11 +6,10 @@ html {
 
 header button {
 	font-family: 'M PLUS 1p', sans-serif;
-}ｓ
+}
 
-
-.logo {
-	margin: 20px; 
+ｓ .logo {
+	margin: 20px;
 	/* 로고 왼쪽 상단에서 조금 떨어지게 해주는거  */
 	position: absolute;
 	top: 0;
@@ -270,7 +269,7 @@ table th {
 
 /* 送信ボタン(マウスオーバー時) */
 button:hover {
-	background-color:rgb(0, 0, 128);
+	background-color: rgb(0, 0, 128);
 }
 
 .button-37 {
@@ -288,9 +287,11 @@ button:hover {
 	border-radius: 3px;
 	cursor: pointer;
 }
+
 .button-37:focus {
 	color: transparent;
 }
+
 .button-37:focus::before {
 	display: flex;
 	justify-content: center;
@@ -310,7 +311,7 @@ button:hover {
 body {
 	font-family: 'M PLUS 1p', sans-serif;
 	height: 100vh;
-    margin: 0;
+	margin: 0;
 }
 
 .section {
@@ -360,9 +361,9 @@ body {
 }
 
 li {
-/*	color: #000000;*/
-/*	font-size: 20px;*/
-/*	font-family: 'M PLUS 1p', sans-serif;*/
+	/*	color: #000000;*/
+	/*	font-size: 20px;*/
+	/*	font-family: 'M PLUS 1p', sans-serif;*/
 
 }
 
@@ -549,12 +550,12 @@ ul.ioio {
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	
+
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translateY(-50%)translateX(-50%);
-    /* 폼 중앙에 오게 하는 것들 포지션, 탑, 레프트, 트렌스폼 */
+	/* 폼 중앙에 오게 하는 것들 포지션, 탑, 레프트, 트렌스폼 */
 
 	/* 내부 요소를 가로 중앙 정렬 */
 }
@@ -572,11 +573,12 @@ label {
 }
 
 .login_text input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box; /* padding 포함한 전체 너비 계산 */
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+	/* padding 포함한 전체 너비 계산 */
 }
 
 .login_button {
@@ -587,44 +589,47 @@ label {
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
-	
+
 }
 
-.error{
+.error {
 	padding: 0;
-    color: red;
+	color: red;
 	list-style-type: none;
-	font-size: 14px;       
-	font-family: sans-serif; 
+	font-size: 14px;
+	font-family: sans-serif;
 	margin-bottom: 10px;
 }
 
 /* 비밀번호 보기 버튼 input 우측에 겹치게 배치*/
 .toggle-btn {
-  all: unset;
-  position: absolute;
-  right: 0px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 0;
-  color: #888;
-  outline: none;             /* 포커스 테두리 제거 */
+	all: unset;
+	position: absolute;
+	right: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 20px;
+	padding: 0;
+	color: #888;
+	outline: none;
+	/* 포커스 테두리 제거 */
 }
 
 .toggle-btn:hover,
 .toggle-btn:focus,
 .toggle-btn:active {
-  background: transparent !important; /* hover, focus 시 배경색 제거 */
-  box-shadow: none;                  /* 포커스 외곽선 제거 */
+	background: transparent !important;
+	/* hover, focus 시 배경색 제거 */
+	box-shadow: none;
+	/* 포커스 외곽선 제거 */
 }
 
-.loginbackgroundimg{
+.loginbackgroundimg {
 	width: 35%;
-	position:absolute;
+	position: absolute;
 	bottom: 10px;
 	right: 0;
 }
@@ -672,4 +677,60 @@ body,
 header,
 footer {
 	width: 100%;
+}
+
+.radio-1 {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .3em 2em;
+	border: none;
+}
+
+.radio-1 label {
+	display: flex;
+	align-items: center;
+	gap: 0 .5em;
+	position: relative;
+	cursor: pointer;
+}
+
+.radio-1 label::before,
+.radio-1 label:has(:checked)::after {
+	border-radius: 50%;
+	content: '';
+}
+
+.radio-1 label::before {
+	width: 18px;
+	height: 18px;
+	background-color: #e6edf3;
+}
+
+.radio-1 label:has(:checked)::after {
+	position: absolute;
+	top: 50%;
+	left: 9px;
+	transform: translate(-50%, -50%);
+	width: 10px;
+	height: 10px;
+	background-color: rgb(0, 128, 192);
+	animation: anim-radio-1 .3s linear;
+}
+
+@keyframes anim-radio-1 {
+	0% {
+		box-shadow: 0 0 0 1px transparent;
+	}
+
+	50% {
+		box-shadow: 0 0 0 10px #f2f2f233;
+	}
+
+	100% {
+		box-shadow: 0 0 0 10px transparent;
+	}
+}
+
+.radio-1 input {
+	display: none;
 }
