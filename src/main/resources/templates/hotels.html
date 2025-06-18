@@ -120,17 +120,11 @@
 
 		<h2 class="midashi">おすすめの宿</h2>
 		<div class="recommend">
-			<div class="recommend2">
-				<a href="">
-					<img src="/image/1-11.jpg" width="100%">
+			<div class="recommend2" th:each="max:${maxHotels}" >
+				<a th:href="@{/hotelsdetail/{id}(id=${max.id})}">
+				<img th:src="${max.image}"  width="100%" alt="ホテル画像">
 				</a>
 			</div>
-			<div class="recommend2">
-				<a href="">
-					<img src="/image/1-13.jpg" width="100%">
-				</a>
-			</div>
-
 		</div>
 		<!--		<div class="recommend">-->
 		<!--			<div class="recommend2">-->

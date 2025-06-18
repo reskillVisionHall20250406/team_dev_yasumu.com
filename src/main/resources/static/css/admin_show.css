@@ -1,0 +1,147 @@
+.flex {
+	display: flex;
+}
+
+table {
+	max-width: 60%;
+}
+
+h1,
+.editForm {
+	text-align: center;
+}
+
+.align {
+	text-align: center;
+	display: flex;
+}
+
+.img {
+	display: block;
+	margin-left: 30%;
+	width: 360px;
+	height: 350px;
+	border: 2px solid rgb(128, 128, 128);
+}
+
+.imgMini {
+	margin-bottom: -5px;
+	width: 180px;
+	height: 173px;
+	border: 2px solid rgb(128, 128, 128);
+}
+
+.imgMini2 {
+	width: 180px;
+	height: 173px;
+	border: 2px solid rgb(128, 128, 128);
+}
+
+.editForm button {
+	font-size: 18px;
+	width: 300px;
+}
+
+textarea {
+	width: 30%;
+	height: 30%;
+}
+
+.imgSize {
+	width: 30%;
+	height: 30%;
+}
+
+.deleteForm {
+	background-color: red;
+}
+
+.deleteForm:hover {
+	background-color: rgb(255, 66, 66);
+}
+
+.btnFlex form {
+	display: inline-block;
+}
+
+div {
+	text-align: center;
+}
+
+@media (max-width: 480px) {
+	a {
+		color: #999;
+		text-decoration: none;
+		font-size: 18px;
+	}
+
+	.flex {
+		display: flex;
+	}
+
+	table {
+		max-width: 60%;
+	}
+
+	h1,
+	.editForm {
+		text-align: center;
+	}
+
+	.align {
+		text-align: center;
+		display: flex;
+	}
+
+	.img {
+		display: block;
+		margin-left: 30%;
+		width: 360px;
+		height: 350px;
+		border: 2px solid rgb(128, 128, 128);
+	}
+
+	.imgMini {
+		margin-bottom: -5px;
+		width: 180px;
+		height: 173px;
+		border: 2px solid rgb(128, 128, 128);
+	}
+
+	.imgMini2 {
+		width: 180px;
+		height: 173px;
+		border: 2px solid rgb(128, 128, 128);
+	}
+
+	.editForm button {
+		font-size: 18px;
+		width: 300px;
+	}
+
+	textarea {
+		width: 30%;
+		height: 30%;
+	}
+
+	.imgSize {
+		width: 30%;
+		height: 30%;
+	}
+
+	.deleteForm {
+		background-color: red;
+	}
+
+	.deleteForm:hover {
+		background-color: rgb(255, 66, 66);
+	}
+
+	.btnFlex form {
+		display: inline-block;
+	}
+
+	div {
+		text-align: center;
+	}
+}

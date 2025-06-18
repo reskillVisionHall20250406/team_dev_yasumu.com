@@ -142,7 +142,7 @@ body {
 	margin: 0 auto;
 }
 
-ul {
+ul.image{
 	list-style: none;
 	/*デフォルトの指定解除*/
 	display: flex;
@@ -152,10 +152,8 @@ ul {
 	height: 120px;
 	/*高さを指定*/
 }
-
+ul.image
 li img {
-	width: 90px;
-	/*幅を指定*/
 	height: 120px;
 	/*高さを指定*/
 }

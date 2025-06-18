@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>休.com</title>
 	<link rel="stylesheet" type="text/css" href="/css/Aikawa.css">
+	<link rel="stylesheet" type="text/css" href="/css/admin_home.css">
 
 	<!-- Google Fonts 読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,13 +17,20 @@
 
 <body>
 	<main>
-		<h2>登録宿一覧</h2><br><br>
-		<a href="/admin/register">ホテル登録</a>
+		<div>
+			<header id="header">
+				<a href="/home" class="logo"><img src="/image/休.com.png" width="10%"></a>
+			</header>
+			<a href="/admin/register">ホテル登録</a>
+			<hr>
+
+		</div>
+
 		<div class="aa">
 			<div class="row">
 				<div class="col" th:each="hotel : ${hotels}">
 					<a th:href="@{/admin/detail/{id}(id=${hotel.id})}">
-						<div class="div4">
+						<div class="image">
 							<img th:src="${hotel.image}" height="170px" width="100%" alt="ホテル画像">
 							<div class="popo">
 								<h3 th:text="${hotel.name}"></h3>

@@ -138,6 +138,11 @@ public class AccountController {
 
 	@GetMapping("/login")
 	public String login() {
+		String redirectUrl = (String) session.getAttribute("reservationLogin");
+		Integer redirectId = (Integer) session.getAttribute("id");
+		System.out.println(redirectUrl);
+		System.out.println(redirectId);
+
 		return "login";
 	}
 

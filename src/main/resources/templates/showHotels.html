@@ -3,10 +3,10 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>商品詳細ページ</title>
+	<title>宿詳細ページ</title>
 	<link rel="stylesheet" type="text/css" href="/css/Aikawa.css">
 	<link rel="stylesheet" type="text/css" href="/css/review.css">
-	<link rel="stylesheet" type="text/css" href="/css/editAdmin.css">
+	<link rel="stylesheet" type="text/css" href="/css/admin_show.css">
 
 	<!-- Google Fonts 読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,39 +14,63 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
 		rel="stylesheet">
+	<script>
+			function check(){
 
+			if(window.confirm('送信してよろしいですか？')){
+				return true; 
+			}
+			else{
+				window.alert('キャンセルされました'); // 警告ダイアログを表示
+			return false; // 送信を中止
+			}
+
+		}
+	</script>
 </head>
 
 <body>
-
 	<h1>宿情報変更</h1>
+	<a href="/home">管理者ホームへ</a>
+	<hr><br>
 	<span class="align">
-		<img th:src="${hotels.image}" class="img"><br>
-		<table align="center">
-			<tr>
-				<th>名前</th>
-				<td th:text="${hotels.name}"></td>
-			</tr>
-			<tr>
-				<th>住所</th>
-				<td th:text="${hotels.address}"></td>
-			</tr>
-			<tr>
-				<th>値段</th>
-				<td th:text="${hotels.price}+円"></td>
-			</tr>
-			<tr>
-				<th>コメント</th>
-				<td th:utext="${#strings.replace(hotels.detail, '\n', '<br/>')}"></td>
-			</tr>
-
-		</table>
+		<img th:src="${hotels.image}" class="img">
+		<div class="imgYoko">
+			<img th:src="${hotels.image2}" class="imgMini"><br>
+			<img th:src="${hotels.image3}" class="imgMini2">
+		</div>
 	</span><br>
-	<form  th:action="@{/admin/edit/{id}(id=${hotels.id})}" method="post" class="editForm">
-		<button>宿情報を変更する</button>
-	</form>
+	<table align="center">
+		<tr>
+			<th>名前</th>
+			<td th:text="${hotels.name}"></td>
+		</tr>
+		<tr>
+			<th>住所</th>
+			<td th:text="${hotels.address}"></td>
+		</tr>
+		<tr>
+			<th>値段</th>
+			<td th:text="${hotels.price}+円"></td>
+		</tr>
+		<tr>
+			<th>人数</th>
+			<td th:text="${hotels.capacity}+人"></td>
+		</tr>
+		<tr>
+			<th>コメント</th>
+			<td th:utext="${#strings.replace(hotels.detail, '\n', '<br/>')}"></td>
+		</tr>
+	</table>
 
-
+	<div class="btnFlex">
+		<form th:action="@{/admin/edit/{id}(id=${hotels.id})}" method="post" class="editForm">
+			<button>宿情報を変更する</button>
+		</form>
+		<form th:action="@{/admin/delete/{id}(id=${hotels.id})}" method="post" name="dltForm" onsubmit="return check()">
+			<button class="deleteForm" name="btn">削除する</button>
+		</form>
+	</div>
 
 	<hr>
 	<div class="im2">
@@ -85,10 +109,10 @@
 						<div class="star-color">　5</div>
 					</div>
 				</div>
-
-
 				<span th:text="${review.comment}"></span>
-
+				</div>
+				</div>
+	</div>
 </body>
 
 </html>
