@@ -39,12 +39,12 @@
 								</div>
 								<div th:each="reservation:${reservations}">
 									<span th:if="${hotels.id} == ${reservation.hotelId}">
-											<div th:text="宿泊日：+${reservation.date}">
+											<div th:text="宿泊日：+${reservation.date}" class="history-sub">
 											</div>
 									</span>
 								</div>
-								<div th:text="宿泊人数：+${hotels.capacity}+人"></div>
-								<div th:text="値段：+${hotels.price}+円">
+								<div th:text="宿泊人数：+${hotels.capacity}+人" class="history-sub"></div>
+								<div th:text="値段：+${hotels.price}+円" class="history-sub">
 								</div>
 							</div>
 						</div>

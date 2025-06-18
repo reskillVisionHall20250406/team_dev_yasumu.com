@@ -11,9 +11,10 @@ header button {
 .logo {
 
 	position: absolute;
-	top: 1%;
-	left: 1%;
+	top: 0%;
+	left: 0%;
 	z-index: 50;
+	width: 5%;
 }
 
 @media (max-width: 480px) {
@@ -111,7 +112,7 @@ header button {
 }
 
 #hmb span {
-	width: 48px;
+	width: 50px;
 	height: 8px;
 	margin-right: 10px;
 	display: block;
@@ -811,12 +812,6 @@ label {
 	}
 
 	/*マイページ画面*/
-	.mypage-name {
-		text-align: center;
-		font-size: 32px;
-	}
-
-	/*@media screen and(max-width:480px) {*/
 	.mypage-title {
 		text-align: center;
 		margin-bottom: 20px;
@@ -876,13 +871,13 @@ label {
 	.mypage-name {
 		text-align: center;
 		font-weight: bold;
-		font-size: 32px;
+		font-size: 24px;
 		margin-bottom: 10px;
 	}
 
 	.mypage-class {
 		text-align: center;
-		font-size: 1.4rem;
+		font-size: 16px;
 		margin-bottom: 10px;
 	}
 
@@ -901,7 +896,7 @@ label {
 	.mypage-link {
 		text-align: center;
 		margin-top: 40px;
-		font-size: 20px;
+		font-size: 16px;
 	}
 
 	@media (max-width: 480px) {
@@ -921,7 +916,7 @@ label {
 	@media (max-width: 480px) {
 		.mypage-class {
 			text-align: center;
-			font-size: 23px;
+			font-size: 24px;
 		}
 	}
 
