@@ -92,14 +92,10 @@ public class AdminController {
 	}
 
 	@GetMapping("/home")
-	public String index(
-			@RequestParam(name = "areaId", required = false, defaultValue = "0") Integer areaId,
-			Model model) {
+	public String index(Model model) {
 
 		List<Hotels> hotelsPage = hotelsRepository.findByAdminId(account.getId());
 
-		// Modelに情報を追加
-		model.addAttribute("areas", areaRepository.findAll());
 		model.addAttribute("hotels", hotelsPage);
 		model.addAttribute("account", account);
 
@@ -138,7 +134,7 @@ public class AdminController {
 		Hotels hotels = hotelsRepository.findById(id).get();
 
 		model.addAttribute("hotels", hotels);
-		return "hotelsEdit";
+		return "admin_hotelsEdit";
 	}
 
 	@PostMapping("/admin/edit/hotels/{id}")
@@ -148,9 +144,9 @@ public class AdminController {
 			@RequestParam(name = "capacity", defaultValue = "") Integer capacity,
 			@RequestParam(name = "price", defaultValue = "") Integer price,
 			@RequestParam(name = "detail", defaultValue = "") String detail,
-			@RequestParam("file") MultipartFile file,
-			@RequestParam("file2") MultipartFile file2,
-			@RequestParam("file3") MultipartFile file3,
+			@RequestParam(name = "file", defaultValue = "") MultipartFile file,
+			@RequestParam(name = "file2", defaultValue = "") MultipartFile file2,
+			@RequestParam(name = "file3", defaultValue = "") MultipartFile file3,
 			@PathVariable("id") Integer id,
 			Model model) {
 		Hotels hotels = hotelsRepository.findById(id).get();
@@ -174,32 +170,39 @@ public class AdminController {
 		} else if (price == 0) {
 			err.add("料金は１以上を入力してください");
 		}
+
 		if (err.isEmpty()) {
 			try {
-				String filename = file.getOriginalFilename();
-				String filePath = "static/upload/" + filename;
-				byte[] content = file.getBytes();
-				Files.write(Paths.get(filePath), content);
+				String contentType = file.getContentType();
+				String contentType2 = file2.getContentType();
+				String contentType3 = file3.getContentType();
+				if (contentType.startsWith("image/")) {
+					String filename = file.getOriginalFilename();
+					String filePath = "static/upload/" + filename;
+					byte[] content = file.getBytes();
+					Files.write(Paths.get(filePath), content);
+					String imageUrl = "/upload/" + filename;
+					hotels.setImage(imageUrl);
 
-				String filename2 = file2.getOriginalFilename();
-				String filePath2 = "static/upload/" + filename2;
-				byte[] content2 = file2.getBytes();
-				Files.write(Paths.get(filePath2), content2);
+				}
 
-				String filename3 = file3.getOriginalFilename();
-				String filePath3 = "static/upload/" + filename3;
-				byte[] content3 = file3.getBytes();
-				Files.write(Paths.get(filePath3), content3);
+				if (contentType2.startsWith("image/")) {
+					String filename2 = file2.getOriginalFilename();
+					String filePath2 = "static/upload/" + filename2;
+					byte[] content2 = file2.getBytes();
+					Files.write(Paths.get(filePath2), content2);
+					String imageUrl2 = "/upload/" + filename2;
+					hotels.setImage2(imageUrl2);
+				}
+				if (contentType3.startsWith("image/")) {
+					String filename3 = file3.getOriginalFilename();
+					String filePath3 = "static/upload/" + filename3;
+					byte[] content3 = file3.getBytes();
+					Files.write(Paths.get(filePath3), content3);
+					String imageUrl3 = "/upload/" + filename3;
+					hotels.setImage3(imageUrl3);
+				}
 
-				String imageUrl = "/upload/" + filename;
-				String imageUrl2 = "/upload/" + filename2;
-				String imageUrl3 = "/upload/" + filename3;
-				model.addAttribute("imageUrl", imageUrl);
-				model.addAttribute("imageUrl2", imageUrl2);
-				model.addAttribute("imageUrl3", imageUrl3);
-				hotels.setImage(imageUrl);
-				hotels.setImage2(imageUrl2);
-				hotels.setImage3(imageUrl3);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -213,7 +216,7 @@ public class AdminController {
 
 		model.addAttribute("hotels", hotels);
 		model.addAttribute("errors", err);
-		return "hotelsEdit";
+		return "admin_hotelsEdit";
 	}
 
 	@GetMapping("/admin/register")

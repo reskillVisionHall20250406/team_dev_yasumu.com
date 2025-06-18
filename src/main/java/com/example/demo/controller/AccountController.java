@@ -86,6 +86,7 @@ public class AccountController {
 		} else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
 			errorList.add("パスワードは半角英字と数字の両方を含めてください");
 		}
+
 		if (!(cardNo.equals("")) || !(code.equals("")) || !(expiry.equals(""))) {
 			System.out.println(cardNo);
 			System.out.println(code);
@@ -124,7 +125,6 @@ public class AccountController {
 			model.addAttribute("tel", tel);
 			return "user"; // ログインページにエラーを表示
 		}
-
 		Customers customers = new Customers(name, address, tel, email, password, cardNo, code, expirys);
 		customersRepository.save(customers);
 		return "redirect:/login";
@@ -213,6 +213,7 @@ public class AccountController {
 			@RequestParam(name = "tel", defaultValue = "") String tel,
 			@RequestParam(name = "email", defaultValue = "") String email,
 			@RequestParam(name = "password", defaultValue = "") String password,
+			@RequestParam(name = "newPassword", defaultValue = "") String newPassword,
 			@RequestParam(name = "imgname", defaultValue = "") String image,
 			@RequestParam("file") MultipartFile file,
 			@RequestParam(name = "cardNo", defaultValue = "") String cardNo,
@@ -246,13 +247,23 @@ public class AccountController {
 			if (tel.equals("")) {
 				errorList.add("電話番号を入力してください");
 			}
-			if (password.isEmpty()) {
-				errorList.add("パスワードを入力してください");
-			} else if (password.length() < 8) {
-				errorList.add("パスワードは8文字以上で入力してください");
-			} else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
-				errorList.add("パスワードは半角英字と数字の両方を含めてください");
+
+			if (newPassword.isEmpty()) {
+				newPassword = account.getPassword();
+			} else {
+				if (newPassword.length() < 8) {
+					errorList.add("パスワードは8文字以上で入力してください");
+				} else if (!newPassword.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
+					errorList.add("パスワードは半角英字と数字の両方を含めてください");
+				}
+
+				if (password.isEmpty()) {
+					errorList.add("確認用パスワードを入力してください");
+				} else if (!password.equals(account.getEmail())) {
+					errorList.add("確認用パスワードが間違っています");
+				}
 			}
+
 			if (!(cardNo.equals("")) || !(code.equals("")) || !(expiry.equals(""))) {
 				System.out.println(cardNo);
 				System.out.println(code);
