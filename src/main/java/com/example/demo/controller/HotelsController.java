@@ -194,13 +194,7 @@ public class HotelsController {
 			for (Review data : reviews) {
 				total += data.getStar();
 			}
-		log.add(hotels);
-		
-		    if (!reviews.isEmpty()) {
-		        double total = 0;
-		        for (Review data : reviews) {
-		            total += data.getStar();
-		        }
+			log.add(hotels);
 
 			// 平均を求める
 			double average = total / reviews.size();

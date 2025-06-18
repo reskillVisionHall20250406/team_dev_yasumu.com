@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.Customers;
-import com.example.demo.entity.Hotels;
 import com.example.demo.entity.Reservation;
 import com.example.demo.model.Account;
 import com.example.demo.repository.CustomersRepository;
@@ -264,10 +263,10 @@ public class AccountController {
 
 				if (password.isEmpty()) {
 					errorList.add("確認用パスワードを入力してください");
-				} else if (!password.equals(account.getEmail())) {
+				} else if (!password.equals(account.getPassword())) {
 					errorList.add("確認用パスワードが間違っています");
 				}
-			}
+			} //ここがなぜか通らないから直してね
 
 			if (!(cardNo.equals("")) || !(code.equals("")) || !(expiry.equals(""))) {
 				System.out.println(cardNo);
@@ -363,14 +362,8 @@ public class AccountController {
 	@GetMapping("yado/history")
 	public String history(Model model) {
 		List<Reservation> reservations = new ArrayList<>();
-		List<Hotels> hotels = new ArrayList<>();
 		reservations = reservationRepository.findByCustomerId(account.getId());
 
-		for (Reservation reservation : reservations) {
-			Hotels hotel = hotelsRepository.findById(reservation.getHotelId()).get();
-			hotels.add(hotel);
-		}
-		model.addAttribute("hotel", hotels);
 		model.addAttribute("reservations", reservations);
 		model.addAttribute("account", account);
 

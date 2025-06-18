@@ -63,7 +63,9 @@ CREATE TABLE reservation (
     name VARCHAR(255),
     address VARCHAR(255),
     image VARCHAR(255),
-    date DATE DEFAULT CURRENT_DATE
+    date DATE DEFAULT CURRENT_DATE,
+    capacity INTEGER,
+    price INTEGER
 );
 
 --レビューテーブル
