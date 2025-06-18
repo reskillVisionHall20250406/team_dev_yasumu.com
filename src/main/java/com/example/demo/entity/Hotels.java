@@ -142,4 +142,8 @@ public class Hotels {
 	public void setAdminId(Integer adminId) {
 		this.adminId = adminId;
 	}
+
+	public void setAreaId(Integer areaId) {
+		this.areaId = areaId;
+	}
 }

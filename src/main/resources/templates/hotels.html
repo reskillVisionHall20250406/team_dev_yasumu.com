@@ -74,12 +74,11 @@
 		<h2 class="midashi">最近見た宿</h2>
 		<div class="containers">
 			<ul class="carousel">
-				<li th:each="hotel : ${@log.getHotels()}" class="carousel-item"><a
-						th:href="@{/hotelsdetail/{id}(id=${hotel.id})}">
+				<li th:each="hotel : ${@log.getHotels()}" class="carousel-item">
+					<a th:href="@{/hotelsdetail/{id}(id=${hotel.id})}">
 						<div class="div4">
 							<img th:src="${hotel.image}" height="170px" width="100%" alt="ホテル画像">
 							<div class="popo">
-
 								<h3 th:text="${hotel.name}"></h3>
 								<div th:text="${hotel.address}"></div>
 							</div>
@@ -188,10 +187,10 @@
 							<div class="popo">
 								<h3 th:text="${hotel.name}"></h3>
 								<div th:text="${hotel.address}"></div>
-																<div class="star-rating2">
-																    <span th:text="${hotel.stars}">0.0</span>
-<!--																    <span class="stars" th:text="${hotel.starVisual}"></span>-->
-																</div>
+								<div class="star-rating2">
+									<span th:text="${hotel.stars}">0.0</span>
+									<!--																    <span class="stars" th:text="${hotel.starVisual}"></span>-->
+								</div>
 
 								<div class="star-rating" th:attr="data-stars=${hotel.stars}">
 									<span class="star"></span>

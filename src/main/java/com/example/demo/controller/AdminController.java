@@ -234,8 +234,8 @@ public class AdminController {
 			@RequestParam("file") MultipartFile file,
 			@RequestParam("file2") MultipartFile file2,
 			@RequestParam("file3") MultipartFile file3,
-			@RequestParam(name = "capacity", defaultValue = "") Integer capacity,
-			@RequestParam(name = "price", defaultValue = "") Integer price,
+			@RequestParam(name = "capacity", required = false) Integer capacity,
+			@RequestParam(name = "price", required = false) Integer price,
 			Model model) {
 
 		List<String> errorList = new ArrayList<>();
@@ -262,10 +262,10 @@ public class AdminController {
 		if (file3.isEmpty()) {
 			errorList.add("サブ画像2を入力してください");
 		}
-		if (capacity.equals("")) {
+		if (capacity == null) {
 			errorList.add("宿泊人数を入力してください");
 		}
-		if (price.equals("")) {
+		if (price == null) {
 			errorList.add("価格を入力してください");
 		}
 
@@ -275,42 +275,45 @@ public class AdminController {
 			model.addAttribute("name", name);
 			model.addAttribute("detail", detail);
 			model.addAttribute("address", address);
-			try {
-				String filename = file.getOriginalFilename();
-				String filePath = "static/upload/" + filename;
-				byte[] content = file.getBytes();
-				Files.write(Paths.get(filePath), content);
-
-				String filename2 = file2.getOriginalFilename();
-				String filePath2 = "static/upload/" + filename2;
-				byte[] content2 = file2.getBytes();
-				Files.write(Paths.get(filePath2), content2);
-
-				String filename3 = file3.getOriginalFilename();
-				String filePath3 = "static/upload/" + filename3;
-				byte[] content3 = file3.getBytes();
-				Files.write(Paths.get(filePath3), content3);
-
-				String imageUrl = "/upload/" + filename;
-				String imageUrl2 = "/upload/" + filename2;
-				String imageUrl3 = "/upload/" + filename3;
-				model.addAttribute("imageUrl", imageUrl);
-				model.addAttribute("imageUrl2", imageUrl2);
-				model.addAttribute("imageUrl3", imageUrl3);
-				hotels.setImage(imageUrl);
-				hotels.setImage2(imageUrl2);
-				hotels.setImage3(imageUrl3);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			hotels.setName(name);
-			hotels.setAddress(address);
-			hotels.setCapacity(capacity);
-			hotels.setDetail(detail);
-			hotelsRepository.save(hotels);
-			return "redirect:/hotels";
+			return "admin_register"; // ログインページにエラーを表示
 		}
-		return "admin_register"; // ログインページにエラーを表示
+
+		try {
+			String filename = file.getOriginalFilename();
+			String filePath = "static/upload/" + filename;
+			byte[] content = file.getBytes();
+			Files.write(Paths.get(filePath), content);
+
+			String filename2 = file2.getOriginalFilename();
+			String filePath2 = "static/upload/" + filename2;
+			byte[] content2 = file2.getBytes();
+			Files.write(Paths.get(filePath2), content2);
+
+			String filename3 = file3.getOriginalFilename();
+			String filePath3 = "static/upload/" + filename3;
+			byte[] content3 = file3.getBytes();
+			Files.write(Paths.get(filePath3), content3);
+
+			String imageUrl = "/upload/" + filename;
+			String imageUrl2 = "/upload/" + filename2;
+			String imageUrl3 = "/upload/" + filename3;
+			model.addAttribute("imageUrl", imageUrl);
+			model.addAttribute("imageUrl2", imageUrl2);
+			model.addAttribute("imageUrl3", imageUrl3);
+			hotels.setImage(imageUrl);
+			hotels.setImage2(imageUrl2);
+			hotels.setImage3(imageUrl3);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		hotels.setName(name);
+		hotels.setAddress(address);
+		hotels.setCapacity(capacity);
+		hotels.setPrice(price);
+		hotels.setDetail(detail);
+		hotels.setAreaId(areaId);
+		hotelsRepository.save(hotels);
+		return "redirect:/home";
 
 	}
 
