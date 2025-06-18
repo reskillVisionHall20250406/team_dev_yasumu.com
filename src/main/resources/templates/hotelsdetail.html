@@ -7,6 +7,23 @@
 	<link rel="stylesheet" type="text/css" href="/css/Aikawa.css">
 	<link rel="stylesheet" type="text/css" href="/css/review.css">
 
+	<style>
+        .tags-container {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .tag-item {
+            background-color: #e0e0e0;
+            padding: 5px 8px;
+            border-radius: 15px;
+            margin-right: 5px;
+            font-size: 0.9em;
+            color: #555;
+            display: inline-block; /* 태그들이 한 줄에 표시되도록 */
+            white-space: nowrap; /* 태그 내용이 잘리지 않도록 */
+        }
+    </style>
+
 	<!-- Google Fonts 読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +47,10 @@
 			<div class="mi">
 				<br><br>
 				<h1 th:text="${hotels.name}" class="mi"></h1>
+				 <div class="tags-container">
+                    <span style="margin: 5px;" th:each="tag : ${hotels.tags}" th:text="${'#' + tag.name}" class="tag-item">
+                    </span>
+                </div>
 				<div class="oimo3">
 					<h4 class="oimo2" th:text="${hotels.address}"></h4>
 					<div class="star-rating2">
