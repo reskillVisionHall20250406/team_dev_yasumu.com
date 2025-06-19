@@ -19,13 +19,13 @@
 		<div class="login-container">
 			
 			<div class="flex">
-				<img th:src="${hotels.image}" height="170px" alt="ホテル画像">
+				<img th:src="${hotels.image}" class="reservation-img" alt="ホテル画像">
 				<div class="hoteldetail">
-					<h3 th:text="${hotels.name}"></h3>
-					<h6 th:text="${hotels.address}"></h6>
+					<h3 th:text="${hotels.name}" class="reservation-h3"></h3>
+					<h6 th:text="${hotels.address}" class="reservation-h6"></h6>
 					<div class="hoteldetail2">
-						<div th:text="宿泊人数： + ${hotels.capacity} + 人"></div>
-						<div th:text="値段： + ${hotels.price} + 円"></div>
+						<div th:text="宿泊人数： + ${hotels.capacity} + 人" class="reservation-h6"></div>
+						<div th:text="値段： + ${hotels.price} + 円" class="reservation-h6"></div>
 					</div>
 					<!--    <span th:text="${date}"></span><br>-->
 				</div>
@@ -33,7 +33,7 @@
 
 			<div class="flex-item credit-form">
 				<div class="btn">
-					<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" method="post">
+					<form th:action="@{/reservation/approval/{id}(id=${hotels.id})}" class="reservation-form" method="post">
 						<label>
 							<span class="textbox-3-label">クレジットカード番号</span>
 							<div class="flexErr">

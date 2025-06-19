@@ -9,22 +9,22 @@
 
 <body>
 	<header th:replace="header2"></header><br><br>
-	<h3 style="text-align: center;">宿の予約が完了しました</h3><br>
+	<h3 class="completed-h3">宿の予約が完了しました</h3><br>
 	<div class="login-container">
 		<div class="flex">
-			<img th:src="${hotels.image}" height="170px" alt="ホテル画像">
+			<img th:src="${hotels.image}" class="completed-img" alt="ホテル画像">
 			<div class="hello">
-				<div th:text="${hotels.name}"></div>
-				<div th:text="${hotels.address}"></div>
-				<div th:text="宿泊人数： + ${hotels.capacity} + 人"></div>
-				<div th:text="値段： + ${hotels.price} + 円"></div>
-				<span th:text="日時： + ${reservation.date}"></span>
+				<div th:text="${hotels.name}" class="completed-hotelname"></div>
+				<div th:text="${hotels.address}" class="completed-sub"></div>
+				<div th:text="宿泊人数： + ${hotels.capacity} + 人" class="completed-sub"></div>
+				<div th:text="値段： + ${hotels.price} + 円" class="completed-sub"></div>
+				<span th:text="日時： + ${reservation.date}" class="completed-sub"></span>
 			</div>
 		</div>
 	</div>
 
 	<br><br>
-	<div style="text-align: center;">ご利用ありがとうございます</div>
+	<div class="completed-commentt">ご利用ありがとうございます</div>
 	<br>
 	<form action="/hotels" method="get">
 		<button class="button-1">OK</button>
