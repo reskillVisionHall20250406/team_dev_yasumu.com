@@ -227,7 +227,7 @@ li {
 }
 
 .login-container {
-	max-height: 250px;
+	max-height: 296px;
 	max-width: 700px;
 	margin: 0 auto;
 	padding: 20px;
@@ -329,6 +329,32 @@ h3 {
 	padding-left: 11%;
 }
 
+.completed-h3 {
+	text-align: center;
+	margin-top: 16px;
+	font-weight: 500;
+}
+
+.completed-sub {
+	font-size: 16px;
+	width: 150%;
+}
+
+.completed-img {
+	width: 60%;
+	height: 56%;
+}
+
+.completed-hotelname {
+	font-size: 24px;
+	width: 150%;
+}
+
+.completed-commentt {
+	text-align: center;
+	margin-top: -32px;
+}
+
 .date2:label {
 	position: relative;
 	display: inline-block;
@@ -362,7 +388,7 @@ input[type="date"] {
 	background-color: #fff;
 	color: #2589d0;
 	font-size: 1em;
-	margin-top: 5vh;
+	margin-top: 0px;
 }
 
 .hello {
@@ -371,8 +397,8 @@ input[type="date"] {
 
 @media (max-width :480px) {
 	.logo img {
-		width: 27%;
-		height: 27%;
+		width: 96px;
+		height: 96px;
 	}
 
 	.completed-img {
@@ -383,6 +409,7 @@ input[type="date"] {
 
 	.completed-h3 {
 		text-align: center;
+		margin-top: 16px;
 		font-size: 40px;
 	}
 
@@ -391,7 +418,7 @@ input[type="date"] {
 	}
 
 	.completed-sub {
-		font-size: 40px;
+		font-size: 32px;
 	}
 
 	.completed-commentt {
@@ -406,20 +433,19 @@ input[type="date"] {
 		height: 350px;
 		display: initial;
 	}
-	
+
 	.button-1 {
-	    display: flex
-	;
-	    justify-content: center;
-	    align-items: center;
-	    width: 100px;
-	    margin: 0 auto;
-	    padding: .6em 1em;
-	    border: 1px solid #2589d0;
-	    border-radius: 5px;
-	    background-color: #fff;
-	    color: #2589d0;
-	    font-size: 32px;
-	    margin-top: 5vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100px;
+		margin: 0 auto;
+		padding: .6em 1em;
+		border: 1px solid #2589d0;
+		border-radius: 5px;
+		background-color: #fff;
+		color: #2589d0;
+		font-size: 32px;
+		margin-top: 5vh;
 	}
 }
