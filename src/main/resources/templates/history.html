@@ -30,7 +30,7 @@
 		<main class="history-main1">
 			<th:block th:each="reservation:${reservations}" class="col">
 				<div class="bottom">
-					<a th:href="@{/hotelsdetail/{id}(id=${reservation.id})}" class="history-yado">
+					<a th:href="@{/hotelsdetail/{id}(id=${reservation.hotelId})}" class="history-yado">
 						<div class="flex ">
 							<img th:src="${reservation.image}" height="120px" width="200px" class="history-image"
 								alt="ホテル画像">
