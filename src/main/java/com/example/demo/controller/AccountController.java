@@ -253,7 +253,7 @@ public class AccountController {
 			}
 
 			if (newPassword.isEmpty()) {
-				newPassword = account.getPassword();
+				newPassword = customers.getPassword();
 			} else {
 				if (newPassword.length() < 8) {
 					errorList.add("パスワードは8文字以上で入力してください");
@@ -263,15 +263,13 @@ public class AccountController {
 
 				if (password.isEmpty()) {
 					errorList.add("確認用パスワードを入力してください");
-				} else if (!password.equals(account.getPassword())) {
+				} else if (!(password.equals(account.getPassword()))) {
 					errorList.add("確認用パスワードが間違っています");
 				}
 			} //ここがなぜか通らないから直してね
 
 			if (!(cardNo.equals("")) || !(code.equals("")) || !(expiry.equals(""))) {
-				System.out.println(cardNo);
-				System.out.println(code);
-				System.out.println(expiry);
+
 				if (cardNo.equals("")) {
 					errorList.add("クレジットカード番号を入力してください");
 				} else if (cardNo.length() > 16 || cardNo.length() < 14) {
@@ -303,15 +301,11 @@ public class AccountController {
 				customers.setAddress(address);
 				customers.setTel(tel);
 				customers.setEmail(email);
-				customers.setPassword(password);
+				customers.setPassword(customers.getPassword());
 				model.addAttribute("customers", customers);
 				model.addAttribute("errors", errorList);
 				return "edit";
-
 			}
-
-			customers = new Customers();
-			customers = customersRepository.findById(account.getId()).get();
 
 			try {
 				String filename = file.getOriginalFilename();
@@ -326,18 +320,20 @@ public class AccountController {
 				e.printStackTrace();
 			}
 
-			customersRepository.save(customers);
 			customers.setName(name);
 			customers.setAddress(address);
 			customers.setTel(tel);
 			customers.setEmail(email);
-			customers.setPassword(password);
+			customers.setPassword(newPassword);
 			customers.setCardNo(cardNo);
 			customers.setCode(code);
 			customers.setExpiry(expiry);
 			customersRepository.save(customers);
-
+			model.addAttribute("account", account);
 			account.setName(name);
+			account.setEmail(email);
+			account.setPassword(newPassword);
+
 			return "redirect:/mypage";
 
 		}
