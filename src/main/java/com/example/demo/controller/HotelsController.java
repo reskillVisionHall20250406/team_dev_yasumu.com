@@ -189,12 +189,12 @@ public class HotelsController {
 		Hotels hotels = hotelsRepository.findById(id).get();
 		List<Review> reviews = reviewRepository.findByHotelId(id);
 
+		log.add(hotels);
 		if (!reviews.isEmpty()) {
 			double total = 0;
 			for (Review data : reviews) {
 				total += data.getStar();
 			}
-			log.add(hotels);
 
 			// 平均を求める
 			double average = total / reviews.size();
