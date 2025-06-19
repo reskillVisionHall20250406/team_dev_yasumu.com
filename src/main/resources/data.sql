@@ -158,8 +158,33 @@ INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capaci
 -- reviewテーブル
 INSERT INTO review (star,comment,hotel_id) VALUES
 (4,'飲食店が豊富で太ってしまいましたｗ',18),
-(3,'飲食店が豊富で太ってしまいましたｗ',18),
-(3,'会議室が広く使いやすかったです！',7);
+(4,'無料Wi-Fi、コインランドリー、24時間対応のフロントサービスなど、多様なサービスがあって良かったです',1),
+(5,'家族で行きましたが接客が素晴らしかったです',2),
+(3,'快適でした',3),
+(1,'知らない',4),
+(4,'Customer service was excellent! Would love to come back again!',5),
+(3,'海に近い',6),
+(3,'会議室が広く使いやすかったです！',7),
+(4,'快適さと利便性を兼ね備えたホテル',8),
+(4,'',9),
+(4,'',10);
+INSERT INTO review (star,comment,hotel_id) VALUES
+(4,'',11),
+(4,'',12),
+(4,'',13),
+(4,'',14),
+(4,'',15),
+(4,'',16),
+(4,'',17),
+(4,'',19),
+(4,'',20);
+INSERT INTO review (star,comment,hotel_id) VALUES
+(4,'',21),
+(4,'フィットネスジムがある',22),
+(4,'',23),
+(2,'無料WiFiがあるのはいいことだけど回線が重すぎる',24);
+
+
 
 
 -- hotel_tagsテーブル (ホテルとタグの関連付け)
