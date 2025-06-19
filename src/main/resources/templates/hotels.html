@@ -81,6 +81,18 @@
 							<div class="popo">
 								<h3 th:text="${hotel.name}"></h3>
 								<div th:text="${hotel.address}"></div>
+								<div class="star-rating2">
+									<span th:text="${hotel.stars}">0.0</span>
+									<!--																    <span class="stars" th:text="${hotel.starVisual}"></span>-->
+								</div>
+
+								<div class="star-rating" th:attr="data-stars=${hotel.stars}">
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+								</div>
 							</div>
 							<div class="popo2">
 								<div th:text="${hotel.capacity} + '名 税込　'"></div>
@@ -120,9 +132,29 @@
 
 		<h2 class="midashi">おすすめの宿</h2>
 		<div class="recommend">
-			<div class="recommend2" th:each="max:${maxHotels}" >
+			<div class="recommend2" th:each="max:${maxHotels}">
 				<a th:href="@{/hotelsdetail/{id}(id=${max.id})}">
-				<img th:src="${max.image}"  width="100%" alt="ホテル画像">
+					<img th:src="${max.image}" width="100%" alt="ホテル画像">
+					<div class="popoko">
+						<h3 th:text="${max.name}"></h3>
+						<div th:text="${max.address}"></div>
+						<div class="star-rating2">
+							<span th:text="${max.stars}">0.0</span>
+							<!--																    <span class="stars" th:text="${hotel.starVisual}"></span>-->
+						</div>
+
+						<div class="star-rating" th:attr="data-stars=${max.stars}">
+							<span class="star"></span>
+							<span class="star"></span>
+							<span class="star"></span>
+							<span class="star"></span>
+							<span class="star"></span>
+						</div>
+					</div>
+					<div class="popoko2">
+						<div th:text="${max.capacity} + '名 税込　'"></div>
+						<h3 th:text="${max.price} + '円'"></h3>
+					</div>
 				</a>
 			</div>
 		</div>

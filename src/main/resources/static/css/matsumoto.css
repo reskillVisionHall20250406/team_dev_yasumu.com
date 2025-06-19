@@ -19,6 +19,10 @@ header button {
 	z-index: 50;
 }
 
+.logo img{
+	height:10vh
+}
+
 .hmhm {
 	text-align: -webkit-right;
 	margin-right: 32px;
