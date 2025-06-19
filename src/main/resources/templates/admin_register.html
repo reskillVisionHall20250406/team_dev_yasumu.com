@@ -5,6 +5,9 @@
 	<meta charset="UTF-8">
 	<title>新規登録</title>
 	<link rel="stylesheet" type="text/css" href="/css/Jung.css">
+	<style>
+	
+	</style>
 </head>
 
 <body>
@@ -17,8 +20,8 @@
 
 			</ul>
 
-			<form class="login_text" action="/hotels/add" method="post" enctype="multipart/form-data">
-				<input type="text" name="name" th:value="${name}" placeholder="*ホテル名"><br>
+			<form class="login_text edit-form" action="/hotels/add" method="post" enctype="multipart/form-data">
+				
 				<fieldset class="radio-1">
 					<label>
 						<input type="radio" name="areaId" value="1" checked />
@@ -49,6 +52,7 @@
 						九州
 					</label>
 				</fieldset>
+				<input type="text" name="name" th:value="${name}" placeholder="*ホテル名"><br>
 				<input type="text" name="detail" placeholder="*ホテル詳細"><br>
 				<input type="text" name="address" placeholder="*住所"><br>
 				<input type="number" name="capacity" placeholder="*宿泊人数"><br>
