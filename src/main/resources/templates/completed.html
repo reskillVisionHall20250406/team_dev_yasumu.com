@@ -7,9 +7,9 @@
 	<title>予約完了</title>
 </head>
 
-<body style="text-align: center;">
+<body>
 	<header th:replace="header2"></header><br><br>
-	<h3>宿の予約が完了しました</h3><br>
+	<h3 style="text-align: center;">宿の予約が完了しました</h3><br>
 	<div class="login-container">
 		<div class="flex">
 			<img th:src="${hotels.image}" height="170px" alt="ホテル画像">
@@ -24,7 +24,8 @@
 	</div>
 
 	<br><br>
-	ご利用ありがとうございます<br>
+	<div style="text-align: center;">ご利用ありがとうございます</div>
+	<br>
 	<form action="/hotels" method="get">
 		<button class="button-1">OK</button>
 	</form>

@@ -929,7 +929,7 @@ a:hover {
 }
 
 .recommend2 img {
-	filter: brightness(0.7);
+	filter: brightness(0.6);
 }
 
 .row1 {
@@ -1892,7 +1892,6 @@ body {
 	align-items: center;
 	height: 60vh;
 	min-height: 400px;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .imgth {
@@ -2325,4 +2324,28 @@ body {
 
 hr {
 	background-color: white;
+}
+
+.popoko,
+.popoko2 {
+	padding-left: 4%;
+	padding-top: 3%;
+	color: rgb(255, 255, 255);
+}
+
+.popoko2 {
+	padding-top: 5%;
+	padding-bottom: 0;
+	justify-content: end;
+	padding-right: 4%;
+	display: flex;
+}
+
+.popoko{
+	position: absolute;
+	top: 50%;
+}
+.popoko2{
+	position: absolute;
+	
 }
