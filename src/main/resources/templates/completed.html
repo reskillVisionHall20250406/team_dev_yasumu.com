@@ -15,7 +15,7 @@
 			<img th:src="${hotels.image}" class="completed-img" alt="ホテル画像">
 			<div class="hello">
 				<div th:text="${hotels.name}" class="completed-hotelname"></div>
-				<div th:text="${hotels.address}" class="completed-sub"></div>
+				<div th:text="${hotels.address}" class="completed-sub"></div><br>
 				<div th:text="宿泊人数： + ${hotels.capacity} + 人" class="completed-sub"></div>
 				<div th:text="値段： + ${hotels.price} + 円" class="completed-sub"></div>
 				<span th:text="日時： + ${reservation.date}" class="completed-sub"></span>
