@@ -51,6 +51,7 @@ body {
 	color: #333;
 	font-size: 1.5rem;
 	font-weight: 600;
+	margin-top: -24px;
 }
 
 .form-group {
@@ -221,7 +222,7 @@ body {
 .user-link {
 	display: block;
 	text-align: center;
-	margin-top: 1.5rem;
+	margin-top: -8px;
 	color: #007bff;
 	text-decoration: none;
 	font-size: 0.9rem;
