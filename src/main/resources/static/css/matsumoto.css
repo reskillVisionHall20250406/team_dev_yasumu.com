@@ -19,8 +19,8 @@ header button {
 	z-index: 50;
 }
 
-.logo img{
-	height:10vh
+.logo img {
+	height: 10vh
 }
 
 .hmhm {
@@ -201,7 +201,7 @@ button:hover {
 
 .flex {
 	display: flex;
-	justify-content:center;
+	justify-content: center;
 	/* 水平方向の中央揃え */
 	padding-top: 5vh;
 	/* 垂直方向の中央揃え */
@@ -365,23 +365,61 @@ input[type="date"] {
 	margin-top: 5vh;
 }
 
-.hello{
+.hello {
 	margin-left: 8vh;
 }
 
-/* .nav_logo {
-	position: absolute;
-	bottom: 30px;
-	left: 0;
-	width: 100%;
-	z-index: 2;
-}
+@media (max-width :480px) {
+	.logo img {
+		width: 27%;
+		height: 27%;
+	}
 
-.nav_copyright {
-	position: fixed;
-	bottom: 10px;
-	left: 0;
-	width: 100%;
-	text-align: center;
-	z-index: 1; */
-/* } */
+	.completed-img {
+		width: 900px;
+		height: 550px;
+		margin-top: -48px;
+	}
+
+	.completed-h3 {
+		text-align: center;
+		font-size: 40px;
+	}
+
+	.completed-hotelname {
+		font-size: 56px;
+	}
+
+	.completed-sub {
+		font-size: 40px;
+	}
+
+	.completed-commentt {
+		text-align: center;
+		font-size: 40px;
+		margin-top: 632px;
+	}
+
+	.flex {
+		justify-content: center;
+		padding-top: 5vh;
+		height: 350px;
+		display: initial;
+	}
+	
+	.button-1 {
+	    display: flex
+	;
+	    justify-content: center;
+	    align-items: center;
+	    width: 100px;
+	    margin: 0 auto;
+	    padding: .6em 1em;
+	    border: 1px solid #2589d0;
+	    border-radius: 5px;
+	    background-color: #fff;
+	    color: #2589d0;
+	    font-size: 32px;
+	    margin-top: 5vh;
+	}
+}
