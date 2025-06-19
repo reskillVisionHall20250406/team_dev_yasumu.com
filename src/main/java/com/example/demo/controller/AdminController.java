@@ -144,6 +144,7 @@ public class AdminController {
 			@RequestParam(name = "name", defaultValue = "") String name,
 			@RequestParam(name = "address", defaultValue = "") String address,
 			@RequestParam(name = "capacity", defaultValue = "") Integer capacity,
+			@RequestParam(name = "areaId", defaultValue = "") Integer areaId,
 			@RequestParam(name = "price", defaultValue = "") Integer price,
 			@RequestParam(name = "detail", defaultValue = "") String detail,
 			@RequestParam(name = "file", defaultValue = "") MultipartFile file,
@@ -151,8 +152,11 @@ public class AdminController {
 			@RequestParam(name = "file3", defaultValue = "") MultipartFile file3,
 			@PathVariable("id") Integer id,
 			Model model) {
+
 		Hotels hotels = hotelsRepository.findById(id).get();
 		List<String> err = new ArrayList<>();
+		Area area = null; // Area オブジェクトを保存する変数
+
 		if (name.equals("")) {
 			err.add("宿名を入力してください");
 		}
@@ -173,22 +177,34 @@ public class AdminController {
 			err.add("料金は１以上を入力してください");
 		}
 
+		// Area エンティティの検証と取得
+		if (areaId != null) {
+			Optional<Area> areaOpt = areaRepository.findById(areaId);
+			if (areaOpt.isPresent()) {
+				area = areaOpt.get();
+			} else {
+				err.add("選択された地域が存在しません");
+			}
+		} else {
+			err.add("地域を選択してください");
+		}
+
 		if (err.isEmpty()) {
 			try {
 				String contentType = file.getContentType();
 				String contentType2 = file2.getContentType();
 				String contentType3 = file3.getContentType();
-				if (contentType != null && contentType.startsWith("image/")) { // null 체크 추가
+
+				if (contentType != null && contentType.startsWith("image/")) {
 					String filename = file.getOriginalFilename();
 					String filePath = "static/upload/" + filename;
 					byte[] content = file.getBytes();
 					Files.write(Paths.get(filePath), content);
 					String imageUrl = "/upload/" + filename;
 					hotels.setImage(imageUrl);
-
 				}
 
-				if (contentType2 != null && contentType2.startsWith("image/")) { // null 체크 추가
+				if (contentType2 != null && contentType2.startsWith("image/")) {
 					String filename2 = file2.getOriginalFilename();
 					String filePath2 = "static/upload/" + filename2;
 					byte[] content2 = file2.getBytes();
@@ -196,7 +212,8 @@ public class AdminController {
 					String imageUrl2 = "/upload/" + filename2;
 					hotels.setImage2(imageUrl2);
 				}
-				if (contentType3 != null && contentType3.startsWith("image/")) { // null 체크 추가
+
+				if (contentType3 != null && contentType3.startsWith("image/")) {
 					String filename3 = file3.getOriginalFilename();
 					String filePath3 = "static/upload/" + filename3;
 					byte[] content3 = file3.getBytes();
@@ -207,21 +224,31 @@ public class AdminController {
 
 			} catch (Exception e) {
 				e.printStackTrace();
-				err.add("画像のアップロード中にエラーが発生しました"); // 에러 메시지 추가
+				err.add("画像のアップロード中にエラーが発生しました");
 				model.addAttribute("errors", err);
 				model.addAttribute("hotels", hotels);
+				// エラー発生時も地域リストを追加
+				List<Area> areas = areaRepository.findAll();
+				model.addAttribute("areas", areas);
 				return "admin_hotelsEdit";
 			}
+
 			hotels.setName(name);
 			hotels.setAddress(address);
 			hotels.setCapacity(capacity);
+			hotels.setPrice(price); // 価格の設定を追加
 			hotels.setDetail(detail);
+			hotels.setArea(area); // Area オブジェクトを設定（重要！）
+
 			hotelsRepository.save(hotels);
 			return "redirect:/admin/edit/" + id;
 		}
 
 		model.addAttribute("hotels", hotels);
 		model.addAttribute("errors", err);
+		// エラー発生時も地域リストを追加
+		List<Area> areas = areaRepository.findAll();
+		model.addAttribute("areas", areas);
 		return "admin_hotelsEdit";
 	}
 
@@ -236,7 +263,7 @@ public class AdminController {
 	@PostMapping("/hotels/add")
 	public String add(
 			@RequestParam(name = "name", defaultValue = "") String name,
-			@RequestParam(name = "areaId", defaultValue = "") Integer areaId, // areaId는 그대로 유지하되
+			@RequestParam(name = "areaId", defaultValue = "") Integer areaId,
 			@RequestParam(name = "detail", defaultValue = "") String detail,
 			@RequestParam(name = "address", defaultValue = "") String address,
 			@RequestParam("file") MultipartFile file,
@@ -247,11 +274,18 @@ public class AdminController {
 			Model model) {
 
 		List<String> errorList = new ArrayList<>();
+		Area area = null; // Area オブジェクトを保存する変数
 
-		// Area 엔티티를 찾습니다.
-		Optional<Area> areaOpt = areaRepository.findById(areaId);
-		if (areaOpt.isEmpty()) {
-			errorList.add("選択された地域が存在しません"); // 선택된 지역이 없을 경우 에러 추가
+		// Area エンティティを検索
+		if (areaId != null) {
+			Optional<Area> areaOpt = areaRepository.findById(areaId);
+			if (areaOpt.isPresent()) {
+				area = areaOpt.get(); // Area オブジェクトを取得
+			} else {
+				errorList.add("選択された地域が存在しません");
+			}
+		} else {
+			errorList.add("地域を選択してください");
 		}
 
 		Hotels existingHotel = hotelsRepository.findByNameAndAddress(name, address);
@@ -289,10 +323,9 @@ public class AdminController {
 			model.addAttribute("name", name);
 			model.addAttribute("detail", detail);
 			model.addAttribute("address", address);
-			// 에러 발생 시 지역 목록도 다시 모델에 추가해야 합니다.
 			List<Area> areas = areaRepository.findAll();
 			model.addAttribute("areas", areas);
-			return "admin_register"; // ログインページにエラーを表示
+			return "admin_register";
 		}
 
 		try {
@@ -323,12 +356,16 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		hotels.setName(name);
 		hotels.setAddress(address);
 		hotels.setCapacity(capacity);
 		hotels.setPrice(price);
 		hotels.setDetail(detail);
-		hotels.setAreaId(areaId);
+		hotels.setStars(0.0);
+		hotels.setArea(area); // Area オブジェクトを設定（重要！）
+		hotels.setAdminId(adminAccount.getId());
+
 		hotelsRepository.save(hotels);
 		return "redirect:/home";
 	}

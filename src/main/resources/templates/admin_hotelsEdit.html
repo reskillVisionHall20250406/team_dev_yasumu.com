@@ -17,11 +17,13 @@
 						th:if="${hotels.image != null and !#strings.isEmpty(hotels.image) and hotels.image != 'null'}"
 						th:src="@{${hotels.image}}" alt="プロフィール画像"></li><!--
 							
-			--><li><img class="mypage-image"
+			-->
+				<li><img class="mypage-image"
 						th:if="${hotels.image2 != null and !#strings.isEmpty(hotels.image2) and hotels.image2 != 'null'}"
 						th:src="@{${hotels.image2}}" alt="プロフィール画像"></li><!--
 							
-			--><li><img class="mypage-image"
+			-->
+				<li><img class="mypage-image"
 						th:if="${hotels.image3 != null and !#strings.isEmpty(hotels.image3) and hotels.image3 != 'null'}"
 						th:src="@{${hotels.image3}}" alt="プロフィール画像"></li>
 
@@ -29,6 +31,44 @@
 
 			<form th:action="@{/admin/edit/hotels/{id}(id=${hotels.id})}" class="edit-form" method="post"
 				enctype="multipart/form-data">
+				地方：
+				<fieldset class="radio-1">
+					<label>
+						<input type="radio" name="areaId" value="1" 		
+						th:checked="${hotels.areaId == 1}" />
+						東北
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="2"
+						th:checked="${hotels.areaId == 2}" />
+						関東
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="3" 
+						th:checked="${hotels.areaId == 3}" />
+						中部
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="4" 
+						th:checked="${hotels.areaId == 4}" />
+						近畿
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="5" 
+						th:checked="${hotels.areaId == 5}" />
+						中国
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="6" 
+						th:checked="${hotels.areaId == 6}" />
+						四国
+					</label>
+					<label>
+						<input type="radio" name="areaId" value="7" 
+						th:checked="${hotels.areaId == 7}" />
+						九州
+					</label>
+				</fieldset>
 				宿名：<input type="text" name="name" th:value="${hotels.name}" placeholder="宿名">
 				住所：<input type="text" name="address" th:value="${hotels.address}" placeholder="住所">
 				宿泊人数：<input type="text" name="capacity" th:value="${hotels.capacity}" placeholder="宿泊人数">

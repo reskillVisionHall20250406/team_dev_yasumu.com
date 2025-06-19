@@ -1,5 +1,6 @@
 // Hotels.java
-package com.example.demo.entity; // Adjust package as needed
+
+package com.example.demo.entity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,26 +40,27 @@ import java.util.Set;
 @Entity
 @Table(name = "hotels")
 public class Hotels {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
-    @Transient
-    private Integer areaId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "area_id", referencedColumnName = "id")
-    private Area area;
+	@ManyToOne
+	@JoinColumn(name = "area_id", referencedColumnName = "id")
+	private Area area;
 
-    private String name;
-    private String detail;
-    private String address;
-    private String image;
-    private String image2;
-    private String image3;
-    private Integer capacity;
-    private Integer price;
-    private double stars;
+	private Integer capacity;
+	private String name;
+	private String detail;
+	private String address;
+	private String image;
+	private String image2;
+	private String image3;
+
+	@Column(name = "area_id", insertable = false, updatable = false)
+	private Integer areaId;
+	private Integer price;
+	private double stars;
 
     @Column(name = "admin_id")
     private Integer adminId;
@@ -75,26 +77,19 @@ public class Hotels {
 
 
 
-    // Many-to-Many relationship with Tags
-    @ManyToMany
-    @JoinTable(
-        name = "hotel_tags", // The name of your join table
-        joinColumns = @JoinColumn(name = "hotel_id"), // Column in hotel_tags that references hotels.id
-        // 🔽 This is the crucial line to fix! 🔽
-        inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id") // Column in hotel_tags that references tags.id
-        // 🔼 Make sure 'referencedColumnName' matches the actual PK column name in your 'tags' table 🔼
-    )
-    private Set<Tags> tags = new HashSet<>();
+	// Many-to-Many relationship with Tags
+	@ManyToMany
+	@JoinTable(name = "hotel_tags", joinColumns = @JoinColumn(name = "hotel_id"), inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
+	private Set<Tags> tags = new HashSet<>();
 
-    // ... (rest of your Hotels entity: constructors, getters, setters) ...
+	// Getters and Setters
+	public String getStarVisual() {
+		return starVisual;
+	}
 
-    public String getStarVisual() {
-        return starVisual;
-    }
-
-    public void setStarVisual(String starVisual) {
-        this.starVisual = starVisual;
-    }
+	public void setStarVisual(String starVisual) {
+		this.starVisual = starVisual;
+	}
 
     // @PrePersist
     // protected void onCreate() {
@@ -123,126 +118,111 @@ public class Hotels {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Integer getAreaId() {
-        return areaId;
-    }
+	public Area getArea() {
+		return area;
+	}
 
-    public void setAreaId(Integer areaId) {
-        this.areaId = areaId;
-    }
+	public void setArea(Area area) {
+		this.area = area;
+	}
 
-    public Area getArea() {
-        return area;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setArea(Area area) {
-        this.area = area;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getDetail() {
+		return detail;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
 
-    public String getDetail() {
-        return detail;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getImage() {
+		return image;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public void setImage(String image) {
+		this.image = image;
+	}
 
-    public String getImage() {
-        return image;
-    }
+	public String getImage2() {
+		return image2;
+	}
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+	public void setImage2(String image2) {
+		this.image2 = image2;
+	}
 
-    public String getImage2() {
-        return image2;
-    }
+	public String getImage3() {
+		return image3;
+	}
 
-    public void setImage2(String image2) {
-        this.image2 = image2;
-    }
+	public void setImage3(String image3) {
+		this.image3 = image3;
+	}
 
-    public String getImage3() {
-        return image3;
-    }
+	public Integer getCapacity() {
+		return capacity;
+	}
 
-    public void setImage3(String image3) {
-        this.image3 = image3;
-    }
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
+	}
 
-    public Integer getCapacity() {
-        return capacity;
-    }
+	public Integer getPrice() {
+		return price;
+	}
 
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
 
-    public Integer getPrice() {
-        return price;
-    }
+	public double getStars() {
+		return stars;
+	}
 
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
+	public void setStars(double rounded) {
+		this.stars = rounded;
+	}
 
-    public double getStars() {
-        return stars;
-    }
+	public Integer getAdminId() {
+		return adminId;
+	}
 
-    public void setStars(double rounded) {
-        this.stars = rounded;
-    }
+	public void setAdminId(Integer adminId) {
+		this.adminId = adminId;
+	}
 
-    public Integer getAdminId() {
-        return adminId;
-    }
+	public Set<Tags> getTags() {
+		return tags;
+	}
 
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
-    }
+	public void setTags(Set<Tags> tags) {
+		this.tags = tags;
+	}
 
-    public Set<Tags> getTags() {
-        return tags;
-    }
+	public Integer getAreaId() {
+		return area != null ? area.getId() : null;
+	}
 
-    public void setTags(Set<Tags> tags) {
-        this.tags = tags;
-    }
-  // public LocalDateTime getCreatedAt() {
-    //     return createdAt;
-    // }
-
-    // public void setCreatedAt(LocalDateTime createdAt) {
-    //     this.createdAt = createdAt;
-    // }
-
-    // public LocalDateTime getUpdatedAt() {
-    //     return updatedAt;
-    // }
-
-    // public void setUpdatedAt(LocalDateTime updatedAt) {
-    //     this.updatedAt = updatedAt;
-    // }
+	public void setAreaId(Integer areaId) {
+		this.areaId = areaId;
+	}
 }

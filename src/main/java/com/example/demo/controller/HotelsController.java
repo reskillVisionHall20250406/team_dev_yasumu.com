@@ -63,6 +63,7 @@ public class HotelsController {
 
 		int pageSize = 8;
 		Pageable pageable = PageRequest.of(page, pageSize);
+		List<Hotels> hotelsAll = hotelsRepository.findAll();
 		Page<Hotels> hotelsPage;
 		Double i = (double) 0;
 		//		List <Hotels> hotels = hotelsRepository.findAll();
@@ -124,7 +125,7 @@ public class HotelsController {
 			hotelsPage = hotelsRepository.findAll(pageable);
 		}
 
-		for (Hotels hotel : hotelsPage) {
+		for (Hotels hotel : hotelsAll) {
 			Integer id = hotel.getId();
 			List<Review> reviews = reviewRepository.findByHotelId(id);
 
@@ -146,9 +147,13 @@ public class HotelsController {
 			} else {
 				hotel.setStars(0.0);
 			}
-			hotelsRepository.save(hotel);
 		}
+		// 一括保存
+		hotelsRepository.saveAll(hotelsPage);
+		hotelsRepository.saveAll(hotelsAll);
 
+		// フラッシュして確実にデータベースに反映
+		hotelsRepository.flush();
 		PageRequest num = PageRequest.of(0, 2);
 		List<Hotels> topHotels = hotelsRepository.findTop2OrderByStarsDescJPQL(num);
 

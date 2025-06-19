@@ -157,3 +157,59 @@ li img {
 	height: 120px;
 	/*高さを指定*/
 }
+
+.radio-1 {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .3em 2em;
+	border: none;
+}
+
+.radio-1 label {
+	display: flex;
+	align-items: center;
+	gap: 0 .5em;
+	position: relative;
+	cursor: pointer;
+}
+
+.radio-1 label::before,
+.radio-1 label:has(:checked)::after {
+	border-radius: 50%;
+	content: '';
+}
+
+.radio-1 label::before {
+	width: 18px;
+	height: 18px;
+	background-color: #e6edf3;
+}
+
+.radio-1 label:has(:checked)::after {
+	position: absolute;
+	top: 50%;
+	left: 9px;
+	transform: translate(-50%, -50%);
+	width: 10px;
+	height: 10px;
+	background-color: rgb(0, 128, 192);
+	animation: anim-radio-1 .3s linear;
+}
+
+@keyframes anim-radio-1 {
+	0% {
+		box-shadow: 0 0 0 1px transparent;
+	}
+
+	50% {
+		box-shadow: 0 0 0 10px #f2f2f233;
+	}
+
+	100% {
+		box-shadow: 0 0 0 10px transparent;
+	}
+}
+
+.radio-1 input {
+	display: none;
+}

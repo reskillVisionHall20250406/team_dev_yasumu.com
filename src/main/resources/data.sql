@@ -155,6 +155,12 @@ INSERT INTO hotels(area_id, name, address, detail, image, image2, image3, capaci
 '仙台パークホテルは、市内中心部に位置し、アクセスの良さが魅力のホテルです。快適な客室はモダンで清潔感があり、ビジネスや観光の拠点に最適です。館内にはレストランやフィットネス施設があり、無料Wi-Fiも完備。スタッフは丁寧で親切な対応を提供し、訪れるゲストに快適な滞在を約束します。周辺にはショッピングエリアや観光スポットが充実し、多彩なニーズに応えられるホテルです。安心して利用できる環境が整っています。', 
 '/image/1-67.jpg', '/image/1-68.jpg', '/image/1-69.jpg', 2, 8500,4,0.0);
 
+-- reviewテーブル
+INSERT INTO review (star,comment,hotel_id) VALUES
+(4,'飲食店が豊富で太ってしまいましたｗ',18),
+(3,'飲食店が豊富で太ってしまいましたｗ',18),
+(3,'会議室が広く使いやすかったです！',7);
+
 
 -- hotel_tagsテーブル (ホテルとタグの関連付け)
 
@@ -334,3 +340,4 @@ INSERT INTO hotel_tags (hotel_id, tag_id) VALUES
 (24, (SELECT id FROM tags WHERE name = 'レストランあり')),
 (24, (SELECT id FROM tags WHERE name = 'フィットネスセンター')),
 (24, (SELECT id FROM tags WHERE name = '駅近')); 
+
