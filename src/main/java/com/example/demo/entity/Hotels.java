@@ -25,6 +25,16 @@ import java.util.Set;
 // import java.math.BigDecimal;
 // import jakarta.persistence.PrePersist; 
 // import jakarta.persistence.PreUpdate; 
+import jakarta.persistence.ManyToMany; 
+import jakarta.persistence.JoinTable;  
+import jakarta.persistence.JoinColumn; 
+
+import java.util.HashSet; 
+import java.util.Set;     
+// import java.time.LocalDateTime; 
+// import java.math.BigDecimal;
+// import jakarta.persistence.PrePersist; 
+// import jakarta.persistence.PreUpdate; 
 
 @Entity
 @Table(name = "hotels")
@@ -53,8 +63,17 @@ public class Hotels {
     @Column(name = "admin_id")
     private Integer adminId;
 
+    // @Column(name = "created_at", updatable = false) // SQL 스키마에 따라 추가
+    // private LocalDateTime createdAt;
+
+    // @Column(name = "updated_at") // SQL 스키마에 따라 추가
+    // private LocalDateTime updatedAt;
+	
+
     @Transient
     private String starVisual;
+
+
 
     // Many-to-Many relationship with Tags
     @ManyToMany
@@ -77,6 +96,29 @@ public class Hotels {
         this.starVisual = starVisual;
     }
 
+    // @PrePersist
+    // protected void onCreate() {
+    //     this.createdAt = LocalDateTime.now();
+    //     this.updatedAt = LocalDateTime.now();
+    // }
+
+    // @PreUpdate
+    // protected void onUpdate() {
+    //     this.updatedAt = LocalDateTime.now();
+    // }
+
+	//	Hotels(Integer areaId, String name, String detail, String address, String image, String image2, String image3,
+	//			Integer capacity, Integer price) {
+	//		this.areaId = areaId;
+	//		this.name = name;
+	//		this.detail = detail;
+	//		this.address = address;
+	//		this.image = image;
+	//		this.image2 = image2;
+	//		this.image3 = image3;
+	//		this.capacity = capacity;
+	//		this.price = price;
+	//	}
     public Integer getId() {
         return id;
     }
@@ -188,4 +230,19 @@ public class Hotels {
     public void setTags(Set<Tags> tags) {
         this.tags = tags;
     }
+  // public LocalDateTime getCreatedAt() {
+    //     return createdAt;
+    // }
+
+    // public void setCreatedAt(LocalDateTime createdAt) {
+    //     this.createdAt = createdAt;
+    // }
+
+    // public LocalDateTime getUpdatedAt() {
+    //     return updatedAt;
+    // }
+
+    // public void setUpdatedAt(LocalDateTime updatedAt) {
+    //     this.updatedAt = updatedAt;
+    // }
 }

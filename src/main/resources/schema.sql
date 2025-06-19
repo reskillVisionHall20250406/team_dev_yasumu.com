@@ -41,6 +41,12 @@ CREATE TABLE hotels (
     -- updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+CREATE TABLE tags (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+    -- created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+
 -- 顧客テーブル
 CREATE TABLE customers (
     id SERIAL PRIMARY KEY,
@@ -76,10 +82,6 @@ CREATE TABLE review (
 	    hotel_id INTEGER REFERENCES hotels(id)
 );
 
-CREATE TABLE tags (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE
-);
 
 CREATE TABLE hotel_tags (
     hotel_id INTEGER NOT NULL,
