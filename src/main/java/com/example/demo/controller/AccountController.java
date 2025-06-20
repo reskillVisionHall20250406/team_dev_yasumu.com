@@ -179,6 +179,7 @@ public class AccountController {
 		account.setEmail(customers.getEmail());
 		account.setName(customers.getName());
 		account.setId(customers.getId());
+		account.setPassword(customers.getPassword());
 
 		String redirectUrl = (String) session.getAttribute("reservationLogin");
 		Integer redirectId = (Integer) session.getAttribute("id");
@@ -260,7 +261,8 @@ public class AccountController {
 				} else if (!newPassword.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$")) {
 					errorList.add("パスワードは半角英字と数字の両方を含めてください");
 				}
-
+				System.out.println(password);
+				System.out.println(account.getPassword());
 				if (password.isEmpty()) {
 					errorList.add("確認用パスワードを入力してください");
 				} else if (!(password.equals(account.getPassword()))) {

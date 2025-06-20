@@ -129,8 +129,7 @@ nav {
 	position: fixed;
 	top: 0;
 	right: 0;
-	width: 80%;
-	max-width: 250px;
+	width: 30%;
 	height: 100vh;
 	display: flex;
 	align-items: center;
@@ -1616,6 +1615,16 @@ form.jjj {
 		height: 60px;
 	}
 
+	.active::before {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 100vw;
+		height: 100vh;
+		opacity: 0.4;
+		z-index: 19;
+	}
+
 	.key {
 		width: 95%;
 		left: 2.5%;
@@ -1771,7 +1780,7 @@ form.jjj {
 	/* ナビゲーション */
 	nav {
 		width: 90%;
-		max-width: 300px;
+		height: 100%;
 	}
 
 	/* 星評価 */
@@ -2193,6 +2202,31 @@ body {
 
 	.blank {
 		height: 900px;
+	}
+
+	.logo {
+		top: 1%;
+		left: 2%;
+		height: 3%;
+		margin-top: -16px;
+	}
+
+	#hmb {
+		width: 32px;
+		height: 28px;
+		cursor: pointer;
+		position: relative;
+		z-index: 30;
+		margin-top: -32px;
+	}
+
+	.header-name {
+		font-size: 28px;
+	}
+
+	.header-text {
+		font-size: 42px;
+		text-decoration: none;
 	}
 }
 
