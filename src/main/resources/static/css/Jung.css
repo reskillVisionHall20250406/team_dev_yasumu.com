@@ -276,6 +276,7 @@ body {
 	.user-h2 {
 		font-size: 32px;
 		margin-bottom: 1.5rem;
+		margin-top: auto;
 	}
 
 	.login_text input {
