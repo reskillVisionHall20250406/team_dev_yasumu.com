@@ -6,7 +6,7 @@
 			<div style="width: 50vh;"></div>
 			<form action="/login" method="get">
 				<span th:if="${account.name == null}"><button class="key2">ログイン</button></span>
-				<span th:if="${account.name != null}" th:text="${account.name}+さんがログイン中"></span>
+				<span th:if="${account.name != null}" th:text="${account.name}+さんがログイン中" class="header-name"></span>
 			</form>
 			<form action="samplel.cgi" method="post" class="key4">
 
@@ -31,9 +31,9 @@
 				</div>
 				<nav>
 					<ul>
-						<li><a href="/mypage">マイページ</a></li>
-						<li><a href="/logout" onclick="return confirm('ログアウトしますか？')">LOGOUT</a></li>
-						<li><a href="">SERVICE</a></li>
+						<li><a href="/mypage" class="header-text">マイページ</a></li>
+						<li><a href="/logout" onclick="return confirm('ログアウトしますか？')" class="header-text">LOGOUT</a></li>
+						<li><a href="" class="header-text">SERVICE</a></li>
 						 <a href="/hotels" class="nav_logo">
                         <img src="/image/白休.com.png" width="10%" height="" alt="休.com Logo" />
                          </a>
